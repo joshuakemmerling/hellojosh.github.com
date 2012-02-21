@@ -37,7 +37,7 @@ strong { color: #000; }
 
 #project_link { background: #fff; display: block; margin: -61px auto 80px; line-height: 60px; text-align: center; }
 
-.project_seperator { line-height: 240px; text-align: center; font-weight: bold; margin: 20px auto 40px; }
+.project_seperator { line-height: 240px; text-align: center; font-weight: bold; margin: 20px auto 40px; color: #000; }
 .mb24 { margin-bottom: 24px; }
 
 @media screen and (max-width:640px) {
