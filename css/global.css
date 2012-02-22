@@ -28,7 +28,7 @@ strong { color: #000; }
 
 #projects { border-top: solid 1px #cacaca; position: relative; background: #fff; }
 #projects > div { max-width: 640px; margin: 0 auto; }
-#projects > div > .project .project_details { margin: 0 10px; }
+#projects > div > .project .project_details { margin: 0 10px; text-align: justify; }
 #projects > div > .project .project_images .project_image { margin: 0 10px; }
 #projects > div > .project .project_images .project_image img { margin: 0 0 20px; /*width: 620px;*/ max-width: 100%; }
 #projects > div > .project .project_images .project_image.mobile {  }
