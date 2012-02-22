@@ -14,7 +14,7 @@ a:hover { color: #000; -webkit-transition: all 0.1s ease-out; }
 p { margin-bottom: 22px; -webkit-font-smoothing: antialiased; }
 img { display: block; max-width: 100%; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.7); }
 h1 { margin-bottom: 24px; font: italic 40px/1 Didot, DidotReplacement, "Didot"; text-transform: uppercase; color: #000; margin-left: 3px; }
-h2 { font: italic 40px/1 Didot, DidotReplacement, "Didot"; text-transform: uppercase; color: #000; }
+h2 { font: italic 40px/1 Didot, DidotReplacement, "Didot"; text-transform: uppercase; color: #000; text-align: left; }
 footer { text-align: center; padding: 40px 0; border-top: solid 1px #cacaca; margin-top: 100px; clear: both; }
 strong { color: #000; }
 
