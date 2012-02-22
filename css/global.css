@@ -29,9 +29,9 @@ strong { color: #000; }
 #projects { border-top: solid 1px #cacaca; position: relative; background: #fff; }
 #projects > div { max-width: 640px; margin: 0 auto; }
 #projects > div > .project .project_details { margin: 0 10px; text-align: justify; }
-#projects > div > .project .project_images .project_image { margin: 0 -70px 20px; }
+#projects > div > .project .project_images .project_image { margin: 0 -70px 24px; }
 #projects > div > .project .project_images .project_image img { width: 780px; }
-#projects > div > .project .project_images .project_image.mobile img { float: right; width: 380px; }
+#projects > div > .project .project_images .project_image.mobile img { float: right; width: 378px; }
 #projects > div > .project .project_images .project_image.mobile img:first-child { float: left; }
 
 #project_link { background: #fff; display: block; margin: -61px auto 80px; line-height: 60px; text-align: center; }
