@@ -13,6 +13,7 @@ title: Movies
 	#movies li { overflow: hidden; border-style: solid; border-width: 0 1px 1px; border-color: #ddd; }
 	#movies li.wanttosee { color: #888; }
 	#movies li.seen { color: #333; }
+	#movies li.odd { background: #fff; }
 	#movies li h2 { width: 567px; float: left; border-right: solid 1px #ddd; padding: 10px 15px; overflow: hidden; }
 	#movies li h2 strong { float: left; }
 	#movies li h2 a { float: right; font-weight: normal; font-size: 11px; }
@@ -37,7 +38,7 @@ title: Movies
 		var star_count = parseFloat($stars.data('stars'));
 		
 		if (i % 2 === 0) {
-			$this.css({ background: '#fff' });
+			$this.addClass('odd');
 		}
 		
 		if (star_count !== '') {
