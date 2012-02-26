@@ -4,15 +4,19 @@ title: Movies
 ---
 
 <style>
-	#movies { width: 800px; margin: 0 auto; }
-	#movies li { overflow: hidden; }
+	body { background: #f7f7f7; color: #888; font: 12px/20px helvetica, arial; }
+	
+	#movies { width: 800px; margin: 0 auto; border-top: solid 1px #aaa; }
+	#movies li { overflow: hidden; border-right: solid 1px #aaa; border-left: solid 1px #aaa; border-bottom: solid 1px #aaa; }
+	#movies li h2 { width: 599px; float: left; }
+	#movies li span { width: 200px; float: left; }
 </style>
 
 <ul id="movies">
 {% for post in site.posts %}
-	<li>
+	<li class="{{ post.seen }}">
 		<h2>{{ post.title }}</h2>
-		<span data-stars="{{ post.stars }}">{{ post.date | date_to_string }}</span>
+		<span data-stars="{{ post.stars }}">&#9733; &#9733; &#9733; &#9734; &#9734;</span>
 	</li>
 {% endfor %}
 </ul>
