@@ -33,6 +33,7 @@ title: Movies
 	function movie() {
 		var $this = $(this);
 		var $stars = $this.find('.stars');
+		var $h2 = $this.find('h2');
 		var star_count = parseFloat($stars.data('stars'));
 		
 		if (star_count !== '') {
@@ -52,6 +53,12 @@ title: Movies
 				$stars.append('<span class="star">&#9734;</span>');
 			}
 		}
+		
+		$h2.append('<a href="">go to imdb</a>');
+	}
+	
+	function imdb_url() {
+		// http://www.imdb.com/find?q=jackass+the+movie&s=all
 	}
 </script>
 
@@ -62,7 +69,6 @@ title: Movies
 	<li class="{{ post.seen }}">
 		<h2>
 			<strong>{{ post.title }}</strong>
-			<a href="">go to imdb</a>
 		</h2>
 		<span class="stars" data-stars="{{ post.stars }}">
 			{{ post.release }}
