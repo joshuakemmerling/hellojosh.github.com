@@ -4,6 +4,8 @@ title: Movies
 ---
 
 <style>
+	::selection { background: #ff0078; color: #fff; }
+	
 	body { background: #f7f7f7; color: #333; font: 12px/20px helvetica, arial; }
 	a, a:visited { text-decoration: none; color: #36c; }
 	
@@ -22,6 +24,7 @@ title: Movies
 	#movies li > span .star .half { float: left; width: 6px; overflow: hidden; }
 	#movies li > span .star .half span { display: block; }
 	#movies li > span .star .half.right span { margin-left: -6px; }
+	#movies li > span .star .half.full, #movies li > span .star .half.left span { color: #ff0078; }
 </style>
 
 <script>
@@ -47,7 +50,7 @@ title: Movies
 			var empty_star = 5 - Math.ceil(star_count);
 			
 			for (var i = 0; i < full_star; i++) {
-				$stars.append('<span class="star">&#9733;</span>');
+				$stars.append('<span class="star full">&#9733;</span>');
 			}
 			
 			for (var i = 0; i < half_star; i++) {
@@ -55,7 +58,7 @@ title: Movies
 			}
 			
 			for (var i = 0; i < empty_star; i++) {
-				$stars.append('<span class="star">&#9734;</span>');
+				$stars.append('<span class="star empty">&#9734;</span>');
 			}
 		}
 		
