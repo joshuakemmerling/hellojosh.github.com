@@ -9,7 +9,7 @@ title: Movies
 	
 	h1 { font: 54px/64px 'Stint Ultra Expanded', cursive; text-align: center; margin-top: 40px; }
 	
-	#movies { width: 800px; margin: 0 auto; border-top: solid 3px #ddd; margin-top: 40px; }
+	#movies { width: 800px; margin: 40px auto; border-top: solid 3px #ddd; }
 	#movies li { overflow: hidden; border-style: solid; border-width: 0 1px 1px; border-color: #ddd; }
 	#movies li.wanttosee { color: #888; }
 	#movies li.seen { color: #333; }
@@ -30,7 +30,7 @@ title: Movies
 		$('#movies').find('li').each(movie);
 	}
 	
-	function movie() {
+	function movie(i, e) {
 		var $this = $(this);
 		var $stars = $this.find('.stars');
 		var $h2 = $this.find('h2');
