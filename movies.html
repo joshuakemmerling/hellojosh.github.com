@@ -9,14 +9,25 @@ title: Movies
 	#movies { width: 800px; margin: 0 auto; border-top: solid 1px #aaa; margin-top: 40px; }
 	#movies li { overflow: hidden; border-right: solid 1px #aaa; border-left: solid 1px #aaa; border-bottom: solid 1px #aaa; }
 	#movies li h2 { width: 567px; float: left; border-right: solid 1px #aaa; padding: 10px 15px; }
-	#movies li span { width: 170px; float: left; padding: 10px 15px; }
+	#movies li > span { width: 170px; float: left; padding: 10px 15px; overflow: hidden; }
+	#movies li > span .star { float: left; overflow: hidden; }
+	#movies li > span .star .half { float: left; }
 </style>
 
 <ul id="movies">
 {% for post in site.posts %}
 	<li class="{{ post.seen }}">
 		<h2>{{ post.title }}</h2>
-		<span data-stars="{{ post.stars }}">&#9733; &#9733; &#9733; &#9734; &#9734;</span>
+		<span data-stars="{{ post.stars }}">
+			<span class="star">&#9733;</span>
+			<span class="star">&#9733;</span>
+			<span class="star">&#9733;</span>
+			<span class="star">
+				<span class="half left">&#9733;</span>
+				<span class="half right">&#9734;</span>
+			</span>
+			<span class="star">&#9734;</span>
+		</span>
 	</li>
 {% endfor %}
 </ul>
