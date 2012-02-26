@@ -32,13 +32,20 @@ title: Movies
 		
 		if (star_count !== '') {
 			var full_star = Math.floor(star_count);
-			var half_star = star_count % 1;
+			var half_star = Math.ceil(star_count % 1);
+			var empty_star = Math.ceil(star_count) - 5;
 			
 			for (var i = 0; i < full_star; i++) {
 				$stars.append('<span class="star">&#9733;</span>');
 			}
 			
+			for (var i = 0; i < half_star; i++) {
+				$stars.append('<span class="star"><span class="half left"><span>&#9733;</span></span><span class="half right"><span>&#9734;</span></span></span>');
+			}
 			
+			for (var i = 0; i < empty_star; i++) {
+				$stars.append('<span class="star">&#9734;</span>');
+			}
 		}
 	}
 </script>
