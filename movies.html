@@ -4,7 +4,7 @@ title: Movies
 ---
 
 <style>
-	body { background: #f7f7f7; color: #333; font: 12px/20px verdana, helvetica, arial; }
+	body { background: #f7f7f7; color: #333; font: 12px/20px helvetica, arial; }
 	a, a:visited { text-decoration: none; color: #36c; }
 	
 	h1 { font: 54px/64px 'Stint Ultra Expanded', cursive; text-align: center; margin-top: 40px; }
@@ -54,11 +54,11 @@ title: Movies
 			}
 		}
 		
-		$h2.append('<a href="">go to imdb</a>');
+		$h2.append('<a href="' . imdb_url() . '">go to imdb</a>');
 	}
 	
 	function imdb_url() {
-		// http://www.imdb.com/find?q=jackass+the+movie&s=all
+		return 'http://www.imdb.com/find?q=jackass+the+movie&s=all';
 	}
 </script>
 
