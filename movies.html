@@ -54,11 +54,11 @@ title: Movies
 			}
 		}
 		
-		$h2.append('<a href="' + imdb_url() + '">go to imdb</a>');
+		$h2.append('<a href="' + imdb_url($h2.find('strong').text()) + '" target="_blank">go to imdb</a>');
 	}
 	
-	function imdb_url() {
-		return 'http://www.imdb.com/find?q=jackass+the+movie&s=all';
+	function imdb_url(title) {
+		return 'http://www.imdb.com/find?q=' + title + '&s=all';
 	}
 </script>
 
