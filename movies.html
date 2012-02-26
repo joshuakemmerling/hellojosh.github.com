@@ -28,7 +28,7 @@ title: Movies
 	function movie() {
 		var $this = $(this);
 		var $stars = $this.find('.stars');
-		var star_count = parseInt($stars.data('stars'));
+		var star_count = parseFloat($stars.data('stars'));
 		
 		if (star_count !== '') {
 			var full_star = Math.floor(star_count);
@@ -37,6 +37,8 @@ title: Movies
 			for (var i = 0; i < full_star; i++) {
 				$stars.append('<span class="star">&#9733;</span>');
 			}
+			
+			
 		}
 	}
 </script>
