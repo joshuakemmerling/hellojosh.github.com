@@ -18,11 +18,34 @@ title: Movies
 	#movies li > span .star .half.right span { margin-left: -6px; }
 </style>
 
+<script>
+	$(movies);
+	
+	function movies() {
+		$('#movies').find('li').each(movie);
+	}
+	
+	function movie() {
+		var $this = $(this);
+		var $stars = $this.find('.stars');
+		var star_count = parseInt($stars.data('stars'));
+		
+		if (star_count !== '') {
+			var full_star = Math.floor(star_count);
+			var half_star = star_count % 1;
+			
+			for (var i = 0; i < full_star; i++) {
+				$stars.append('<span class="star">&#9733;</span>');
+			}
+		}
+	}
+</script>
+
 <ul id="movies">
 {% for post in site.posts %}
 	<li class="{{ post.seen }}">
 		<h2>{{ post.title }}</h2>
-		<span data-stars="{{ post.stars }}">
+		<span class="stars" data-stars="{{ post.stars }}">
 			<!--
 			<span class="star">&#9733;</span>
 			<span class="star">&#9733;</span>
@@ -35,8 +58,8 @@ title: Movies
 					<span>&#9734;</span>
 				</span>
 			</span>
-			-->
 			<span class="star">&#9734;</span>
+			-->
 			{{ post.release }}
 		</span>
 	</li>
