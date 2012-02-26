@@ -5,6 +5,7 @@ title: Movies
 
 <style>
 	body { background: #f7f7f7; color: #333; font: 12px/20px helvetica, arial; }
+	a, a:visited { text-decoration: none; color: #36c; }
 	
 	#movies { width: 800px; margin: 0 auto; border-top: solid 1px #aaa; margin-top: 40px; }
 	#movies li { overflow: hidden; border-right: solid 1px #aaa; border-left: solid 1px #aaa; border-bottom: solid 1px #aaa; }
@@ -12,7 +13,7 @@ title: Movies
 	#movies li.seen { color: #333; }
 	#movies li h2 { width: 567px; float: left; border-right: solid 1px #aaa; padding: 10px 15px; overflow: hidden; }
 	#movies li h2 strong { float: left; }
-	#movies li h2 a { float: right; }
+	#movies li h2 a { float: right; font-weight: normal; font-size: 11px; }
 	#movies li > span { width: 170px; float: left; padding: 10px 15px; overflow: hidden; }
 	#movies li > span .star { float: left; overflow: hidden; margin-right: 8px; }
 	#movies li > span .star .half { float: left; width: 6px; overflow: hidden; }
@@ -51,6 +52,8 @@ title: Movies
 		}
 	}
 </script>
+
+<h1>Popcorn Riot</h1>
 
 <ul id="movies">
 {% for post in site.posts %}
