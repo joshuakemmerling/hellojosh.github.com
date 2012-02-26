@@ -36,6 +36,10 @@ title: Movies
 		var $h2 = $this.find('h2');
 		var star_count = parseFloat($stars.data('stars'));
 		
+		if (i % 2 === 0) {
+			$this.css({ background: '#fff' });
+		}
+		
 		if (star_count !== '') {
 			var full_star = Math.floor(star_count);
 			var half_star = Math.ceil(star_count % 1);
