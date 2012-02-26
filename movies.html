@@ -58,7 +58,7 @@ title: Movies
 	}
 	
 	function imdb_url(title) {
-		return 'http://www.imdb.com/find?q=' + title + '&s=all';
+		return 'http://www.imdb.com/find?q=' + encodeURIComponent(title) + '&s=all';
 	}
 </script>
 
