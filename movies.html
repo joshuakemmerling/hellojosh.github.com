@@ -33,7 +33,7 @@ title: Movies
 		if (star_count !== '') {
 			var full_star = Math.floor(star_count);
 			var half_star = Math.ceil(star_count % 1);
-			var empty_star = Math.ceil(star_count) - 5;
+			var empty_star = 5 - Math.ceil(star_count);
 			
 			for (var i = 0; i < full_star; i++) {
 				$stars.append('<span class="star">&#9733;</span>');
