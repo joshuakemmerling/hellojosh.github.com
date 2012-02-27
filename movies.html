@@ -20,7 +20,12 @@
 				{
 					"title": "Act of Valor",
 					//"stars": function() { return stars(3.5); },
-					"stars": function() { return "<b>JOSHUA</b>"; },
+					"stars": function () {
+						return function (text, render) {
+							text = render(text);
+							return text;
+						}
+					},
 					"release": "",
 					"seen": "seen whattosee"
 				},
