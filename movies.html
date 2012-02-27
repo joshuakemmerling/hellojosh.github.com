@@ -19,7 +19,7 @@
 			movies: [
 				{
 					"title": "Act of Valor",
-					"stars": function() { return "3.5"; },
+					"stars": function() { return stars(3.5); },
 					"release": "",
 					"seen": "seen whattosee"
 				},
@@ -37,6 +37,27 @@
 		
 		function movies() {
 			$('#movies').empty().append(html);
+		}
+		
+		function stars(star_count) {
+			var full_star = Math.floor(star_count);
+			var half_star = Math.ceil(star_count % 1);
+			var empty_star = 5 - Math.ceil(star_count);
+			var html = '';
+
+			for (var i = 0; i < full_star; i++) {
+				html += '<span class="star full">&#9733;</span>';
+			}
+
+			for (var i = 0; i < half_star; i++) {
+				html += '<span class="star"><span class="half left"><span>&#9733;</span></span><span class="half right"><span>&#9734;</span></span></span>';
+			}
+
+			for (var i = 0; i < empty_star; i++) {
+				html += '<span class="star empty">&#9734;</span>';
+			}
+			
+			return html;
 		}
 	</script>
 	<style>
