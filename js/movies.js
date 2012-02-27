@@ -7,19 +7,7 @@ var tmpl = '';
 		tmpl += '</li>';
 	tmpl += '{{/movies}}';
 */
-var tmpl = '
-{{#movies}}
-	<li class="{{seen}}">
-		<h2><strong>{{title}}</strong></h2>
-		<span class="stars">
-			{{#stars_output}}
-				{{stars}}
-			{{/stars_output}}
-			{{release}}
-		</span>
-	</li>
-{{/movies}}
-';
+var tmpl = $('#movie_tmpl').val();
 
 var data = {
 	"stars_output": function () {
