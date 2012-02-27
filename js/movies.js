@@ -1,3 +1,4 @@
+/*
 var tmpl = '';
 	tmpl += '{{#movies}}';
 		tmpl += '<li class="{{seen}}">';
@@ -5,6 +6,20 @@ var tmpl = '';
 			tmpl += '<span class="stars">{{#stars_output}}{{stars}}{{/stars_output}}{{release}}</span>';
 		tmpl += '</li>';
 	tmpl += '{{/movies}}';
+*/
+var tmpl = '
+{{#movies}}
+	<li class="{{seen}}">
+		<h2><strong>{{title}}</strong></h2>
+		<span class="stars">
+			{{#stars_output}}
+				{{stars}}
+			{{/stars_output}}
+			{{release}}
+		</span>
+	</li>
+{{/movies}}
+';
 
 var data = {
 	"stars_output": function () {
