@@ -1,85 +1,63 @@
----
-layout: movies
-title: Movies
----
-
-<style>
-	::selection { background: #ff0078; color: #fff; }
-	
-	body { background: #f7f7f7; color: #333; font: 12px/20px helvetica, arial; }
-	a, a:visited { text-decoration: none; color: #36c; }
-	
-	h1 { font: 54px/64px 'Stint Ultra Expanded', cursive; text-align: center; margin-top: 40px; }
-	
-	#movies { width: 800px; margin: 40px auto; border-top: solid 3px #ddd; }
-	#movies li { overflow: hidden; border-style: solid; border-width: 0 1px 1px; border-color: #ddd; }
-	#movies li.wanttosee { color: #888; }
-	#movies li.seen { color: #333; }
-	#movies li.odd { background: #fff; }
-	#movies li h2 { width: 567px; float: left; border-right: solid 1px #ddd; padding: 10px 15px; overflow: hidden; }
-	#movies li h2 strong { float: left; }
-	#movies li h2 a { float: right; font-weight: normal; font-size: 11px; }
-	#movies li > span { width: 170px; float: left; padding: 10px 15px; overflow: hidden; }
-	#movies li > span .star { float: left; overflow: hidden; margin-right: 8px; color: #ff0078; }
-	#movies li > span .star .half { float: left; width: 6px; overflow: hidden; }
-	#movies li > span .star .half span { display: block; }
-	#movies li > span .star .half.right span { margin-left: -6px; }
-</style>
-
-<script>
-	$(movies);
-	
-	function movies() {
-		$('#movies').find('li').each(movie);
-	}
-	
-	function movie(i, e) {
-		var $this = $(this);
-		var $stars = $this.find('.stars');
-		var $h2 = $this.find('h2');
-		var star_count = parseFloat($stars.data('stars'));
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ page.title }}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<link href='http://fonts.googleapis.com/css?family=Stint+Ultra+Expanded' rel='stylesheet' type='text/css'>
+	<link href="/css/reset.css" rel="stylesheet" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="http://github.com/janl/mustache.js/raw/master/mustache.js"></script>
+	<script>
+		//var tmpl = '<li class="{{ post.seen }}"><h2><strong>{{ post.title }}</strong></h2><span class="stars" data-stars="{{ post.stars }}">{{ post.release }}</span></li>';
+		var tmpl = '<li>{{name}}, {{title}}</li>';
+		var data = {
+			name: 'JOSHUA',
+			title: 'This is a title'
+		};
+		var html = Mustache.to_html(template, data);
 		
-		if (i % 2 === 1) {
-			$this.addClass('odd');
+		$(movies);
+		
+		function movies() {
+			$('#movies').append(html);
 		}
+	</script>
+	<style>
+		::selection { background: #ff0078; color: #fff; }
 		
-		if (star_count !== '') {
-			var full_star = Math.floor(star_count);
-			var half_star = Math.ceil(star_count % 1);
-			var empty_star = 5 - Math.ceil(star_count);
-			
-			for (var i = 0; i < full_star; i++) {
-				$stars.append('<span class="star full">&#9733;</span>');
-			}
-			
-			for (var i = 0; i < half_star; i++) {
-				$stars.append('<span class="star"><span class="half left"><span>&#9733;</span></span><span class="half right"><span>&#9734;</span></span></span>');
-			}
-			
-			for (var i = 0; i < empty_star; i++) {
-				$stars.append('<span class="star empty">&#9734;</span>');
-			}
-		}
+		body { background: #f7f7f7; color: #333; font: 12px/20px helvetica, arial; }
+		a, a:visited { text-decoration: none; color: #36c; }
 		
-		$h2.append('<a href="' + imdb_url($h2.find('strong').text()) + '" target="_blank">go to imdb</a>');
-	}
-	
-	function imdb_url(title) {
-		return 'http://www.imdb.com/find?q=' + encodeURIComponent(title).replace(/%20/g, '+') + '&s=all';
-	}
-</script>
-
-<h1>Popcorn Riot</h1>
-
-<ul id="movies">
-{% for post in site.posts %}
-	<li class="{{ post.seen }}">
-		<h2>
-			<strong>{{ post.title }}</strong>
-		</h2>
-		<span class="stars" data-stars="{{ post.stars }}">
-			{{ post.release }}
-		</span>
-	</li>
-{% endfor %}
-</ul>
+		h1 { font: 54px/64px 'Stint Ultra Expanded', cursive; text-align: center; margin-top: 40px; }
+		
+		#movies { width: 800px; margin: 40px auto; border-top: solid 3px #ddd; }
+		#movies li { overflow: hidden; border-style: solid; border-width: 0 1px 1px; border-color: #ddd; }
+		#movies li.wanttosee { color: #888; }
+		#movies li.seen { color: #333; }
+		#movies li.odd { background: #fff; }
+		#movies li h2 { width: 567px; float: left; border-right: solid 1px #ddd; padding: 10px 15px; overflow: hidden; }
+		#movies li h2 strong { float: left; }
+		#movies li h2 a { float: right; font-weight: normal; font-size: 11px; }
+		#movies li > span { width: 170px; float: left; padding: 10px 15px; overflow: hidden; }
+		#movies li > span .star { float: left; overflow: hidden; margin-right: 8px; color: #ff0078; }
+		#movies li > span .star .half { float: left; width: 6px; overflow: hidden; }
+		#movies li > span .star .half span { display: block; }
+		#movies li > span .star .half.right span { margin-left: -6px; }
+	</style>
+</head>
+<body>
+	<h1>Popcorn Riot</h1>
+	<ul id="movies"></ul>
+	<script type="text/javascript">
+		var _gaq = [['_setAccount', 'UA-5317729-4'], ['_trackPageview']];
+		
+		(function(d, t) {
+			var g = d.createElement(t),
+				s = d.getElementsByTagName(t)[0];
+			
+			g.async = g.src = ('//www.google-analytics.com/ga.js';
+			s.parentNode.insertBefore(g, s);
+		}(document, 'script'));
+	</script>
+</body>
+</html>
