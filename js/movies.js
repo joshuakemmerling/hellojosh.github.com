@@ -7,7 +7,7 @@ var tmpl = '';
 		tmpl += '</li>';
 	tmpl += '{{/movies}}';
 */
-var tmpl = $('#movie_tmpl').val();
+var tmpl = $('#movie_tmpl').text();
 
 var data = {
 	"stars_output": function () {
