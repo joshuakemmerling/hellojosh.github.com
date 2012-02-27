@@ -8,11 +8,28 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script src="http://github.com/janl/mustache.js/raw/master/mustache.js"></script>
 	<script>
-		//var tmpl = '<li class="{{ post.seen }}"><h2><strong>{{ post.title }}</strong></h2><span class="stars" data-stars="{{ post.stars }}">{{ post.release }}</span></li>';
-		var tmpl = '<li>{{name}}, {{title}}</li>';
+		var tmpl;
+			tmpl += '{{#movies}}';
+				tmpl += '<li class="{{ post.seen }}">';
+					tmpl += '<h2><strong>{{ post.title }}</strong></h2>';
+					tmpl += '<span class="stars" data-stars="{{ post.stars }}">{{ post.release }}</span>';
+				tmpl += '</li>';
+			tmpl += '{{/movies}}';
 		var data = {
-			name: 'JOSHUA',
-			title: 'This is a title'
+			movies: [
+				{
+					"title": "Joshua",
+					"stars": 3.5,
+					"release": "Released Date",
+					"seen": "seen whattosee"
+				},
+				{
+					"title": "Joshua",
+					"stars": 3.5,
+					"release": "Released Date",
+					"seen": "seen whattosee"
+				}
+			]
 		};
 		var html = Mustache.to_html(tmpl, data);
 		
