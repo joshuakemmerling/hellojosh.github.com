@@ -12,7 +12,7 @@
 			tmpl += '{{#movies}}';
 				tmpl += '<li class="{{seen}}">';
 					tmpl += '<h2><strong>{{title}}</strong></h2>';
-					tmpl += '<span class="stars">{{#stars}}3.5{{stars}}{{release}}</span>';
+					tmpl += '<span class="stars">{{#stars}}{{title}}{{stars}}{{release}}</span>';
 				tmpl += '</li>';
 			tmpl += '{{/movies}}';
 		var data = {
