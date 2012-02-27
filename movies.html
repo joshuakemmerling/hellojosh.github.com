@@ -12,20 +12,20 @@
 			tmpl += '{{#movies}}';
 				tmpl += '<li class="{{seen}}">';
 					tmpl += '<h2><strong>{{title}}</strong></h2>';
-					tmpl += '<span class="stars">{{#stars}}{{title}}{{/stars}}{{release}}</span>';
+					tmpl += '<span class="stars">{{#stars_output}}{{stars}}{{/stars_output}}{{release}}</span>';
 				tmpl += '</li>';
 			tmpl += '{{/movies}}';
 		var data = {
+			"stars_output": function () {
+				return function (text, render) {
+					text = render(text);
+					return '<strong>' + text + '</strong>';
+				}
+			},
 			movies: [
 				{
 					"title": "Act of Valor",
-					//"stars": function() { return stars(3.5); },
-					"stars": function () {
-						return function (text, render) {
-							text = render(text);
-							return '<strong>' + text + '</strong>';
-						}
-					},
+					"stars": 3.5,
 					"release": "",
 					"seen": "seen whattosee"
 				},
