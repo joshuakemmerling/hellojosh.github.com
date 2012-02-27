@@ -13,6 +13,19 @@
 <body>
 	<h1>Popcorn Riot</h1>
 	<ul id="movies"></ul>
+	<script type="template" id="movie_template">
+		{{#movies}}';
+			<li class="{{seen}}">
+				<h2><strong>{{title}}</strong></h2>
+				<span class="stars">
+					{{#stars_output}}
+						{{stars}}
+					{{/stars_output}}
+					{{release}}
+				</span>
+			</li>
+		{{/movies}}
+	</script>
 	<script type="text/javascript">
 		var _gaq = [['_setAccount', 'UA-5317729-4'], ['_trackPageview']];
 		
