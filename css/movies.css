@@ -1,0 +1,20 @@
+::selection { background: #ff0078; color: #fff; }
+
+body { background: #f7f7f7; color: #333; font: 12px/20px helvetica, arial; }
+a, a:visited { text-decoration: none; color: #36c; }
+
+h1 { font: 54px/64px 'Stint Ultra Expanded', cursive; text-align: center; margin-top: 40px; }
+
+#movies { width: 800px; margin: 40px auto; border-top: solid 3px #ddd; }
+#movies li { overflow: hidden; border-style: solid; border-width: 0 1px 1px; border-color: #ddd; }
+#movies li.wanttosee { color: #888; }
+#movies li.seen { color: #333; }
+#movies li.odd { background: #fff; }
+#movies li h2 { width: 567px; float: left; border-right: solid 1px #ddd; padding: 10px 15px; overflow: hidden; }
+#movies li h2 strong { float: left; }
+#movies li h2 a { float: right; font-weight: normal; font-size: 11px; }
+#movies li > span { width: 170px; float: left; padding: 10px 15px; overflow: hidden; }
+#movies li > span .star { float: left; overflow: hidden; margin-right: 8px; color: #ff0078; }
+#movies li > span .star .half { float: left; width: 6px; overflow: hidden; }
+#movies li > span .star .half span { display: block; }
+#movies li > span .star .half.right span { margin-left: -6px; }

@@ -5,89 +5,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 	<link href='http://fonts.googleapis.com/css?family=Stint+Ultra+Expanded' rel='stylesheet' type='text/css'>
 	<link href="/css/reset.css" rel="stylesheet" />
+	<link href="/css/movies.css" rel="stylesheet" />
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script src="http://github.com/janl/mustache.js/raw/master/mustache.js"></script>
-	<script>
-		var tmpl = '';
-			tmpl += '{{#movies}}';
-				tmpl += '<li class="{{seen}}">';
-					tmpl += '<h2><strong>{{title}}</strong></h2>';
-					tmpl += '<span class="stars">{{#stars_output}}{{stars}}{{/stars_output}}{{release}}</span>';
-				tmpl += '</li>';
-			tmpl += '{{/movies}}';
-		var data = {
-			"stars_output": function () {
-				return function (text, render) {
-					text = render(text);
-					return stars(text);
-				}
-			},
-			movies: [
-				{
-					"title": "Act of Valor",
-					"stars": 3.5,
-					"seen": "seen whattosee"
-				},
-				{
-					"title": "The Hunger Games",
-					"release": "March 23, 2012",
-					"seen": "wanttosee"
-				}
-			]
-		};
-		var html = Mustache.to_html(tmpl, data);
-		
-		$(movies);
-		
-		function movies() {
-			$('#movies').empty().append(html);
-		}
-		
-		function stars(star_count) {
-			if (star_count === '') return '';
-			
-			var full_star = Math.floor(star_count);
-			var half_star = Math.ceil(star_count % 1);
-			var empty_star = 5 - Math.ceil(star_count);
-			var html = '';
-
-			for (var i = 0; i < full_star; i++) {
-				html += '<span class="star full">&#9733;</span>';
-			}
-
-			for (var i = 0; i < half_star; i++) {
-				html += '<span class="star"><span class="half left"><span>&#9733;</span></span><span class="half right"><span>&#9734;</span></span></span>';
-			}
-
-			for (var i = 0; i < empty_star; i++) {
-				html += '<span class="star empty">&#9734;</span>';
-			}
-			
-			return html;
-		}
-	</script>
-	<style>
-		::selection { background: #ff0078; color: #fff; }
-		
-		body { background: #f7f7f7; color: #333; font: 12px/20px helvetica, arial; }
-		a, a:visited { text-decoration: none; color: #36c; }
-		
-		h1 { font: 54px/64px 'Stint Ultra Expanded', cursive; text-align: center; margin-top: 40px; }
-		
-		#movies { width: 800px; margin: 40px auto; border-top: solid 3px #ddd; }
-		#movies li { overflow: hidden; border-style: solid; border-width: 0 1px 1px; border-color: #ddd; }
-		#movies li.wanttosee { color: #888; }
-		#movies li.seen { color: #333; }
-		#movies li.odd { background: #fff; }
-		#movies li h2 { width: 567px; float: left; border-right: solid 1px #ddd; padding: 10px 15px; overflow: hidden; }
-		#movies li h2 strong { float: left; }
-		#movies li h2 a { float: right; font-weight: normal; font-size: 11px; }
-		#movies li > span { width: 170px; float: left; padding: 10px 15px; overflow: hidden; }
-		#movies li > span .star { float: left; overflow: hidden; margin-right: 8px; color: #ff0078; }
-		#movies li > span .star .half { float: left; width: 6px; overflow: hidden; }
-		#movies li > span .star .half span { display: block; }
-		#movies li > span .star .half.right span { margin-left: -6px; }
-	</style>
+	<script src="/js/movies.js"></script>
 </head>
 <body>
 	<h1>Popcorn Riot</h1>
