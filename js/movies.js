@@ -24,7 +24,7 @@ var html = Mustache.to_html(tmpl, data);
 $(movies);
 
 function movies() {
-	$('#movies').append(html);
+	$('#movies').append(html).find('li:even').addClass('odd');
 }
 
 function stars(star_count) {
