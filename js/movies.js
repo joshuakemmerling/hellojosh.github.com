@@ -1,4 +1,4 @@
-var tmpl = '{{#movies}}<li class="{{seen}}"><h2><strong>{{title}}</strong></h2><span class="stars">{{#stars_output}}{{stars}}{{/stars_output}}{{release}}</span></li>{{/movies}}';
+var tmpl = '{{#movies}}<li class="{{seen}}"><h2><a href="{{#imdb_url}}{{title}}{{/imdb_url}}">go to imdb</a><strong>{{title}}</strong></h2><span class="stars">{{#stars_output}}{{stars}}{{/stars_output}}{{release}}</span></li>{{/movies}}';
 var data = {
 	"stars_output": function () {
 		return function (text, render) {
@@ -6,7 +6,13 @@ var data = {
 			return stars(text);
 		}
 	},
-	movies: [
+	"imdb_url": function () {
+		return function (text, render) {
+			text = render(text);
+			return 'www.imdb.com/find?q=' + encodeURIComponent(text).replace(/%20/g, '+') + '&s=all';
+		}
+	},
+	"movies": [
 		{
 			"title": "Act of Valor",
 			"stars": 3.5,
