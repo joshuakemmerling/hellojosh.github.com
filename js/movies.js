@@ -1,4 +1,3 @@
-/*
 var tmpl = '';
 	tmpl += '{{#movies}}';
 		tmpl += '<li class="{{seen}}">';
@@ -6,8 +5,7 @@ var tmpl = '';
 			tmpl += '<span class="stars">{{#stars_output}}{{stars}}{{/stars_output}}{{release}}</span>';
 		tmpl += '</li>';
 	tmpl += '{{/movies}}';
-*/
-var tmpl = $('#movie_template').text();
+
 var data = {
 	"stars_output": function () {
 		return function (text, render) {
