@@ -22,6 +22,11 @@ var data = {
 			"title": "The Hunger Games",
 			"release": "March 23, 2012",
 			"seen": "wanttosee"
+		},
+		{
+			"title": "Project X",
+			"release": "March 2, 2012",
+			"seen": "wanttosee"
 		}
 	]
 };
