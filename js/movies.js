@@ -14,8 +14,18 @@ var data = {
 	},
 	"movies": [
 		{
+			"title": "Safe House",
+			"stars": 4.5,
+			"seen": "seen whattosee"
+		},
+		{
 			"title": "Act of Valor",
 			"stars": 3.5,
+			"seen": "seen whattosee"
+		},
+		{
+			"title": "The Vow",
+			"release": 'February 10, 2012',
 			"seen": "seen whattosee"
 		},
 		{
