@@ -1,4 +1,4 @@
-body { font: 13px/20px helvetica, arial, sans-serif; color: #555; }
+body { font: 13px/20px helvetica, arial, sans-serif; color: #444; }
 div { width: 600px; margin: 120px auto; }
-a { display: block; color: #555; }
+a { display: block; color: #666; text-decoration: none; }
 h1 { margin-bottom: 20px; font-size: 20px; }
