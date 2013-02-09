@@ -5,7 +5,7 @@ a { color: #353A3E; font-weight: 600; text-decoration: none; border-bottom: 2px 
 a:hover { border-bottom-color: rgba(0, 0, 0, .1); }
 p { margin-bottom: 12px; }
 h1 { font: 400 60px/100px 'yesteryear', 'playball'; color: #353A3E; padding: 40px 0; }
-section { border-top: 2px solid rgba(0, 0, 0, .05); border-bottom: 2px solid rgba(0, 0, 0, .05); padding: 52px 0 40px; }
+section { border-top: 2px solid rgba(0, 0, 0, .05); border-bottom: 2px solid rgba(0, 0, 0, .05); padding: 52px 0 40px; margin: 0 0 40px; }
 footer ul li { display: inline-block; }
 footer ul li a { border: 0; }
 
