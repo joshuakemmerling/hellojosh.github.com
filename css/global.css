@@ -5,11 +5,11 @@ a { color: #353A3E; font-weight: 600; text-decoration: none; border-bottom: 2px 
 a:hover { border-bottom-color: rgba(0, 0, 0, .1); }
 p { margin-bottom: 20px; }
 img { display: block; border-radius: 50%; float: left; margin: 0 20px 20px -120px; }
-h1 { float: left; font: 400 60px/100px 'yesteryear', 'playball'; color: #353A3E; margin-bottom: 20px; }
+h1 { font: 400 60px/100px 'yesteryear', 'playball'; color: #353A3E; margin-bottom: 20px; }
 section { width: 460px; margin: 50px auto 20px; max-width: 80%; }
 section div { clear: both; }
-section ul li { float: left; margin-right: 20px; }
-section ul li a { border: 0; }
+footer ul li { display: inline-block; }
+footer ul li a { border: 0; }
 
 @media screen and (max-width: 460px) {
 	section { margin-top: 20px; }
