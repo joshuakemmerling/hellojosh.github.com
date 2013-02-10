@@ -9,6 +9,7 @@ header { padding: 40px 0; text-align: center; }
 header h1 { font: 400 60px/74px 'yesteryear', 'playball'; color: #353A3E; }
 header span { text-transform: uppercase; font-size: 14px; }
 section { border-top: 2px solid rgba(0, 0, 0, .05); border-bottom: 2px solid rgba(0, 0, 0, .05); padding: 40px 0; margin: 0 0 40px; }
+footer { text-align: center; }
 footer ul li { display: inline-block; }
 footer ul li a { border: 0; }
 footer ul li a:hover { opacity: 0.5; }
