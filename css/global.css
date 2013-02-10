@@ -15,7 +15,7 @@ footer ul li a:hover { opacity: 0.5; }
 
 .wrapper { margin: 0 auto; max-width: 960px; overflow: hidden; }
 .wrapper div { padding: 0 10px; box-sizing: border-box; float: left; }
-.wrapper div.one { width: 100%; }
-.wrapper div.two { width: 75%; }
-.wrapper div.three { width: 50%; }
-.wrapper div.four { width: 25%; }
+.wrapper div.one { width: 25%; }
+.wrapper div.two { width: 50%; }
+.wrapper div.three { width: 75%; }
+.wrapper div.four { width: 100%; }
