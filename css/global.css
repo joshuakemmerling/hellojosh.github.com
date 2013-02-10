@@ -22,3 +22,7 @@ article img { display: block; width: 100%; margin-bottom: 12px; }
 .wrapper div.two { width: 50%; }
 .wrapper div.three { width: 75%; }
 .wrapper div.four { width: 100%; }
+
+.mobile { width: 320px; }
+.fl { float: left; }
+.fr { float: right; }
