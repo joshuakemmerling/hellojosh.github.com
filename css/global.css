@@ -13,7 +13,7 @@ section ul li a { border: 0; }
 section ul li a:hover { opacity: 0.5; }
 section .wrapper .two { float: none; margin: 0 auto; }
 section a { border-bottom-color: #e6e6e6; }
-section a:color { border-bottom-color: #d9d9d9; }
+section a:hover { border-bottom-color: #d9d9d9; }
 footer { text-align: center; padding: 40px 0; }
 footer ul li { display: inline-block; }
 footer ul li a { border: 0; }
