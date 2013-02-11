@@ -1,7 +1,7 @@
 ::selection, ::-moz-selection { color: white; background: #555B60; }
 
-body { font: 400 16px/24px "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif; color: #555B60; }
-h2 { font-size: 28px; padding: 0 10px; margin-bottom: 24px; line-height: 32px; }
+body { font: 400 14px/20px "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif; color: #555B60; }
+h2 { font-size: 20px; padding: 0 10px; margin-bottom: 12px; line-height: 24px; }
 a { color: #353A3E; font-weight: 600; text-decoration: none; border-bottom: 2px solid rgba(0, 0, 0, .05); }
 a:hover { border-bottom-color: rgba(0, 0, 0, .1); }
 p { margin-bottom: 12px; }
@@ -14,7 +14,7 @@ footer ul li { display: inline-block; }
 footer ul li a { border: 0; }
 footer ul li a:hover { opacity: 0.5; }
 article { padding: 40px 0; }
-article img { display: block; width: 100%; margin-bottom: 12px; }
+article img { display: block; width: 100%; margin-bottom: 12px; float: left; }
 
 .wrapper { margin: 0 auto; width: 960px; overflow: hidden; }
 .wrapper div { padding: 0 10px; box-sizing: border-box; float: left; }
@@ -23,6 +23,6 @@ article img { display: block; width: 100%; margin-bottom: 12px; }
 .wrapper div.three { width: 75%; }
 .wrapper div.four { width: 100%; }
 
-.mobile { width: 320px; }
+.mobile { width: 280px; margin: 0 20px 12px 0; }
 .fl { float: left; }
 .fr { float: right; }
