@@ -8,7 +8,7 @@ p { margin-bottom: 12px; }
 header { padding: 40px 0; text-align: center; }
 header h1 { font: 400 60px/74px 'yesteryear', 'playball'; color: #353A3E; }
 header span { text-transform: uppercase; font-size: 14px; }
-section { background: rgba(0, 0, 0, .05); padding: 40px 0 28px; text-align: center; }
+section { background: rgba(0, 0, 0, .05); padding: 40px 0; text-align: center; }
 section ul li { display: inline-block; }
 section ul li a { border: 0; }
 section ul li a:hover { opacity: 0.5; }
