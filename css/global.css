@@ -9,6 +9,9 @@ header { padding: 40px 0; text-align: center; }
 header h1 { font: 400 60px/74px 'yesteryear', 'playball'; color: #353A3E; }
 header span { text-transform: uppercase; font-size: 14px; }
 section { background: rgba(0, 0, 0, .05); padding: 40px 0 28px; text-align: center; }
+section ul li { display: inline-block; }
+section ul li a { border: 0; }
+section ul li a:hover { opacity: 0.5; }
 section .wrapper .two { float: none; margin: 0 auto; }
 footer { text-align: center; padding: 40px 0; }
 footer ul li { display: inline-block; }
@@ -25,5 +28,3 @@ article img { display: block; width: 100%; margin-bottom: 12px; float: left; }
 .wrapper div.four { width: 100%; }
 
 .mobile { width: 280px; margin: 0 20px 12px 0; }
-.fl { float: left; }
-.fr { float: right; }
