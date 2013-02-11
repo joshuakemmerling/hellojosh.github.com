@@ -7,14 +7,13 @@ a:hover { border-bottom-color: #e5e5e5; }
 p { margin-bottom: 12px; }
 header { padding: 40px 0; text-align: center; }
 header h1 { font: 400 60px/74px 'yesteryear', 'playball'; color: #353A3E; }
-header span { text-transform: uppercase; font-size: 14px; }
-header a { border-bottom-color: #e6e6e6; }
-header a:color { border-bottom-color: #d9d9d9; }
 section { background: #f2f2f2; padding: 40px 0; text-align: center; }
 section ul li { display: inline-block; }
 section ul li a { border: 0; }
 section ul li a:hover { opacity: 0.5; }
 section .wrapper .two { float: none; margin: 0 auto; }
+section a { border-bottom-color: #e6e6e6; }
+section a:color { border-bottom-color: #d9d9d9; }
 footer { text-align: center; padding: 40px 0; }
 footer ul li { display: inline-block; }
 footer ul li a { border: 0; }
