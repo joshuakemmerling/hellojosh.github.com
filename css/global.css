@@ -5,7 +5,7 @@ h2 { font-size: 18px; line-height: 22px; margin-bottom: 12px; }
 a { color: #353A3E; font-weight: 600; text-decoration: none; border-bottom: 2px solid rgba(0, 0, 0, .05); }
 a:hover { border-bottom-color: rgba(0, 0, 0, .1); }
 p { margin-bottom: 12px; }
-header { padding: 40px 0; text-align: center; }
+header { padding: 40px 0 28px; text-align: center; }
 header h1 { font: 400 60px/74px 'yesteryear', 'playball'; color: #353A3E; }
 header span { text-transform: uppercase; font-size: 14px; }
 section { background: rgba(0, 0, 0, .05); padding: 40px 0; text-align: center; }
