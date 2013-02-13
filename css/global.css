@@ -1,24 +1,21 @@
 ::selection, ::-moz-selection { color: white; background: #555B60; }
 
-body { font: 400 14px/20px "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif; color: #555B60; }
+body { font: 400 14px/20px "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif; color: #555B60; background: #f2f2f2; }
 h2 { font-size: 18px; line-height: 22px; margin-bottom: 12px; }
 a { color: #353A3E; font-weight: 600; text-decoration: none; border-bottom: 2px solid #f2f2f2; }
 a:hover { border-bottom-color: #e5e5e5; }
 p { margin-bottom: 12px; }
-header { padding: 40px 0; text-align: center; }
-header h1 { font: 400 60px/74px 'yesteryear', 'playball'; color: #353A3E; }
-section { background: #f2f2f2; padding: 40px 0; text-align: center; }
+header { padding: 40px 0; text-align: center; background: url(/img/bg.jpg) no-repeat center bottom; background-size: cover; }
+header h1 { font: 400 60px/74px 'yesteryear', 'playball'; color: #fff; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5); }
+section { background: #fff; padding: 40px 0; text-align: center; box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); }
 section ul li { display: inline-block; }
 section ul li a { border: 0; }
 section ul li a:hover { opacity: 0.5; }
 section .wrapper .two { float: none; margin: 0 auto; }
-section a { border-bottom-color: #e6e6e6; }
-section a:hover { border-bottom-color: #d9d9d9; }
 footer { text-align: center; padding: 40px 0; }
-footer ul li { display: inline-block; }
-footer ul li a { border: 0; }
-footer ul li a:hover { opacity: 0.5; }
-article { padding: 40px 0 28px; border-bottom: solid 1px #f2f2f2; }
+footer a { border-bottom-color: #e6e6e6; }
+footer a:hover { border-bottom-color: #d9d9d9; }
+article { padding: 40px 0 28px; border-bottom: solid 1px #e6e6e6; }
 article img { display: block; width: 100%; margin-bottom: 12px; float: left; }
 
 .wrapper { margin: 0 auto; width: 960px; overflow: hidden; }
