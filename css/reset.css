@@ -29,10 +29,10 @@ textarea { overflow: auto; vertical-align: top; }
 :hover, :active, :focus { outline: none; }
 ::selection, ::-moz-selection { background: #000; }
 
-*:before, *:after { content: '.'; display: block; overflow: hidden; visibility: hidden; font-size: 0; line-height: 0; width: 0; height: 0; }
-*:after { clear: both; }
-* { zoom: 1; }
-
 *, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+
+.clearfix:before, .clearfix:after { content: '.'; display: block; overflow: hidden; visibility: hidden; font-size: 0; line-height: 0; width: 0; height: 0; }
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
 
 .clear { clear: both; display: block; overflow: hidden; visibility: hidden; width: 0; height: 0; }
