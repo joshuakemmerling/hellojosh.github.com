@@ -23,7 +23,9 @@
 			var $ul = $('ul');
 			
 			$.get('/states.json', function (states) {
-				console.log(states);
+				$.each(states, function (i, state) {
+					console.log(i, state);
+				});
 			});
 			
 			$ul.appendTo('#states');
