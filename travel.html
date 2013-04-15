@@ -24,9 +24,9 @@
 			
 			$.get('/states.json', function (states) {
 				$.each(states, function (key, value) {
-					var class = (value == '1') ? ' class="check"' : '';
+					var check = (value == '1') ? ' class="check"' : '';
 					
-					li += '<li' + class + '>' + key + '</li>';
+					li += '<li' + check + '>' + key + '</li>';
 				});
 				
 				$('#states').append('<ul>' + li + '</ul>');
