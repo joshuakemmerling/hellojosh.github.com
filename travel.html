@@ -31,10 +31,10 @@
 				var count = 0,
 					check_count = 0;
 				
+				console.log($(states).length);
+				
 				$.each(states, function (key, value) {
-					var check = (value == '1') ? ' class="check"' : '';
-					
-					li += '<li' + check + '>' + key + '</li>';
+					li += '<li' + ((value == '1') ? ' class="check"' : '') + '>' + key + '</li>';
 					
 					if (value == '1')
 						check_count++;
@@ -52,7 +52,10 @@
 		<h1>Travel Bucket List</h1>
 		
 		<div id="states" class="col">
-			<h2>Visit All States</h2>
+			<h2>States</h2>
+		</div>
+		<div id="states" class="col">
+			<h2>National Parks</h2>
 		</div>
 	</section>
 </body>
