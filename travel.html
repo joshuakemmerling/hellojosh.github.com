@@ -56,6 +56,7 @@
 			var li = '';
 			
 			$.get('/parks.json', function (parks) {
+				var sorted = $(parks['parks']).sort(sort_by_state);
 				var count = parks['parks'].length,
 					check_count = 0;
 				
