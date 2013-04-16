@@ -56,13 +56,10 @@
 			var li = '';
 			
 			$.get('/parks.json', function (parks) {
-				var sorted = $(parks['parks']).sort(sort_by_state);
-				console.log(sorted);
-				
 				var count = parks['parks'].length,
 					check_count = 0;
 				
-				$.each(parks['parks'], function (i, park) {
+				$.each(sorted, function (i, park) {
 					li += '<li' + ((park.visited == '1') ? ' class="check"' : '') + '>' + park.name + '<em>' + park.location + '</em></li>';
 					
 					if (park.visited == '1')
