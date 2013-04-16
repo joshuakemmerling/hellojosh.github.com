@@ -13,6 +13,7 @@
 		ul li.check { color: #111; }
 		
 		.col { width: 300px; }
+		.count { float: right; margin-top: -45px; color: #aaa; }
 	</style>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script>
@@ -40,7 +41,7 @@
 					count++;
 				});
 				
-				$('#states').append('<span>' + check_count + '/' + count + '</span><ul>' + li + '</ul>');
+				$('#states').append('<span class="count">' + check_count + '/' + count + '</span><ul>' + li + '</ul>');
 			});	
 		}
 	</script>
