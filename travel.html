@@ -49,10 +49,14 @@
 			var li = '';
 			
 			$.get('/parks.json', function (parks) {
+				console.log(parks);
+				
 				var count = 0,
 					check_count = 0;
 				
 				$.each(parks, function (park) {
+					console.log(park);
+					
 					li += '<li' + ((park['visited'] == '1') ? ' class="check"' : '') + '>' + park['name'] + '<em>' + park['location'] + '</em></li>';
 					
 					if (park['visited'] == '1')
