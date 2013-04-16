@@ -56,6 +56,9 @@
 			var li = '';
 			
 			$.get('/parks.json', function (parks) {
+				var sorted = $(parks['parks']).sort(sort_by_state);
+				console.log(sorted);
+				
 				var count = parks['parks'].length,
 					check_count = 0;
 				
@@ -74,9 +77,6 @@
 			var li = '';
 			
 			$.get('/countries.json', function (countries) {
-				var sorted = $(countries['countries']).sort(sort_by_state);
-				console.log(sorted);
-				
 				var count = countries['countries'].length,
 					check_count = 0;
 				
