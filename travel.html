@@ -24,6 +24,7 @@
 		function init () {
 			states();
 			parks();
+			world();
 		}
 		
 		function states () {
@@ -63,6 +64,24 @@
 				$('#parks').append('<span class="count">' + check_count + '/' + count + '</span><ul>' + li + '</ul>');
 			});	
 		}
+		
+		function world () {
+			var li = '';
+			
+			$.get('/countries.json', function (countries) {
+				var count = countries['countries'].length,
+					check_count = 0;
+				
+				$.each(countries['countries'], function (i, country) {
+					li += '<li' + ((country.visited == '1') ? ' class="check"' : '') + '>' + country.name + '<em>' + country.location + '</em></li>';
+					
+					if (park.visited == '1')
+						check_count++;
+				});
+				
+				$('#world').append('<span class="count">' + check_count + '/' + count + '</span><ul>' + li + '</ul>');
+			});	
+		}
 	</script>
 </head>
 <body>
@@ -74,6 +93,9 @@
 		</div>
 		<div id="parks" class="col">
 			<h2>National Parks</h2>
+		</div>
+		<div id="world" class="col">
+			<h2>World</h2>
 		</div>
 	</section>
 </body>
