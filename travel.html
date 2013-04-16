@@ -24,7 +24,7 @@
 			var li = '';
 			
 			$.get('/states.json', function (states) {
-				var count = states.length,
+				var count = 0,
 					check_count = 0;
 				
 				$.each(states, function (key, value) {
@@ -33,7 +33,9 @@
 					li += '<li' + check + '>' + key + '</li>';
 					
 					if (value == '1')
-						count++;
+						check_count++;
+					
+					count++;
 				});
 				
 				$('#states').append('<span>' + check_count + '/' + count + '</span><ul>' + li + '</ul>');
