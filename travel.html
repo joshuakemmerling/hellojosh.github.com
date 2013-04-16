@@ -22,6 +22,7 @@
 		
 		function init () {
 			states();
+			parks();
 		}
 		
 		function states () {
@@ -30,8 +31,6 @@
 			$.get('/states.json', function (states) {
 				var count = 0,
 					check_count = 0;
-				
-				console.log($(states).length);
 				
 				$.each(states, function (key, value) {
 					li += '<li' + ((value == '1') ? ' class="check"' : '') + '>' + key + '</li>';
@@ -45,6 +44,26 @@
 				$('#states').append('<span class="count">' + check_count + '/' + count + '</span><ul>' + li + '</ul>');
 			});	
 		}
+		
+		function parks () {
+			var li = '';
+			
+			$.get('/parks.json', function (parks) {
+				var count = 0,
+					check_count = 0;
+				
+				$.each(parks, function (park) {
+					li += '<li' + ((park['visited'] == '1') ? ' class="check"' : '') + '>' + park['name'] + '<em>' + park['location'] + '</em></li>';
+					
+					if (park['visited'] == '1')
+						check_count++;
+					
+					count++;
+				});
+				
+				$('#parks').append('<span class="count">' + check_count + '/' + count + '</span><ul>' + li + '</ul>');
+			});	
+		}
 	</script>
 </head>
 <body>
@@ -54,7 +73,7 @@
 		<div id="states" class="col">
 			<h2>States</h2>
 		</div>
-		<div id="states" class="col">
+		<div id="parks" class="col">
 			<h2>National Parks</h2>
 		</div>
 	</section>
