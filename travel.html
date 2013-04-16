@@ -53,11 +53,9 @@
 					check_count = 0;
 				
 				$.each(parks['parks'], function (i, park) {
-					console.log(park.name, park.location, park.visited);
+					li += '<li' + ((park.visited == '1') ? ' class="check"' : '') + '>' + park.name + '<em>' + park.location + '</em></li>';
 					
-					//li += '<li' + ((park['visited'] == '1') ? ' class="check"' : '') + '>' + park['name'] + '<em>' + park['location'] + '</em></li>';
-					
-					if (park['visited'] == '1')
+					if (park.visited == '1')
 						check_count++;
 					
 					count++;
