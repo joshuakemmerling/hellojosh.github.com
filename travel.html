@@ -12,13 +12,13 @@
 		section { margin: 10px; }
 		ul { margin-bottom: 10px; }
 		ul li { color: #aaa; }
-		ul li.check { color: #111; }
+		ul li.visited { color: #111; }
 		em { display: block; font-style: italic; font-size: 12px; line-height: 14px; margin-bottom: 10px; }
 		
-		.col { width: 280px; padding: 0 20px; float: left; }
+		.col { width: 25%; padding: 0 20px; float: left; }
 		.count { float: right; margin-top: -45px; color: #aaa; }
 	</style>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script>
 		jQuery.fn.sort = function () {
 			return this.pushStack([].sort.apply(this, arguments), []);
@@ -36,16 +36,11 @@
 			var li = '';
 			
 			$.get('/states.json', function (states) {
-				var count = 0,
-					check_count = 0;
-				
-				$.each(states, function (key, value) {
-					li += '<li' + ((value == '1') ? ' class="check"' : '') + '>' + key + '</li>';
-					
-					if (value == '1')
-						check_count++;
-					
-					count++;
+				var count = states.states.length,
+					check_count = get_visited_count(states.states);
+
+				$.each(states.states, function (i, state) {
+					li += li_string(state.name, state.visited == '1');
 				});
 				
 				$('#states').append('<span class="count">' + check_count + '/' + count + '</span><ul>' + li + '</ul>');
@@ -56,12 +51,12 @@
 			var li = '';
 			
 			$.get('/parks.json', function (parks) {
-				var sorted = $(parks['parks']).sort(sort_by_state);
-				var count = parks['parks'].length,
+				var sorted = $(parks.parks).sort(sort_by_state),
+					count = parks.parks.length,
 					check_count = 0;
 				
 				$.each(sorted, function (i, park) {
-					li += '<li' + ((park.visited == '1') ? ' class="check"' : '') + '>' + park.name + '<em>' + park.location + '</em></li>';
+					li += li_string(park.name + '<em>' + park.location + '</em>', park.visited == '1');
 					
 					if (park.visited == '1')
 						check_count++;
@@ -79,7 +74,7 @@
 					check_count = 0;
 				
 				$.each(countries['countries'], function (i, country) {
-					li += '<li' + ((country.visited == '1') ? ' class="check"' : '') + '>' + country.city + '<em>' + country.country + '</em></li>';
+					li += '<li' + ((country.visited == '1') ? ' class="visited"' : '') + '>' + country.city + '<em>' + country.country + '</em></li>';
 					
 					if (country.visited == '1')
 						check_count++;
@@ -87,6 +82,21 @@
 				
 				$('#world').append('<span class="count">' + check_count + '/' + count + '</span><ul>' + li + '</ul>');
 			});	
+		}
+
+		function li_string (html, visited) {
+			if (visited)
+				return '<li class="visited">' + html + '</li>';
+
+			return '<li>' + html + '</li>';
+		}
+
+		function get_visited_count (elems) {
+			var filtered = $(elems).filter(function (i) {
+				return $(this)[0].visited == '1';
+			});
+
+			return filtered.length;
 		}
 		
 		function sort_by_state (a, b) {
