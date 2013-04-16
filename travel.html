@@ -24,13 +24,19 @@
 			var li = '';
 			
 			$.get('/states.json', function (states) {
+				var count = states.length,
+					check_count = 0;
+				
 				$.each(states, function (key, value) {
 					var check = (value == '1') ? ' class="check"' : '';
 					
 					li += '<li' + check + '>' + key + '</li>';
+					
+					if (value == '1')
+						count++;
 				});
 				
-				$('#states').append('<ul>' + li + '</ul>');
+				$('#states').append('<span>' + check_count + '/' + count + '</span><ul>' + li + '</ul>');
 			});	
 		}
 	</script>
