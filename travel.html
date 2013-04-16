@@ -20,6 +20,10 @@
 	</style>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script>
+		jQuery.fn.sort = functon () {
+			return this.pushStack([].sort.apply(this, arguments), []);
+		};
+		
 		$(init);
 		
 		function init () {
@@ -70,6 +74,9 @@
 			var li = '';
 			
 			$.get('/countries.json', function (countries) {
+				var sorted = $(countries['countries']).sort(sort_by_state);
+				console.log(sorted);
+				
 				var count = countries['countries'].length,
 					check_count = 0;
 				
@@ -82,6 +89,12 @@
 				
 				$('#world').append('<span class="count">' + check_count + '/' + count + '</span><ul>' + li + '</ul>');
 			});	
+		}
+		
+		function sort_by_state (a, b) {
+			return a.location > b.location ? 1 : -1;
+			
+			return 0;
 		}
 	</script>
 </head>
