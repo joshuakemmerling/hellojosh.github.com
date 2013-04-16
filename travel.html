@@ -73,7 +73,7 @@
 					check_count = 0;
 				
 				$.each(countries['countries'], function (i, country) {
-					li += '<li' + ((country.visited == '1') ? ' class="check"' : '') + '>' + country.name + '<em>' + country.location + '</em></li>';
+					li += '<li' + ((country.visited == '1') ? ' class="check"' : '') + '>' + country.city + '<em>' + country.country + '</em></li>';
 					
 					if (country.visited == '1')
 						check_count++;
