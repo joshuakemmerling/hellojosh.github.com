@@ -52,10 +52,10 @@
 				var count = parks['parks'].length,
 					check_count = 0;
 				
-				$.each(parks['parks'], function (park) {
+				$.each(parks['parks'], function (i, park) {
 					console.log(park);
 					
-					li += '<li' + ((park['visited'] == '1') ? ' class="check"' : '') + '>' + park['name'] + '<em>' + park['location'] + '</em></li>';
+					//li += '<li' + ((park['visited'] == '1') ? ' class="check"' : '') + '>' + park['name'] + '<em>' + park['location'] + '</em></li>';
 					
 					if (park['visited'] == '1')
 						check_count++;
