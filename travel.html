@@ -75,7 +75,7 @@
 				$.each(countries['countries'], function (i, country) {
 					li += '<li' + ((country.visited == '1') ? ' class="check"' : '') + '>' + country.name + '<em>' + country.location + '</em></li>';
 					
-					if (park.visited == '1')
+					if (country.visited == '1')
 						check_count++;
 				});
 				
