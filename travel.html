@@ -12,8 +12,9 @@
 		ul { margin-bottom: 10px; }
 		ul li { color: #aaa; }
 		ul li.check { color: #111; }
+		em { display: block; font-style: italic; font-size: 12px; line-height: 14px; margin-bottom: 10px; }
 		
-		.col { width: 260px; padding: 0 10px; }
+		.col { width: 260px; padding: 0 10px; float: left; }
 		.count { float: right; margin-top: -45px; color: #aaa; }
 	</style>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -57,8 +58,6 @@
 					
 					if (park.visited == '1')
 						check_count++;
-					
-					count++;
 				});
 				
 				$('#parks').append('<span class="count">' + check_count + '/' + count + '</span><ul>' + li + '</ul>');
