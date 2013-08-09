@@ -31,8 +31,9 @@ h2 { font-size: 1.8em; line-height: 1.3em; margin-bottom: 0.8em; }
 }
 
 @media only screen and (max-width: 768px) {
+	article { padding: 1.2em 0 0; }
 	.one, .three { width: 100%; }
-	img, .mobile { margin-right: auto; margin-left: auto; float: none; }
+	img, .mobile { margin: 0 auto 1.2em; float: none; }
 }
 
 
