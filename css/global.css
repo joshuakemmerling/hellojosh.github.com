@@ -26,11 +26,11 @@ h2 { font-size: 1.8em; line-height: 1.3em; margin-bottom: 0.8em; }
 
 .mobile { max-width: 280px; margin: 0 1.2em 1.2em 0; }
 
-@media only screen and (max-device-width: 1024px) {
+@media only screen and (max-width: 1024px) {
 	.one, .three { width: 50%; }
 }
 
-@media only screen and (max-device-width: 768px) {
+@media only screen and (max-width: 768px) {
 	.one, .three { width: 100%; }
 	img { margin-right: auto; margin-left: auto; }
 }
