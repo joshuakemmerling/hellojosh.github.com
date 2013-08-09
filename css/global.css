@@ -32,7 +32,7 @@ h2 { font-size: 1.8em; line-height: 1.3em; margin-bottom: 0.8em; }
 
 @media only screen and (max-width: 768px) {
 	.one, .three { width: 100%; }
-	img { margin-right: auto; margin-left: auto; }
+	img, .mobile { margin-right: auto; margin-left: auto; }
 }
 
 
