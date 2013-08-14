@@ -3,7 +3,7 @@
 
 body { background: #eee url(/img/rainbow_bar.png) repeat-x; font: 14px/1.4em 'Open Sans', helvetica, arial, sans-serif; color: #333; }
 header { padding: 2.4em 0; text-align: center; border-bottom: solid 1px #ddd; margin: 5px 0 0; }
-header > div { max-width: 620px; margin: 0 auto; padding: 0 10px; }
+header > div { max-width: 620px; margin: 0 auto; padding: 0 1.2em; }
 header > div ul li { display: inline-block; }
 strong { font-weight: bold; }
 p { margin-bottom: 1.2em; }
@@ -19,14 +19,23 @@ h2 { font-size: 1.8em; line-height: 1.3em; margin-bottom: 0.8em; }
 #profile_image img { width: 80px; height: 80px; top: 2px; left: 2px; border-radius: 50%; }
 #profile_image div { width: 84px; height: 84px; border: solid 4px #fff; box-shadow: 0 2px 3px rgba(0, 0, 0, 0.4), inset 0 2px 3px rgba(0, 0, 0, 0.4); border-radius: 50%; }
 
-.wrapper { margin: 0 auto; max-width: 980px; overflow: hidden; padding: 0 10px; }
-.one, .three { float: left; overflow: hidden; padding: 0 10px; }
+.wrapper { margin: 0 auto; max-width: 980px; overflow: hidden; }
+.one, .three { float: left; overflow: hidden; padding: 0 1.2em; }
 .one { width: 25%; }
 .three { width: 75%; }
 
-.mobile { width: 280px; margin: 0 1.2em 1.2em 0; }
+.mobile { max-width: 280px; margin: 0 1.2em 1.2em 0; }
 
+@media only screen and (max-width: 1024px) {
+	.one, .three { width: 50%; }
+}
 
+@media only screen and (max-width: 768px) {
+	header { padding: 1.2em 0; }
+	article { padding: 1.2em 0 0; }
+	.one, .three { width: 100%; }
+	img, .mobile { margin: 0 auto 1.2em; float: none; }
+}
 
 
 
