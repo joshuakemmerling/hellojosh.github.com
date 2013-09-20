@@ -56,6 +56,8 @@ aside h4 { float: none; }
 .related_posts img { display: block; width: 100%; margin-bottom: 5px }
 .related_posts .grid_3 { width: 213px; }
 
+.caption { background: #eee; padding: 7px 10px; margin: -20px 0 20px; border-radius: 0 0 4px 4px; font-style: italic; color: #777; }
+
 #articles > div { border-right: solid 1px #eee; padding-right: 20px; box-sizing: border-box; }
 
 #books li { overflow: hidden; margin-top: 10px; }
