@@ -1,6 +1,6 @@
 		<aside class="grid_3">
 			<div>
-				<h4>About</h4>
+				<h4>Mission</h4>
 				<p>This site emphasizes a pragmatic approach to faith and physical wellness with the sole intent to alleviate affliction and overcome life’s unavoidable setbacks. The ensuing discussions will focus...</p>
 				<p><a href="about.php">Read more</a></p>
 			</div>
