@@ -43,8 +43,9 @@ aside h4 { float: none; }
 
 #footer { border-top: solid 3px #000; background: #eee; padding: 50px 0; }
 #footer footer nav { padding-top: 15px; }
-#footer footer nav a { float: left; margin: 5px 10px 0 0; }
-#footer footer nav a img { display: block; width: 24px; border-radius: 50%; }
+
+.connect a { float: left; margin: 5px 10px 0 0; }
+.connect a img { display: block; width: 24px; border-radius: 50%; }
 
 .fl { float: left; }
 .fr { float: right; }
