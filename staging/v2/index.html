@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="http://hellojosh.com/css/reset.css">
+	<link rel="stylesheet" href="http://hellojosh.com/css/fonts.css">
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+	<!-- <link rel="stylesheet" href="global.css"> -->
+	<style>
+		body { font: 14px/20px 'Open Sans', sans-serif; color: #777; }
+		a { text-decoration: none; color: #08c; }
+		strong { font-weight: bold; }
+		p { margin-bottom: 20px; }
+
+		h2 { font-size: 32px; line-height: 38px; margin: 0 0 40px; color: #000; }
+		h3 { font-size: 22px; line-height: 28px; font-weight: bold; margin-bottom: 20px; color: #000; }
+		h4 { font-weight: bold; color: #000; font-size: 18px; margin-bottom: 10px; }
+		h6 { font-weight: bold; }
+
+		header { background: #08c; padding: 10px 15px; overflow: hidden; }
+		header * { color: #fff; line-height: 32px; font-size: 12px; text-transform: uppercase; }
+		header h1 { text-transform: uppercase; float: left; }
+		header nav { float: right; }
+		header nav * { float: left; margin-left: 20px; }
+		header nav span { font-style: italic; font-size: 10px; }
+		header nav .btn { border: solid 1px rgba(255, 255, 255, 0.6); border-radius: 4px; padding: 5px 10px; line-height: 20px; }
+
+		footer { background: #eee; padding: 40px 0; font-style: 12px; }
+		footer a { display: block; }
+
+		.tac { text-align: center; }
+
+		.action { background: #08c; color: #fff; border-radius: 4px; padding: 12px 18px; display: inline-block; font-size: 16px; border: solid 1px #08c; }
+		.action.action-link { background: transparent; border-color: transparent; color: #08c; }
+		.action.action-empty { background: #fff; color: #08c; }
+
+		/* 100 / 12 = 8.3333333333 */
+		.container { width: 980px; margin: 0 auto; }
+		.container [class*="grid_"] { float: left; box-sizing: border-box; padding: 0 10px; }
+		.container .grid_3 { width: 25%; }
+		.container .grid_4 { width: 33.3333333333%; }
+		.container .grid_6 { width: 50%; }
+		.container .grid_8 { width: 66.6666666666%; }
+
+		#hero { text-align: center; padding: 40px 0 0; border-bottom: solid 1px #eee; }
+		#hero img { display: block; max-width: 100%; }
+		#hero .btn { background: #08c; color: #fff; border-radius: 4px; padding: 12px 18px; display: inline-block; font-size: 16px; margin: 0 0 10px; }
+		#hero em { display: block; color: #999; }
+		#hero #images { height: 320px; position: relative; margin: 40px auto 0; overflow: hidden; }
+		#hero #images img { position: absolute; top: 0; left: 50%; margin: 0 0 0 -320px; }
+		#hero #images img#two { margin-left: -520px; top: 40px; }
+		#hero #images img#three { margin-left: -120px; top: 40px; }
+
+		#hero_buckets { border-bottom: solid 1px #eee; overflow: hidden; padding: 40px 0; }
+		#hero_buckets .grid_4 { border-left: solid 1px #eee; border-bottom: solid 1px #eee; padding: 30px; }
+		#hero_buckets .grid_4.no_left { border-left: 0; }
+		#hero_buckets .grid_4.no_bottom { border-bottom: 0; }
+		#hero_buckets .fa { border: solid 3px #eee; border-radius: 50%; height: 110px; line-height: 110px; width: 110px; text-align: center; margin-bottom: 20px; color: #08c; }
+		#hero_buckets p { margin-bottom: 0; }
+
+		#content { padding: 40px 0; }
+
+		#what_is { padding: 40px 0; border-bottom: solid 1px #eee; }
+		#what_is div.grid_6 { margin-top: 40px; }
+	</style>
+</head>
+<body>
+	<header>
+		<div class="container">
+			<h1><a href=""><strong>Your</strong>Name</a></h1>
+			<nav>
+				<a href="">Features</a>
+				<a href="">Pricing</a>
+				<a href="">Sign In</a>
+				<span>or</span>
+				<a href="" class="btn">Sign Up</a>
+			</nav>
+		</div>
+	</header>
+	<section id="hero">
+		<h2>An easy way to <strong>stuff</strong> with <strong>stuff</strong>.</h2>
+		<a href="#" class="btn">Get started</a>
+		<em>no credit card required</em>
+		<div id="images">
+			<img src="http://placehold.it/640x320/aaaaaa" id="three">
+			<img src="http://placehold.it/640x320/aaaaaa" id="two">
+			<img src="http://placehold.it/640x320" id="one">
+		</div>
+	</section>
+	<section id="what_is">
+		<div class="container clearfix">
+			<div class="grid_6">
+				<h3>What is your face?</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</div>
+			<img src="http://placehold.it/600x400" class="grid_6">
+		</div>
+	</section>
+	<section id="hero_buckets">
+		<section class="container tac">
+			<h2 class="grid-12">Key Features</h2>
+			<div class="grid_4 no_left">
+				<i class="fa fa-clock-o fa-4x"></i>
+				<h4>API in minutes, not weeks.</h4>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</div>
+			<div class="grid_4">
+				<i class="fa fa-cloud fa-4x"></i>
+				<h4>Cloud based.</h4>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</div>
+			<div class="grid_4">
+				<i class="fa fa-cogs fa-4x"></i>
+				<h4>Save time. Save money.</h4>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</div>
+			<div class="grid_4 no_left no_bottom">
+				<i class="fa fa-clock-o fa-4x"></i>
+				<h4>Save time. Save money.</h4>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</div>
+			<div class="grid_4 no_bottom">
+				<i class="fa fa-cloud fa-4x"></i>
+				<h4>Save time. Save money.</h4>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</div>
+			<div class="grid_4 no_bottom">
+				<i class="fa fa-cogs fa-4x"></i>
+				<h4>Save time. Save money.</h4>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</div>
+		</section>
+	</section>
+	<section id="content">
+		<div class="tac">
+			<a href="#" class="action">Get started</a>
+			<span class="action action-link">or</span>
+			<a href="#" class="action action-empty">View all features</a>
+		</div>
+	</section>
+	<footer>
+		<section class="container clearfix">
+			<div class="grid_3">
+				&copy; 2013 <strong>Somename, LLC.</strong><br>
+				1212 Hope Ln.<br>
+				Austin, TX 78701
+			</div>
+			<div class="grid_3">
+				<h6>Product</h6>
+				<a href="">Features</a>
+				<a href="">Pricing</a>
+				<a href="">Sign Up</a>
+				<a href="">Sign In</a>
+			</div>
+			<div class="grid_3">
+				<h6>Company</h6>
+				<a href="">About</a>
+				<a href="">Team</a>
+				<a href="">Contact</a>
+			</div>
+			<div class="grid_3">
+				<h6>Connect</h6>
+				<a href="">Facebook</a>
+				<a href="">Twitter</a>
+				<a href="">YouTube</a>
+				<a href="">Instagram</a>
+				<a href="">Vimeo</a>
+			</div>
+		</section>
+	</footer>
+</body>
+</html>

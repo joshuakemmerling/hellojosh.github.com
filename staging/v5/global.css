@@ -1,0 +1,54 @@
+body { font: 14px/20px 'Open Sans', 'helvetica neue', helvetica, arial, sans-serif; color: #777; }
+hr { border: 0; height: 1px; background: #eee; margin: 0; }
+a { text-decoration: none; color: #ff5c5d; }
+p { margin-bottom: 15px; }
+ul { margin-bottom: 15px; list-style: disc; color: #000; }
+ul li { margin-left: 20px; }
+ul li span { color: #777; }
+strong { font-weight: bold; }
+
+h2 { font-weight: bold; color: #000; font: 22px/28px 'Port Lligat Slab', serif; margin-bottom: 15px; }
+
+header { margin: 40px 40px 15px; }
+header h1 { font: 20px/25px 'Port Lligat Slab', serif; text-transform: uppercase; color: #000; }
+
+aside { float: left; width: 200px; margin: 0 20px 0 40px; font-size: 12px; }
+aside hr { margin-bottom: 15px; }
+aside nav { margin-bottom: 15px; }
+aside nav div { margin-bottom: 5px; }
+aside nav div a { display: block; }
+aside nav div div { float: left; margin-right: 5px; }
+aside nav div div svg { display: block; }
+
+section { float: left; width: 880px; margin-bottom: 40px; }
+
+.container_16 { margin: 40px; }
+.col { width: 75%; }
+
+#projects a { width: 250px; position: relative; display: block; float: left; margin: 0 20px 40px; box-sizing: border-box; text-align: center; }
+#projects a span { display: block; height: 170px; overflow: hidden; margin-bottom: 10px; }
+#projects a span img { display: block; width: 100%; height: auto; min-height: 100%; }
+#projects a strong { display: block; font-weight: bold; color: #000; font: 18px/24px 'Port Lligat Slab', serif; }
+#projects a em { color: #aaa; }
+
+#mountain { width: 53px; height: 25px; position: relative; float: left; margin: 0 8px 0 0; }
+#mountain > div { position: absolute; top: 0; left: 0; }
+#mountain #one { width: 0; height: 0; border-left: 20px solid transparent; border-right: 20px solid transparent; border-bottom: 25px solid black; }
+#mountain #two { width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 7px solid #fff; left: 15px; top: 2px; }
+#mountain #three { width: 0; height: 0; border-left: 3px solid transparent; border-right: 5px solid transparent; border-top: 5px solid #fff; left: 15px; top: 9px; }
+#mountain #four { width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-top: 4px solid #fff; left: 20px; top: 9px; }
+#mountain #five { width: 0; height: 0; border-left: 15px solid transparent; border-right: 15px solid transparent; border-bottom: 20px solid black; top: 5px; left: 23px; }
+#mountain #six { width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-bottom: 5px solid #fff; top: 7px; left: 35px; }
+#mountain #seven { width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-top: 3px solid #fff; top: 12px; left: 35px; }
+#mountain #eight { width: 0; height: 0; border-left: 20px solid transparent; border-right: 20px solid transparent; border-bottom: 25px solid #fff; left: 2px; }
+
+#about { padding: 0 20px; }
+#about img { display: block; max-width: 100%; margin: 0 0 15px; }
+
+#timeline_wrap { position: relative; }
+#timeline_wrap #timeline { height: 100%; width: 5px; background: #eee; position: absolute; top: 0; left: 4px; }
+#timeline_wrap .year { font-size: 11px; position: relative; float: left; clear: both; }
+#timeline_wrap .year .dot { float: left; width: 9px; height: 9px; background: #ccc; border: solid 2px #fff; border-radius: 50%; }
+#timeline_wrap .year .label { float: left; line-height: 13px; margin: 0 0 0 5px; }
+/*#timeline_wrap .exp { position: relative; background: red; float: left; margin: 0 0 0 35px; top: -10px; }
+#timeline_wrap .exp .content { background: #eee; padding: 7px 10px; }*/

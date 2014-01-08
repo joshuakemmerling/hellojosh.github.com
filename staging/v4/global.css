@@ -1,0 +1,41 @@
+body { font: 14px/20px 'Open Sans', helvetica, arial, sans-serif; color: #333; }
+a { text-decoration: none; color: #ff5c5d; }
+a:hover { color: #a94a4b; }
+p { margin-bottom: 20px; }
+strong { font-weight: bold; }
+
+h2 { font: 20px/26px 'Open Sans Condensed', helvetica, arial, sans-serif; color: #333; text-transform: uppercase; font-weight: bold; }
+h3 { font-size: 20px; line-height: 26px; font-weight: bold; }
+
+header { background: #ff5c5d; overflow: hidden; margin: 0 0 40px; }
+header h1 { font: 700 16px/20px 'Open sans Condensed'; text-transform: uppercase; color: #fff; float: left; padding: 7px 10px; }
+header #tagline { color: rgba(255, 255, 255, 0.7); float: left; padding: 7px 0; font-style: italic; }
+header nav { float: right; overflow: hidden; }
+header nav a { float: left; color: #fff; font-weight: bold; padding: 7px 10px; }
+header nav a:hover, header nav a.active { background: rgba(0, 0, 0, 0.1); color: #fff; }
+
+footer { text-align: center; padding: 20px 0; border-top: solid 1px #eee; font-style: italic; margin-top: 40px; }
+footer span { font-style: normal; color: #ff5c5d; }
+
+#projects a { overflow: hidden; margin-bottom: 20px; }
+#projects a .img_wrap { height: 220px; overflow: hidden; margin: 0 0 5px; }
+#projects a .img_wrap img { width: 100%; display: block; }
+#projects a h2 { text-align: center; }
+
+#images_wrap { text-align: center; margin-bottom: 40px; }
+#images_wrap img { max-width: 530px; margin: 0 20px; }
+#images_wrap img.iphone { max-width: 320px; }
+
+.mb20 { margin-bottom: 20px; }
+
+.container { width: 980px; margin: 0 auto; }
+.container [class*="grid_"] { float: left; box-sizing: border-box; padding: 0 10px; }
+.container .grid_3 { width: 25%; }
+.container .grid_4 { width: 33.3333333333%; }
+.container .grid_5 { width: 41.6666666667%; }
+.container .grid_6 { width: 50%; }
+.container .grid_8 { width: 66.6666666666%; }
+.container .grid_12 { width: 100%; }
+.container .offset_1 { margin-left: 8.3333333333%; }
+.container .offset_2 { margin-left: 16.6666666667%; }
+.container .offset_4 { margin-left: 33.3333333333%; }
