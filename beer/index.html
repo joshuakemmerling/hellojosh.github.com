@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="../css/reset.css">
+	<link rel="stylesheet" href="global.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="beers.js"></script>
+	<script src="jquery.dataTables.min.js"></script>
+	<script src="global.js"></script>
+</head>
+<body>
+	<p><em>* all measurements are based on <strong>12 oz</strong></em></p>
+	<table id="beers">
+		<thead>
+			<tr>
+				<th><b>Beer Brand</b></th>
+				<th><b>Calories<b></b></b></th>
+				<th><b>Carbs (g)</b></th>
+				<th><b>Alcohol Percent<b></b></b></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Amstel Light</td>
+				<td>95</td>
+				<td>5</td>
+				<td>3.5</td>
+			</tr>
+			<tr>
+				<td>Anchor Steam</td>
+				<td>155</td>
+				<td>16</td>
+				<td>4.9</td>
+			</tr>
+			<tr>
+				<td>Anheuser Busch Ice Pale Lager</td>
+				<td>171</td>
+				<td>12.5</td>
+				<td>5.9</td>
+			</tr>
+			<tr>
+				<td>Anheuser Busch Light Pale Lager</td>
+				<td>95</td>
+				<td>3.2</td>
+				<td>4.1</td>
+			</tr>
+			<tr>
+				<td>Beck's Pilsner</td>
+				<td>138</td>
+				<td>9</td>
+				<td>5</td>
+			</tr>
+			<tr>
+				<td>Beck's Premier Light</td>
+				<td>63</td>
+				<td>3.8</td>
+				<td>2.3</td>
+			</tr>
+			<tr>
+				<td>Budweiser</td>
+				<td>145</td>
+				<td>10.6</td>
+				<td>5</td>
+			</tr>
+			<tr>
+				<td>Bud Light</td>
+				<td>110</td>
+				<td>6.6</td>
+				<td>4.2</td>
+			</tr>
+			<tr>
+				<td>Budweiser Select</td>
+				<td>99</td>
+				<td>3.1</td>
+				<td>4.3</td>
+			</tr>
+			<tr>
+				<td>Budweiser Select 55</td>
+				<td>55</td>
+				<td>1.8</td>
+				<td>2.4</td>
+			</tr>
+			<tr>
+				<td>Colt 45</td>
+				<td>157</td>
+				<td>10.8</td>
+				<td>5.6</td>
+			</tr>
+			<tr>
+				<td>Coors</td>
+				<td>149</td>
+				<td>12.2</td>
+				<td>5</td>
+			</tr>
+			<tr>
+				<td>Coors Light</td>
+				<td>102</td>
+				<td>5</td>
+				<td>4.2</td>
+			</tr>
+			<tr>
+				<td>Corona Extra</td>
+				<td>148</td>
+				<td>14</td>
+				<td>4.6</td>
+			</tr>
+			<tr>
+				<td>Corona Light</td>
+				<td>99</td>
+				<td>5</td>
+				<td>3.2</td>
+			</tr>
+			<tr>
+				<td>Foster's Premium Ale</td>
+				<td>160</td>
+				<td>12.5</td>
+				<td>5.5</td>
+			</tr>
+			<tr>
+				<td>Guinness Extra Stout</td>
+				<td>176</td>
+				<td>14</td>
+				<td>6</td>
+			</tr>
+			<tr>
+				<td>Guinness Draught</td>
+				<td>126</td>
+				<td>10</td>
+				<td>4</td>
+			</tr>
+			<tr>
+				<td>Harpoon IPA</td>
+				<td>170</td>
+				<td>15</td>
+				<td>5.9</td>
+			</tr>
+			<tr>
+				<td>Heineken</td>
+				<td>148</td>
+				<td>11.3</td>
+				<td>5</td>
+			</tr>
+			<tr>
+				<td>Heineken Light</td>
+				<td>99</td>
+				<td>6.8</td>
+				<td>3.5</td>
+			</tr>
+			<tr>
+				<td>Killian's Irish Red</td>
+				<td>162</td>
+				<td>14.4</td>
+				<td>5</td>
+			</tr>
+			<tr>
+				<td>Labatt Blue</td>
+				<td>153</td>
+				<td>5</td>
+				<td>5</td>
+			</tr>
+			<tr>
+				<td>Labatt Blue Light</td>
+				<td>111</td>
+				<td>8</td>
+				<td>4</td>
+			</tr>
+			<tr>
+				<td>Long Trail</td>
+				<td>163</td>
+				<td>18.5</td>
+				<td>4.6</td>
+			</tr>
+			<tr>
+				<td>Magic Hat #9</td>
+				<td>151</td>
+				<td>14</td>
+				<td>4.6</td>
+			</tr>
+			<tr>
+				<td>Michelob Dark Lager</td>
+				<td>152</td>
+				<td>11.8</td>
+				<td>5.1</td>
+			</tr>
+			<tr>
+				<td>Michelob Ultra</td>
+				<td>95</td>
+				<td>2.6</td>
+				<td>4.2</td>
+			</tr>
+			<tr>
+				<td>Miller Genuine Draft</td>
+				<td>143</td>
+				<td>13.1</td>
+				<td>4.7</td>
+			</tr>
+			<tr>
+				<td>Miller MGD 64</td>
+				<td>64</td>
+				<td>2.4</td>
+				<td>2.8</td>
+			</tr>
+			<tr>
+				<td>Milwaukee Best Ice</td>
+				<td>144</td>
+				<td>7.3</td>
+				<td>5.9</td>
+			</tr>
+			<tr>
+				<td>Molson Ice</td>
+				<td>160</td>
+				<td>11.6</td>
+				<td>5.6</td>
+			</tr>
+			<tr>
+				<td>Molson Light</td>
+				<td>113</td>
+				<td>12</td>
+				<td>5.6</td>
+			</tr>
+			<tr>
+				<td>Natural Light</td>
+				<td>95</td>
+				<td>3.2</td>
+				<td>4.2</td>
+			</tr>
+			<tr>
+				<td>Newcastle Brown Ale</td>
+				<td>138</td>
+				<td>12.8</td>
+				<td>4.7</td>
+			</tr>
+			<!-- <tr>
+				<td>O'Douls</td>
+				<td>65</td>
+				<td>13.3</td>
+				<td>.4</td>
+			</tr> -->
+			<tr>
+				<td>Pabst Blue Ribbon</td>
+				<td>145</td>
+				<td>12</td>
+				<td>4.7</td>
+			</tr>
+			<tr>
+				<td>Pabst Blue Ribbon Light</td>
+				<td>113</td>
+				<td>8.3</td>
+				<td>3.9</td>
+			</tr>
+			<tr>
+				<td>Pete's Wicked Ale</td>
+				<td>172</td>
+				<td>17.5</td>
+				<td>5.3</td>
+			</tr>
+			<tr>
+				<td>Red Stripe</td>
+				<td>151</td>
+				<td>13.8</td>
+				<td>5</td>
+			</tr>
+			<tr>
+				<td>Rolling Rock Extra Pale Lager</td>
+				<td>132</td>
+				<td>10</td>
+				<td>4.5</td>
+			</tr>
+			<tr>
+				<td>Sam Adams Boston Lager</td>
+				<td>180</td>
+				<td>18.8</td>
+				<td>4.9</td>
+			</tr>
+			<tr>
+				<td>Sam Adams Light</td>
+				<td>119</td>
+				<td>9.6</td>
+				<td>4</td>
+			</tr>
+			<!-- <tr>
+				<td>Sierra Nevada Bigfoot</td>
+				<td>330</td>
+				<td>30.3</td>
+				<td>9.6</td>
+			</tr> -->
+			<tr>
+				<td>Sierra Nevada Pale Ale</td>
+				<td>176</td>
+				<td>14.1</td>
+				<td>5.6</td>
+			</tr>
+			<tr>
+				<td>Stella Artois</td>
+				<td>154</td>
+				<td>11.6</td>
+				<td>5.2</td>
+			</tr>
+			<tr>
+				<td>Lone Star</td>
+				<td>136</td>
+				<td>12</td>
+				<td>4.65</td>
+			</tr>
+			<tr>
+				<td>Lone Star Light</td>
+				<td>111</td>
+				<td>8</td>
+				<td>3.85</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
