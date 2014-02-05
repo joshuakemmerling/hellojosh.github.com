@@ -1,0 +1,18 @@
+html, body { height: 100%; }
+body { font: 14px/22px 'open sans' 'helvetica neue', helvetica, arial, sans-serif; background: #111; /*background: url(http://25.media.tumblr.com/c9b579dd55faf4111ae5e2603bc9fa8d/tumblr_mzzqwktTbR1st5lhmo1_1280.jpg) no-repeat right center; background-size: cover;*/ }
+header { color: #e5e5e5; color: rgba(255, 255, 255, 0.8); background: #111; width: 33%; min-height: 100%; overflow: hidden; }
+header > div { padding: 20% 10%; }
+p { margin-bottom: 20px; }
+a { text-decoration: none; font-weight: bold; color: #cf482d; }
+a:hover { opacity: 0.5; }
+ul { overflow: hidden; }
+ul li { float: left; margin-right: 20px; }
+ul li a { display: block; }
+
+@media screen and (max-width: 1024px) {
+	header { width: 50%; }
+}
+
+@media screen and (max-width: 768px) {
+	header { min-height: 0; margin: 20px; width: auto; background: rgba(17, 17, 17, 0.5); }
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Timesheet</title>
+	<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/global.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sammy.js/0.7.4/sammy.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/0.8.2/vue.min.js"></script>
+	<script src="js/global.js"></script>
+</head>
+<body>
+	<div class="container">
+		<header class="navbar navbar-default">
+			<div class="navbar-header">
+				<a href="" class="navbar-brand">Timsheet</a>
+			</div>
+			<nav class="navbar-right">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Users</a></li>
+					<li><a href="#">Link</a></li>
+					<li><a href="#">Link</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<div id="main" class="row"></div>
+	</div>
+
+	<script id="index_tmpl" type="javascript/template">
+		<h2 class="col-md-12">Users</h2>
+		<div class="col-md-12">
+			<table id="users_table" class="table table-striped">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Total Hours</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-repeat="users">
+						<td>{{ first_name  + ' ' + last_name }}</td>
+						<td>0</td>
+						<td><a href="#/user/{{ id }}">Edit</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</script>
+</body>
+</html>
