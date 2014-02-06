@@ -1,0 +1,28 @@
+body { font: 14px/20px Consolas, monaco, monospace; color: #000; background: #fff; margin: 40px 10px; }
+
+h1, h2, h3, h4, h5, h6 { margin-bottom: 20px; color: #000; }
+h1:before, h2:before, h3:before, h4:before, h5:before, h6:before { color: #999; font-weight: bold; padding-right: 4px; }
+h1:before { content: '#'; margin-left: -12px; }
+h2:before { content: '##'; margin-left: -20px; }
+h3:before { content: '###'; margin-left: -28px; }
+h4:before { content: '####'; margin-left: -36px; }
+h5:before { content: '#####'; margin-left: -43px; }
+h6:before { content: '######'; margin-left: -52px; }
+
+p { margin-bottom: 20px; }
+
+strong { font-weight: bold; }
+strong:before { content: '**'; }
+strong:after { content: '**'; }
+
+em { font-style: italic; }
+em:before { content: '*'; }
+em:after { content: '*'; }
+
+img { display: block; max-width: 75%; margin-bottom: 20px; }
+
+a { color: red; }
+a:before { content: '['; }
+a:after { content: ']'; }
+
+div { max-width: 840px; margin: 0 auto; }
