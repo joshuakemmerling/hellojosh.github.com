@@ -13,7 +13,9 @@
 		body { font: 14px/22px 'helvetica neue', helvetica, arial, sans-serif; background: #aaa; }
 
 		nav { width: 10%; background: #08c; float: left; }
-		nav a { display: block; width: 100%; height: 100px; background: #eee; line-height: 100px; text-align: center; text-decoration: none; font-weight: bold; color: #08c; border-bottom: solid 1px #ccc; }
+		nav a, nav .ui-state-highlight { display: block; width: 100%; height: 100px; background: #eee; line-height: 100px; text-align: center; text-decoration: none; font-weight: bold; color: #08c; border-bottom: solid 1px #ccc; }
+		nav .ui-state-highlight { background: #08c; }
+		nav .ui-sortable-helper { background: #ccc; }
 
 		section { float: left; height: 100%; width: 90%; }
 		section > div, section > .ui-state-highlight { background: red; width: 33.3333333333%; height: 200px; float: left; padding: 10px; box-sizing: border-box; }
@@ -24,15 +26,28 @@
 		$(init);
 
 		function init () {
-			// $('nav a').draggable({
-			// 	revert: 'invalid'
-			// });
+			var $nav_item,
+				nav_spot = -1;
 
-			$('nav, section').sortable({
-				connectWith: 'section',
+			$('nav').sortable({
 				placeholder: 'ui-state-highlight',
-				stop: function (e, ui) {
-					ui.item.replaceWith('<div><div>' + ui.item.text() + '</div></div>');
+				connectWith: 'section',
+				start: function (event, ui) {
+					$nav_item = ui.item.clone('true').removeAttr('style');
+					nav_spot = $('nav a').index(ui.item);
+
+					console.log(nav_spot);
+				}
+			}).disableSelection();
+
+			$('section').sortable({
+				placeholder: 'ui-state-highlight',
+				receive: function () {
+					$('nav a').eq(nav_spot).before($nav_item);
+					$('section > a').replaceWith('<div><div>' + $('section > a').text() + '</div></div>');
+
+					nav_spot = -1;
+					$nav_item = {};
 				}
 			}).disableSelection();
 		}
