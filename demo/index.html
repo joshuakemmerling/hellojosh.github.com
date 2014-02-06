@@ -3,6 +3,7 @@
 <head>
 	<title>Timesheet</title>
 	<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/flat-ui.css" rel="stylesheet">
 	<link href="css/global.css" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
@@ -12,15 +13,14 @@
 </head>
 <body>
 	<div class="container">
-		<header class="navbar navbar-default">
+		<header class="navbar navbar-default navbar-fixed-top">
 			<div class="navbar-header">
-				<a href="" class="navbar-brand">Timsheet</a>
+				<a href="" class="navbar-brand">Timesheet</a>
 			</div>
 			<nav class="navbar-right">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Users</a></li>
-					<li><a href="#">Link</a></li>
-					<li><a href="#">Link</a></li>
+					<li class="active"><a href="#/">Users</a></li>
+					<li><a href="#/projects">Projects</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -42,11 +42,85 @@
 				<tbody>
 					<tr v-repeat="users">
 						<td>{{ first_name  + ' ' + last_name }}</td>
+						<td>{{ hours || 0 }}</td>
+						<td><a href="#/user/{{ id }}">Edit</a></td>
+					</tr>
+				</tbody>
+			</table>
+			<a href="#/user/new" class="btn btn-primary btn-sm">Create New User</a>
+		</div>
+	</script>
+
+	<script id="new_tmpl" type="javascript/template">
+		<h2 class="col-md-12">Create New User</h2>
+		<div class="col-md-12">
+			<form v-on="submit:onCreateUser">
+				<div class="form-group">
+					<label for="first_name">First Name</label>
+					<input type="text" class="form-control" id="first_name" placeholder="Enter first name" required>
+				</div>
+				<div class="form-group">
+					<label for="last_name">Last Name</label>
+					<input type="text" class="form-control" id="last_name" placeholder="Enter last name" required>
+				</div>
+				<button type="submit" class="btn btn-primary">Create</button>
+			</form>
+		</div>
+	</script>`
+
+	<script id="edit_tmpl" type="javascript/template">
+		<h2 class="col-md-12">{{ user.first_name  + ' ' + user.last_name }}'s Timesheet</h2>
+		<div class="col-md-12">
+			<table id="users_table" class="table table-striped">
+				<thead>
+					<tr>
+						<th>Project</th>
+						<th>Hours</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-repeat="users">
+						<td>{{ first_name  + ' ' + last_name }}</td>
 						<td>0</td>
 						<td><a href="#/user/{{ id }}">Edit</a></td>
 					</tr>
 				</tbody>
 			</table>
+		</div>
+	</script>
+
+	<script id="projects_tmpl" type="javascript/template">
+		<h2 class="col-md-12">Projects</h2>
+		<div class="col-md-12">
+			<table id="users_table" class="table table-striped">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Total Hours Worked</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-repeat="projects">
+						<td>{{ project_name }}</td>
+						<td>0</td>
+					</tr>
+				</tbody>
+			</table>
+			<a href="#/projects/new" class="btn btn-primary btn-sm">Create New Project</a>
+		</div>
+	</script>
+
+	<script id="projects_new_tmpl" type="javascript/template">
+		<h2 class="col-md-12">Create New Project</h2>
+		<div class="col-md-12">
+			<form v-on="submit:onCreateProject">
+				<div class="form-group">
+					<label for="project_name">Project Name</label>
+					<input type="text" class="form-control" id="project_name" placeholder="Enter project name" required>
+				</div>
+				<button type="submit" class="btn btn-primary">Create</button>
+			</form>
 		</div>
 	</script>
 </body>
