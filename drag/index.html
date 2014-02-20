@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>drag and drop</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.2/jquery.ui.touch-punch.min.js"></script>
+	<style>
+		html, body { height: 100%; }
+		body { font: 14px/22px 'helvetica neue', helvetica, arial, sans-serif; background: #aaa; }
+
+		nav { width: 10%; background: #08c; float: left; }
+		nav a, nav .ui-state-highlight { display: block; width: 100%; height: 100px; background: #eee; line-height: 100px; text-align: center; text-decoration: none; font-weight: bold; color: #08c; border-bottom: solid 1px #ccc; }
+		nav .ui-state-highlight { background: #08c; }
+		nav .ui-sortable-helper { background: #ccc; }
+
+		section { float: left; height: 100%; width: 90%; }
+		section > div, section > .ui-state-highlight { background: red; width: 33.3333333333%; height: 200px; float: left; padding: 10px; box-sizing: border-box; }
+		section > .ui-state-highlight { background: yellow; }
+		section > div > div { background: blue; width: 100%; height: 180px; }
+	</style>
+	<script>
+		$(init);
+
+		function init () {
+			var $nav_item,
+				nav_spot = -1;
+
+			$('nav').sortable({
+				placeholder: 'ui-state-highlight',
+				connectWith: 'section',
+				start: function (event, ui) {
+					$nav_item = ui.item.clone('true').removeAttr('style');
+					nav_spot = $('nav a').index(ui.item);
+
+					console.log(nav_spot);
+				}
+			}).disableSelection();
+
+			$('section').sortable({
+				placeholder: 'ui-state-highlight',
+				receive: function () {
+					$('nav a').eq(nav_spot).before($nav_item);
+					$('section > a').replaceWith('<div><div>' + $('section > a').text() + '</div></div>');
+
+					nav_spot = -1;
+					$nav_item = {};
+				}
+			}).disableSelection();
+		}
+	</script>
+</head>
+<body>
+	<nav>
+		<a href="">LINK 1</a>
+		<a href="">LINK 2</a>
+		<a href="">LINK 3</a>
+		<a href="">LINK 4</a>
+		<a href="">LINK 5</a>
+		<a href="">LINK 6</a>
+		<a href="">LINK 7</a>
+		<a href="">LINK 8</a>
+		<a href="">LINK 9</a>
+		<a href="">LINK 10</a>
+		<a href="">LINK 11</a>
+		<a href="">LINK 12</a>
+	</nav>
+	<section>
+		<div>
+			<div>Box 1</div>
+		</div>
+		<div>
+			<div>Box 2</div>
+		</div>
+		<div>
+			<div>Box 3</div>
+		</div>
+		<div>
+			<div>Box 4</div>
+		</div>
+		<div>
+			<div>Box 5</div>
+		</div>
+		<div>
+			<div>Box 6</div>
+		</div>
+		<div>
+			<div>Box 7</div>
+		</div>
+		<div>
+			<div>Box 8</div>
+		</div>
+		<div>
+			<div>Box 9</div>
+		</div>
+	</section>
+</body>
+</html>
