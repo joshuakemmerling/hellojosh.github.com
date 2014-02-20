@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vuejs</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.1.1/css/normalize.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.1.1/css/foundation.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.1.1/js/foundation.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/0.8.2/vue.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+	<script src="js/page.js"></script>
+	<script src="js/global.js"></script>
+	<style>
+		body { background: #ecf0f1; }
+		h6 { text-align: center; margin: 20px 0; text-transform: uppercase; }
+		a { color: #2980b9; }
+
+		.bug { display: block; background: #fff; padding: 15px; margin: 0 0 20px; border-radius: 4px; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); }
+		.open.bug { border-left: solid 3px #c0392b; }
+		.closed.bug { border-left: solid 3px #27ae60; }
+
+		.side-nav { width: 200px; float: left; padding: 0; }
+
+		#bugs { width: 400px; float: left; }
+
+		#wrap { width: 600px; margin: 0 auto; }
+	</style>
+</head>
+<body>
+	<h6>Bugs</h6>
+	<div id="wrap" class="clearfix">
+		<ul class="side-nav">
+			<li><a href="/">All Bugs</a></li>
+			<li><a href="/bug/new">New Bug</a></li>
+			<li>&nbsp;</li>
+			<li><a href="/user">All Users</a></li>
+			<li><a href="/user/new">New User</a></li>
+		</ul>
+		<div id="bugs"></div>
+	</div>
+
+	<script id="bugs_tmpl" type="text/template">
+		<a href="/bug/{{ id }}" v-repeat="bugs" class="bug {{ status | lowercase }}">{{ title }}</a>
+	</script>
+
+	<script id="bugs_id_tmpl" type="text/template">
+		<dl>
+			<dt>Title</dt>
+			<dd>{{ title }}</dd>
+			<dt>Assigned To</dt>
+			<dd v-component="user-select"></dd>
+			<dt>Status</dt>
+			<dd>
+				<select id="bug_status">
+					<option>Choose a status</option>
+					<option value="open" v-selected="status == 'open'">Open</option>
+					<option value="closed" v-selected="status == 'closed'">Closed</option>
+				</select>
+			</dd>
+			<dd>
+				<input type="submit" value="Update" class="button tiny" v-on="click: updateBug" />
+			</dd>
+		</dl>
+	</script>
+
+	<script id="bugs_new_tmpl" type="text/template">
+		<input type="text" placeholder="Bug description" id="bug_title" />
+		<user-select></user-select>
+		<input type="submit" value="Create" class="button tiny"  v-on="click: createBug" />
+	</script>
+
+	<script id="users_tmpl" type="text/template">
+		<a href="/user/{{ id }}" v-repeat="users" class="bug user">{{ name }}</a>
+	</script>
+
+	<script id="user_new_tmpl" type="text/template">
+		<input type="text" placeholder="Full name" id="user_name" />
+		<input type="submit" value="Create" class="button tiny" v-on="click: createUser" />
+	</script>
+
+	<script id="user_id_tmpl" type="text/template">
+		<h3>Bugs for <strong>{{ user.name }}</strong></h3>
+		<a href="/bug/{{ id }}" v-repeat="bugs" class="bug {{ status | lowercase }}">{{ title }}</a>
+	</script>
+
+	<script id="user_select_comp_tmpl" type="text/template">
+		<select id="bug_user">
+			<option>Assign to user</option>
+			<option value="{{ id }}" v-repeat="users" v-selected="assignedto == name">{{ name }}</option>
+		</select>
+	</script>
+</body>
+</html>
