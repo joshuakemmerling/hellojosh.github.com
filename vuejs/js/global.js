@@ -36,16 +36,9 @@ function init () {
 		template: $('#user_select_comp_tmpl').html()
 	});
 
-	page.start();
+	index();
 
-	// var gg = get_data('/v1/users');
-
-	// console.log(gg);
-
-	// for (var i in gg) {
-	// 	console.log(i);
-	// 	console.log(gg[i].name);
-	// }
+	// page.start();
 }
 
 function index () {
@@ -123,20 +116,16 @@ function bug_id (ctx, next) {
 }
 
 function all_user () {
-	var fullurl = URL + '/v1/users?access_key=' + API_KEY + '&callback=?';
-
-	var callback = function (data) {
+	get_data('/v1/users', function (data) {
 		$('#bugs').html($('#users_tmpl').html());
 
 		new Vue({
 			el: '#bugs',
 			data: {
-				users: data || {}
+				users: data
 			}
 		});
-	};
-
-	$.getJSON(fullurl, callback).error(callback);
+	});
 }
 
 function user_new () {
@@ -146,11 +135,16 @@ function user_new () {
 		el: '#bugs',
 		methods: {
 			createUser: function () {
-				var name = $('#user_name').val();
+				var name = $('#user_name').val().split(' ');
+				var fullurl = URL + '/v1/user/create?access_key=' + API_KEY + '&callback=?';
 
-				users.push({ id: users.length + 1, name: name });
-
-				page('/user');
+				$.getJSON(fullurl, { firstname: name[0], lastname: name[1] }, function (data) {
+					all_user();
+					// page('/user');
+				}).error(function () {
+					all_user();
+					// page('/user');
+				});
 			}
 		}
 	});
@@ -186,20 +180,14 @@ function user_details (ctx, next) {
 	$.getJSON(fullurl, callback).error(callback);
 }
 
-function get_data (uri) {
-
-
+function get_data (uri, callback) {
 	var fullurl = URL + uri + '?access_key=' + API_KEY + '&callback=?';
 
 	$.getJSON(fullurl, function (data) {
-		console.log(data.length);
-
-		return data;
+		callback(data);
 	}).error(function () {
-		return {};
+		callback([]);
 	});
-
-	return {};
 }
 
 
