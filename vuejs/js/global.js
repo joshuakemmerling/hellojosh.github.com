@@ -1,5 +1,6 @@
 var API_KEY = 'd2dcdc8e0c3e2a0c065c9a5ffce8da95eeb71e46',
-	URL = 'http://demo.simpleblimp.com';
+	URL = 'http://demo.simpleblimp.com',
+	APP_WRAP = '#bugs';
 
 page('/user', all_user);
 page('/user/new', user_new);
@@ -10,32 +11,24 @@ page('/bug/new', bug_new);
 page('/bug/:id', bug_id);
 
 Vue.directive('selected', {
-	bind: function () {
-
-	},
 	update: function (value) {
-		if (value) {
+		if (value)
 			this.el.setAttribute('selected', 'selected');
-		}
 	}
 });
 
-window.onload = init;
+$(init);
 
 function init () {
-	Vue.component('user-select', {
-		template: $('#user_select_comp_tmpl').html()
-	});
-
 	page.start();
 }
 
 function index () {
 	get_data('/v1/bugs', function (ddd) {
-		$('#bugs').html($('#bugs_tmpl').html());
+		$(APP_WRAP).html($('#bugs_tmpl').html());
 
 		new Vue({
-			el: '#bugs',
+			el: APP_WRAP,
 			data: {
 				bugs: ddd
 			}
@@ -45,21 +38,20 @@ function index () {
 
 function bug_new () {
 	get_data('/v1/users', function (ddd) {
-		$('#bugs').html($('#bugs_new_tmpl').html());
+		$(APP_WRAP).html($('#bugs_new_tmpl').html());
 
 		new Vue({
-			el: '#bugs',
+			el: APP_WRAP,
 			data: {
-				users: ddd
+				users: ddd,
+				title: '',
+				user: ''
 			},
 			methods: {
 				createBug: function () {
-					var title = $('#bug_title').val(),
-						assigned_id = parseInt($('#bug_user').val());
-
 					get_data('/v1/bug/new', function (data) {
 						page('/');
-					}, { title: title, status: 'open', assignedto: assigned_id });
+					}, { title: this.title, status: 'open', assignedto: parseInt(this.user) });
 				}
 			}
 		});
@@ -70,28 +62,28 @@ function bug_id (ctx, next) {
 	var pid = parseInt(ctx.params.id),
 		bug = {};
 
-	var callback = function (ddd) {
-		bug = ddd;
+	var callback = function (b) {
+		bug = b;
 
 		get_data('/v1/users', callback2, {});
 	};
 
-	var callback2 = function (ddd) {
-		$('#bugs').html($('#bugs_id_tmpl').html());
+	var callback2 = function (u) {
+		$(APP_WRAP).html($('#bugs_id_tmpl').html());
 
 		new Vue({
-			el: '#bugs',
+			el: APP_WRAP,
 			data: {
 				title: bug[0].title,
 				status: bug[0].status,
-				assignedto: bug[0].name,
-				users: ddd
+				users: u,
+				user: _.filter(u, { name: bug[0].name })[0].id
 			},
 			methods: {
 				updateBug: function () {
 					get_data('/v1/bug/update', function () {
 						page('/');
-					}, { id: pid, status: $('#bug_status').val() + '', assignedto: $('#bug_user').val() });
+					}, { id: pid, status: this.status + '', assignedto: this.user });
 				}
 			}
 		});
@@ -102,10 +94,10 @@ function bug_id (ctx, next) {
 
 function all_user () {
 	get_data('/v1/users', function (data) {
-		$('#bugs').html($('#users_tmpl').html());
+		$(APP_WRAP).html($('#users_tmpl').html());
 
 		new Vue({
-			el: '#bugs',
+			el: APP_WRAP,
 			data: {
 				users: data
 			}
@@ -114,10 +106,10 @@ function all_user () {
 }
 
 function user_new () {
-	$('#bugs').html($('#user_new_tmpl').html());
+	$(APP_WRAP).html($('#user_new_tmpl').html());
 
 	new Vue({
-		el: '#bugs',
+		el: APP_WRAP,
 		methods: {
 			createUser: function () {
 				var name = $('#user_name').val().split(' ');
@@ -133,27 +125,23 @@ function user_new () {
 function user_details (ctx, next) {
 	var uid = parseInt(ctx.params.id),
 		users = [],
-		bugs = [];
+		user_params = { id: uid };
 
-	var callback = function (data) {
+	get_data('/v1/user', function (data) {
 		users = data[0];
 
-		get_data('/v1/user/bugs', callback2, { id: uid });
-	};
+		get_data('/v1/user/bugs', function (data) {
+			$(APP_WRAP).html($('#user_id_tmpl').html());
 
-	var callback2 = function (data) {
-		$('#bugs').html($('#user_id_tmpl').html());
-
-		new Vue({
-			el: '#bugs',
-			data: {
-				user: users,
-				bugs: data
-			}
-		});
-	};
-
-	get_data('/v1/user', callback, { id: uid });
+			new Vue({
+				el: APP_WRAP,
+				data: {
+					user: users,
+					bugs: data
+				}
+			});
+		}, user_params);
+	}, user_params);
 }
 
 function get_data (uri, callback, uri_data) {
