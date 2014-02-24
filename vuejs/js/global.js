@@ -2,20 +2,20 @@ var API_KEY = 'd2dcdc8e0c3e2a0c065c9a5ffce8da95eeb71e46',
 	URL = 'http://demo.simpleblimp.com',
 	APP_WRAP = '#bugs';
 
-page('/user', all_user);
-page('/user/new', user_new);
-page('/user/:id', user_details);
+// page('/user', all_user);
+// page('/user/new', user_new);
+// page('/user/:id', user_details);
 page('/', index);
 page('/bugs', index);
 page('/bug/new', bug_new);
 page('/bug/:id', bug_id);
 
-Vue.directive('selected', {
-	update: function (value) {
-		if (value)
-			this.el.setAttribute('selected', 'selected');
-	}
-});
+// Vue.directive('selected', {
+// 	update: function (value) {
+// 		if (value)
+// 			this.el.setAttribute('selected', 'selected');
+// 	}
+// });
 
 $(init);
 
@@ -24,7 +24,7 @@ function init () {
 }
 
 function index () {
-	get_data('/v1/bugs', function (ddd) {
+	get_data('/v2/bugs', function (ddd) {
 		$(APP_WRAP).html($('#bugs_tmpl').html());
 
 		new Vue({
@@ -37,7 +37,7 @@ function index () {
 }
 
 function bug_new () {
-	get_data('/v1/users', function (ddd) {
+	get_data('/v2/users', function (ddd) {
 		$(APP_WRAP).html($('#bugs_new_tmpl').html());
 
 		new Vue({
@@ -49,7 +49,7 @@ function bug_new () {
 			},
 			methods: {
 				createBug: function () {
-					get_data('/v1/bug/new', function (data) {
+					get_data('/v2/bugs/new', function (data) {
 						page('/');
 					}, { title: this.title, status: 'open', assignedto: parseInt(this.user) });
 				}
@@ -59,25 +59,15 @@ function bug_new () {
 }
 
 function bug_id (ctx, next) {
-	var pid = parseInt(ctx.params.id),
-		bug = {};
+	var pid = parseInt(ctx.params.id);
 
-	var callback = function (b) {
-		bug = b;
-
-		get_data('/v1/users', callback2, {});
-	};
-
-	var callback2 = function (u) {
+	get_data('/v2/bug', function (b) {
 		$(APP_WRAP).html($('#bugs_id_tmpl').html());
 
 		new Vue({
 			el: APP_WRAP,
 			data: {
-				title: bug[0].title,
-				status: bug[0].status,
-				users: u,
-				user: _.filter(u, { name: bug[0].name })[0].id
+				bug: b[0]
 			},
 			methods: {
 				updateBug: function () {
@@ -87,11 +77,10 @@ function bug_id (ctx, next) {
 				}
 			}
 		});
-	};
-
-	get_data('/v1/bug', callback, { id: pid });
+	}, { id: pid });
 }
 
+/*
 function all_user () {
 	get_data('/v1/users', function (data) {
 		$(APP_WRAP).html($('#users_tmpl').html());
@@ -143,6 +132,7 @@ function user_details (ctx, next) {
 		}, user_params);
 	}, user_params);
 }
+*/
 
 function get_data (uri, callback, uri_data) {
 	var fullurl = URL + uri + '?access_key=' + API_KEY + '&callback=?';

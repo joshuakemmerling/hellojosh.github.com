@@ -32,9 +32,6 @@
 		<ul class="side-nav">
 			<li><a href="/">All Bugs</a></li>
 			<li><a href="/bug/new">New Bug</a></li>
-			<li>&nbsp;</li>
-			<li><a href="/user">All Users</a></li>
-			<li><a href="/user/new">New User</a></li>
 		</ul>
 		<div id="bugs"></div>
 	</div>
@@ -46,25 +43,13 @@
 	<script id="bugs_id_tmpl" type="text/template">
 		<dl>
 			<dt>Title</dt>
-			<dd>{{ title }}</dd>
+			<dd>{{ bug.title }}</dd>
 			<dt>Assigned To</dt>
-			<dd>
-				<select v-model="user">
-					<option value="">Assign to user</option>
-					<option value="{{ id }}" v-repeat="users" v-selected="user == id">{{ name }}</option>-
-				</select>
-			</dd>
+			<dd>{{ bug.name }}</dd>
 			<dt>Status</dt>
-			<dd>
-				<select v-model="status">
-					<option>Choose a status</option>
-					<option value="open" v-selected="status == 'open'">Open</option>
-					<option value="closed" v-selected="status == 'closed'">Closed</option>
-				</select>
-			</dd>
-			<dd>
-				<input type="submit" value="Update" class="button tiny" v-on="click: updateBug" />
-			</dd>
+			<dd>{{ bug.status }}</dd>
+			<dt>Created</dt>
+			<dd>{{ bug.created_at }}</dd>
 		</dl>
 	</script>
 
