@@ -39,6 +39,8 @@ function index () {
 			methods: {
 				bug_details: function () {
 					console.log('asdasasdadasdasd');
+
+					return false;
 				}
 			}
 		});
