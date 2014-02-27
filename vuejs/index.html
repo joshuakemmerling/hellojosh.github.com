@@ -37,7 +37,8 @@
 	</div>
 
 	<script id="bugs_tmpl" type="text/template">
-		<a href="/bug/{{ id }}" v-repeat="bugs" class="bug {{ status | lowercase }}" v-on="click: bug_details">{{ title }}</a>
+		<!-- <a href="/bug/{{ id }}" v-repeat="bugs" class="bug {{ status | lowercase }}" v-on="click: bug_details">{{ title }}</a> -->
+		<a href="" v-repeat="bugs" class="bug {{ status | lowercase }}" v-on="click: bug_details">{{ title }}</a>
 	</script>
 
 	<script id="bugs_id_tmpl" type="text/template">
