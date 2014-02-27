@@ -37,11 +37,7 @@ function index () {
 				bugs: ddd
 			},
 			methods: {
-				bug_details: function (bug) {
-					console.log(bug);
-
-					// return false;
-				}
+				bug_details: bug_id
 			}
 		});
 	}, {});
@@ -78,10 +74,10 @@ function bug_new () {
 function bug_id (bug) {
 	// var pid = parseInt(ctx.params.id);
 
-	console.log(bug);
-	return false;
+	// console.log(bug);
+	// return false;
 
-	var pid = id;
+	var pid = bug.id;
 
 	get_data('/v2/bug', function (b) {
 		$(APP_WRAP).html($('#bugs_id_tmpl').html());
