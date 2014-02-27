@@ -67,8 +67,10 @@ function bug_new () {
 	return false;
 }
 
-function bug_id (ctx, next) {
-	var pid = parseInt(ctx.params.id);
+// function bug_id (ctx, next) {
+function bug_id (id) {
+	// var pid = parseInt(ctx.params.id);
+	var pid = id;
 
 	get_data('/v2/bug', function (b) {
 		$(APP_WRAP).html($('#bugs_id_tmpl').html());
