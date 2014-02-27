@@ -37,8 +37,8 @@ function index () {
 				bugs: ddd
 			},
 			methods: {
-				bug_details: function () {
-					console.log('asdasasdadasdasd');
+				bug_details: function (bug) {
+					console.log(bug);
 
 					return false;
 				}
