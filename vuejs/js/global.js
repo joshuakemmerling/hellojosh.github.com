@@ -22,6 +22,9 @@ $(init);
 function init () {
 	// page.start();
 	index();
+
+	$('#all_bugs_link').on('click', index);
+	$('#new_bug_link').on('click', bug_new);
 }
 
 function index () {
@@ -35,6 +38,8 @@ function index () {
 			}
 		});
 	}, {});
+
+	return false;
 }
 
 function bug_new () {
@@ -58,6 +63,8 @@ function bug_new () {
 			}
 		});
 	}, {});
+
+	return false;
 }
 
 function bug_id (ctx, next) {
