@@ -70,6 +70,11 @@ function bug_new () {
 // function bug_id (ctx, next) {
 function bug_id (id) {
 	// var pid = parseInt(ctx.params.id);
+
+	console.log(id);
+
+	return false;
+
 	var pid = id;
 
 	get_data('/v2/bug', function (b) {
