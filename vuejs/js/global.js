@@ -5,10 +5,10 @@ var API_KEY = 'd2dcdc8e0c3e2a0c065c9a5ffce8da95eeb71e46',
 // page('/user', all_user);
 // page('/user/new', user_new);
 // page('/user/:id', user_details);
-page('/', index);
-page('/bugs', index);
-page('/bug/new', bug_new);
-page('/bug/:id', bug_id);
+// page('/', index);
+// page('/bugs', index);
+// page('/bug/new', bug_new);
+// page('/bug/:id', bug_id);
 
 // Vue.directive('selected', {
 // 	update: function (value) {
@@ -20,7 +20,8 @@ page('/bug/:id', bug_id);
 $(init);
 
 function init () {
-	page.start();
+	// page.start();
+	index();
 }
 
 function index () {
@@ -50,7 +51,8 @@ function bug_new () {
 			methods: {
 				createBug: function () {
 					get_data('/v2/bugs/new', function (data) {
-						page('/');
+						// page('/');
+						index();
 					}, { title: this.title, status: 'open', assignedto: parseInt(this.user) });
 				}
 			}
@@ -69,13 +71,14 @@ function bug_id (ctx, next) {
 			data: {
 				bug: b[0]
 			},
-			methods: {
-				updateBug: function () {
-					get_data('/v1/bug/update', function () {
-						page('/');
-					}, { id: pid, status: this.status + '', assignedto: this.user });
-				}
-			}
+			// methods: {
+			// 	updateBug: function () {
+			// 		get_data('/v1/bug/update', function () {
+			// 			// page('/');
+			// 			index();
+			// 		}, { id: pid, status: this.status + '', assignedto: this.user });
+			// 	}
+			// }
 		});
 	}, { id: pid });
 }
