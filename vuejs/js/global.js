@@ -37,7 +37,9 @@ function index () {
 				bugs: ddd
 			},
 			methods: {
-				bug_details: bug_id
+				bug_details: function () {
+					console.log('asdasasdadasdasd');
+				}
 			}
 		});
 	}, {});
