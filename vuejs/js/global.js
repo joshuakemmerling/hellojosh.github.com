@@ -35,6 +35,9 @@ function index () {
 			el: APP_WRAP,
 			data: {
 				bugs: ddd
+			},
+			methods: {
+				bug_details: bug_id
 			}
 		});
 	}, {});
@@ -68,11 +71,10 @@ function bug_new () {
 }
 
 // function bug_id (ctx, next) {
-function bug_id (id) {
+function bug_id (bug) {
 	// var pid = parseInt(ctx.params.id);
 
-	console.log(id);
-
+	console.log(bug);
 	return false;
 
 	var pid = id;
