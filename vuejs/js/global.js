@@ -40,7 +40,7 @@ function index () {
 				bug_details: function (bug) {
 					console.log(bug);
 
-					return false;
+					// return false;
 				}
 			}
 		});
