@@ -1,4 +1,4 @@
-var API_KEY = 'b3d46822a115c494ae9d6ce4199bf3c61625c8b4',
+var API_KEY = 'f560950fc7a404bf9fd37e5347022529b67c0df5',
 	URL = 'http://demo.simpleblimp.com',
 	APP_WRAP = '#bugs';
 
