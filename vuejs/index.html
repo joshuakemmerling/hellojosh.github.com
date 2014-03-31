@@ -8,7 +8,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.1.1/js/foundation.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/0.8.2/vue.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
-	<script src="js/page.js"></script>
+	<!-- <script src="js/page.js"></script> -->
 	<script src="js/global.js"></script>
 	<style>
 		body { background: #ecf0f1; }
@@ -30,45 +30,40 @@
 	<h6>Bugs</h6>
 	<div id="wrap" class="clearfix">
 		<ul class="side-nav">
-			<li><a href="/">All Bugs</a></li>
-			<li><a href="/bug/new">New Bug</a></li>
-			<li>&nbsp;</li>
-			<li><a href="/user">All Users</a></li>
-			<li><a href="/user/new">New User</a></li>
+			<li><a href="/" id="all_bugs_link">All Bugs</a></li>
+			<li><a href="/bug/new" id="new_bug_link">New Bug</a></li>
 		</ul>
 		<div id="bugs"></div>
 	</div>
 
 	<script id="bugs_tmpl" type="text/template">
-		<a href="/bug/{{ id }}" v-repeat="bugs" class="bug {{ status | lowercase }}">{{ title }}</a>
+		<!-- <a href="/bug/{{ id }}" v-repeat="bugs" class="bug {{ status | lowercase }}" v-on="click: bug_details">{{ title }}</a> -->
+		<a class="bug {{ status | lowercase }}" v-repeat="bugs" v-on="click: bug_details(this)">{{ title }}</a>
 	</script>
 
 	<script id="bugs_id_tmpl" type="text/template">
 		<dl>
 			<dt>Title</dt>
-			<dd>{{ title }}</dd>
+			<dd>{{ bug.title }}</dd>
 			<dt>Assigned To</dt>
-			<dd v-component="user-select"></dd>
+			<dd>{{ bug.name }}</dd>
 			<dt>Status</dt>
-			<dd>
-				<select id="bug_status">
-					<option>Choose a status</option>
-					<option value="open" v-selected="status == 'open'">Open</option>
-					<option value="closed" v-selected="status == 'closed'">Closed</option>
-				</select>
-			</dd>
-			<dd>
-				<input type="submit" value="Update" class="button tiny" v-on="click: updateBug" />
-			</dd>
+			<dd>{{ bug.status }}</dd>
+			<dt>Created</dt>
+			<dd>{{ bug.created_at }}</dd>
 		</dl>
 	</script>
 
 	<script id="bugs_new_tmpl" type="text/template">
-		<input type="text" placeholder="Bug description" id="bug_title" />
-		<user-select></user-select>
+		<input type="text" placeholder="Bug description" id="bug_title" v-model="title" />
+		<select v-model="user">
+			<option value="">Assign to user</option>
+			<option value="{{ id }}" v-repeat="users">{{ name }}</option>
+		</select>
 		<input type="submit" value="Create" class="button tiny"  v-on="click: createBug" />
 	</script>
 
+	<!--
 	<script id="users_tmpl" type="text/template">
 		<a href="/user/{{ id }}" v-repeat="users" class="bug user">{{ name }}</a>
 	</script>
@@ -77,17 +72,6 @@
 		<input type="text" placeholder="Full name" id="user_name" />
 		<input type="submit" value="Create" class="button tiny" v-on="click: createUser" />
 	</script>
-
-	<script id="user_id_tmpl" type="text/template">
-		<h3>Bugs for <strong>{{ user.name }}</strong></h3>
-		<a href="/bug/{{ id }}" v-repeat="bugs" class="bug {{ status | lowercase }}">{{ title }}</a>
-	</script>
-
-	<script id="user_select_comp_tmpl" type="text/template">
-		<select id="bug_user">
-			<option>Assign to user</option>
-			<option value="{{ id }}" v-repeat="users" v-selected="assignedto == name">{{ name }}</option>
-		</select>
-	</script>
+	-->
 </body>
 </html>
