@@ -2,137 +2,128 @@
 <html>
 <head>
 	<title>SQL Form</title>
-	<style>
-		body { font: 14px/20px helvetica; }
-		a { cursor: pointer; }
-
-		.form_element { margin-bottom: 10px; }
-		.form_element strong { font-weight: bold; display: block; }
-	</style>
+	<link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/0.10.3/vue.min.js"></script>
-	<script>
-		window.onload = init;
-
-		function init () {
-			new Vue({
-				el: '#form',
-				data: {
-					tables: [ 'users', 'accounts', 'products' ],
-					tableSelected: '',
-					actionSelected: '',
-					columns: {
-						'users': [ 'id', 'first_name', 'last_name', 'created' ],
-						'accounts': [ 'id', 'account_name', 'plan_id' ],
-						'products': [ 'id', 'name', 'sku', 'price' ]
-					},
-					whereFilters: [{ column: '', comparator: '', value: '' }],
-					orderBy: [{ column: '', direction: '' }]
-				},
-				methods: {
-					addOrderBy: function () {
-						this.orderBy.push({ column: '', direction: '' });
-					},
-					addWhereFilter: function () {
-						this.whereFilters.push({ column: '', comparator: '', value: '' });
-					},
-					removeFilter: function (filterIndex) {
-						this.whereFilters.$remove(filterIndex);
-					},
-					removeOrder: function (orderIndex) {
-						this.orderBy.$remove(orderIndex);
-					},
-					resetSqlParts: function () {
-						this.whereFilters = [{ column: '', comparator: '', value: '' }];
-						this.orderBy = [{ column: '', direction: '' }];	
-					}
-				}
-			});
-		}
-	</script>
+	<script src="sqlform.js"></script>
 </head>
 <body>
-	<div>
-		SELECT * FROM _users WHERE id <> 34 ORDER BY id DESC, first_name ASC;
-		<br>
-		INSERT INTO _users (id, first_name, last_name) VALUES (0, 'Joshua', 'Kemmerling');
-		<br>
-		UPDATE _users SET first_name = 'BOB' WHERE id = 12;
-		<br>
-		DELETE FROM _users WHERE id < 3000;
+	<br>
+	<div class="container">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">SQL Builder</h3>
+			</div>
+			<div class="panel-body">
+				<form id="form" class="form-horizontal">
+					<div class="form-group">
+						<label class="col-md-3 control-label">Table</label>
+						<div class="col-md-9">
+							<select class="form-control input-sm" v-model="tableSelected" v-on="change: resetSqlParts">
+								<option value="">Select a Table</option>
+								<option v-repeat="tables">{{ $value }}</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">Action</label>
+						<div class="col-md-9">
+							<select class="form-control input-sm" v-model="actionSelected" v-on="change: resetSqlParts">
+								<option value="">Select an Action</option>
+								<option>select</option>
+								<option>insert</option>
+								<option>update</option>
+								<option>delete</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group" v-if="tableSelected != '' && [ 'select' ].indexOf(actionSelected) > -1">
+						<label class="col-md-3 control-label">Columns</label>
+						<div class="col-md-9">
+							<div class="checkbox">
+								<label><input type="checkbox" v-attr="checked: selectedColumns[tableSelected].indexOf('*') > -1" /> *</label>
+							</div>
+							<div class="checkbox" v-repeat="columns[tableSelected]">
+								<label><input type="checkbox" v-attr="checked: selectedColumns[tableSelected].indexOf($value) > -1" /> {{ $value }}</label>
+							</div>
+						</div>
+					</div>
+					<div class="form-group" v-if="tableSelected != '' && [ 'insert', 'update' ].indexOf(actionSelected) > -1">
+						<label class="col-md-3 control-label">Values</label>
+						<div class="col-md-9">
+							<div class="form-group" v-repeat="column: columns[tableSelected]">
+								<div class="col-md-3">
+									<label class="control-label">{{ column }}</label>
+								</div>
+								<div class="col-md-3">
+									<input class="form-control input-sm" type="text">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group" v-if="tableSelected != '' && [ 'select', 'update', 'delete' ].indexOf(actionSelected) > -1">
+						<label class="col-md-3 control-label">Where</label>
+						<div class="col-md-9">
+							<div class="form-group" v-repeat="filter: whereFilters">
+								<div class="col-md-3">
+									<select class="form-control input-sm input-sm input-sm" v-model="filter.column">
+										<option value="">Select a Column</option>
+										<option v-repeat="columns[tableSelected]">{{ $value }}</option>
+									</select>
+								</div>
+								<div class="col-md-3">
+									<select class="form-control input-sm input-sm" v-model="filter.comparator">
+										<option>Select a Compare</option>
+										<option>=</option>
+										<option><</option>
+										<option>></option>
+										<option><></option>
+									</select>
+								</div>
+								<div class="col-md-3">
+									<input class="form-control input-sm" type="text" v-model="filter.value" />
+								</div>
+								<div class="col-md-3" v-if="whereFilters.length > 1">
+									<a class="btn btn-danger btn-sm" v-on="click: removeFilter($index)"><i class="glyphicon glyphicon-remove"></i></a>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<a class="btn btn-success btn-xs" v-on="click: addWhereFilter"><i class="glyphicon glyphicon-plus"></i> Filter</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group" v-if="tableSelected != '' && actionSelected == 'select'">
+						<label class="col-md-3 control-label">Order</label>
+						<div class="col-md-9">
+							<div class="form-group" v-repeat="order: orderBy">
+								<div class="col-md-3">
+									<select class="form-control input-sm" v-model="order.column">
+										<option value="">Select an Column</option>
+										<option v-repeat="columns[tableSelected]">{{ $value }}</option>
+									</select>
+								</div>
+								<div class="col-md-3">
+									<select class="form-control input-sm" v-model="order.direction">
+										<option>Select a Direction</option>
+										<option>ASC</option>
+										<option>DESC</option>
+									</select>
+								</div>
+								<div class="col-md-3" v-if="orderBy.length > 1">
+									<a class="btn btn-danger btn-sm" v-on="click: removeOrder($index)"><i class="glyphicon glyphicon-remove"></i></a>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<a class="btn btn-success btn-xs" v-on="click: addOrderBy"><i class="glyphicon glyphicon-plus"></i> Parameter</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
 	</div>
-	<hr>
-	<form id="form">
-		<div class="form_element">
-			<strong>Table</strong>
-			<select v-model="tableSelected" v-on="change: resetSqlParts">
-				<option value="">Select a Table</option>
-				<option v-repeat="tables">{{ $value }}</option>
-			</select>
-		</div>
-		<div class="form_element">
-			<strong>Action</strong>
-			<select v-model="actionSelected" v-on="change: resetSqlParts">
-				<option value="">Select an Action</option>
-				<option>select</option>
-				<option>insert</option>
-				<option>update</option>
-				<option>delete</option>
-			</select>
-		</div>
-		<div class="form_element" v-if="tableSelected != '' && [ 'select' ].indexOf(actionSelected) > -1">
-			<strong>Columns</strong>
-			<div>
-				<label><input type="checkbox" /> *</label>
-			</div>
-			<div v-repeat="columns[tableSelected]">
-				<label><input type="checkbox" /> {{ $value }}</label>
-			</div>
-		</div>
-		<div class="form_element" v-if="tableSelected != '' && [ 'insert', 'update' ].indexOf(actionSelected) > -1">
-			<strong>Values</strong>
-			<div v-repeat="column: columns[tableSelected]">
-				{{ column }} = <input type="text">
-			</div>
-		</div>
-		<div class="form_element" v-if="tableSelected != '' && [ 'select', 'update', 'delete' ].indexOf(actionSelected) > -1">
-			<strong>Where</strong>
-			<div v-repeat="filter: whereFilters">
-				<select v-model="filter.column">
-					<option value="">Select a Column</option>
-					<option v-repeat="columns[tableSelected]">{{ $value }}</option>
-				</select>
-				<select v-model="filter.comparator">
-					<option>Select a Compare</option>
-					<option>=</option>
-					<option><</option>
-					<option>></option>
-					<option><></option>
-				</select>
-				<input type="text" v-model="filter.value" />
-				<a v-on="click: removeFilter($index)">&times;</a>
-			</div>
-			<div>
-				<a v-on="click: addWhereFilter">&plus;</a>
-			</div>
-		</div>
-		<div class="form_element" v-if="tableSelected != '' && actionSelected == 'select'">
-			<strong>Order</strong>
-			<div v-repeat="order: orderBy">
-				<select v-model="order.column">
-					<option value="">Select an Column</option>
-					<option v-repeat="columns[tableSelected]">{{ $value }}</option>
-				</select>
-				<select v-model="order.direction">
-					<option>Select a Direction</option>
-					<option>ASC</option>
-					<option>DESC</option>
-				</select>
-				<a v-on="click: removeOrder($index)">&times;</a>
-			</div>
-			<div>
-				<a v-on="click: addOrderBy">&plus;</a>
-			</div>
-		</div>
-	</form>
 </body>
 </html>
