@@ -3,6 +3,7 @@
 <head>
 	<title>SQL Form</title>
 	<link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/0.10.3/vue.min.js"></script>
 	<script src="sqlform.js"></script>
 </head>
@@ -18,16 +19,16 @@
 					<div class="form-group">
 						<label class="col-md-3 control-label">Table</label>
 						<div class="col-md-9">
-							<select class="form-control input-sm" v-model="tableSelected" v-on="change: resetSqlParts">
+							<select class="form-control input-sm" v-model="tableSelected">
 								<option value="">Select a Table</option>
-								<option v-repeat="tables">{{ $value }}</option>
+								<option v-repeat="schema" v-attr="selected: $key == tableSelected">{{ $key }}</option>
 							</select>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-md-3 control-label">Action</label>
 						<div class="col-md-9">
-							<select class="form-control input-sm" v-model="actionSelected" v-on="change: resetSqlParts">
+							<select class="form-control input-sm" v-model="actionSelected">
 								<option value="">Select an Action</option>
 								<option>select</option>
 								<option>insert</option>
@@ -39,23 +40,20 @@
 					<div class="form-group" v-if="tableSelected != '' && [ 'select' ].indexOf(actionSelected) > -1">
 						<label class="col-md-3 control-label">Columns</label>
 						<div class="col-md-9">
-							<div class="checkbox">
-								<label><input type="checkbox" v-attr="checked: selectedColumns[tableSelected].indexOf('*') > -1" /> *</label>
-							</div>
-							<div class="checkbox" v-repeat="columns[tableSelected]">
-								<label><input type="checkbox" v-attr="checked: selectedColumns[tableSelected].indexOf($value) > -1" /> {{ $value }}</label>
+							<div class="checkbox" v-repeat="schema[tableSelected]">
+								<label><input type="checkbox" v-on="click: toggleColumnSelect(this)" v-attr="checked: selected" /> {{ name }}</label>
 							</div>
 						</div>
 					</div>
 					<div class="form-group" v-if="tableSelected != '' && [ 'insert', 'update' ].indexOf(actionSelected) > -1">
 						<label class="col-md-3 control-label">Values</label>
 						<div class="col-md-9">
-							<div class="form-group" v-repeat="column: columns[tableSelected]">
+							<div class="form-group" v-repeat="schema[tableSelected]">
 								<div class="col-md-3">
-									<label class="control-label">{{ column }}</label>
+									<label class="control-label">{{ name }}</label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control input-sm" type="text">
+									<input class="form-control input-sm" type="{{ type | inputType }}" v-model="value">
 								</div>
 							</div>
 						</div>
@@ -67,7 +65,7 @@
 								<div class="col-md-3">
 									<select class="form-control input-sm input-sm input-sm" v-model="filter.column">
 										<option value="">Select a Column</option>
-										<option v-repeat="columns[tableSelected]">{{ $value }}</option>
+										<option v-repeat="schema[tableSelected]" v-attr="selected: name == filter.column">{{ name }}</option>
 									</select>
 								</div>
 								<div class="col-md-3">
@@ -77,13 +75,16 @@
 										<option><</option>
 										<option>></option>
 										<option><></option>
+										<option>LIKE</option>
+										<option>IN</option>
+										<option>NOT IN</option>
 									</select>
 								</div>
 								<div class="col-md-3">
 									<input class="form-control input-sm" type="text" v-model="filter.value" />
 								</div>
 								<div class="col-md-3" v-if="whereFilters.length > 1">
-									<a class="btn btn-danger btn-sm" v-on="click: removeFilter($index)"><i class="glyphicon glyphicon-remove"></i></a>
+									<a class="btn btn-danger btn-sm" v-on="click: removeWhereFilter($index)"><i class="glyphicon glyphicon-remove"></i></a>
 								</div>
 							</div>
 							<div class="row">
@@ -100,18 +101,18 @@
 								<div class="col-md-3">
 									<select class="form-control input-sm" v-model="order.column">
 										<option value="">Select an Column</option>
-										<option v-repeat="columns[tableSelected]">{{ $value }}</option>
+										<option v-repeat="schema[tableSelected]" v-attr="selected: name == order.column">{{ name }}</option>
 									</select>
 								</div>
 								<div class="col-md-3">
 									<select class="form-control input-sm" v-model="order.direction">
-										<option>Select a Direction</option>
+										<option value="">Select a Direction</option>
 										<option>ASC</option>
 										<option>DESC</option>
 									</select>
 								</div>
 								<div class="col-md-3" v-if="orderBy.length > 1">
-									<a class="btn btn-danger btn-sm" v-on="click: removeOrder($index)"><i class="glyphicon glyphicon-remove"></i></a>
+									<a class="btn btn-danger btn-sm" v-on="click: removeOrderBy($index)"><i class="glyphicon glyphicon-remove"></i></a>
 								</div>
 							</div>
 							<div class="row">
@@ -120,6 +121,12 @@
 								</div>
 							</div>
 						</div>
+					</div>
+					<div id="compiled_sql" v-if="actionSelected != ''">
+						<hr>
+						<code>
+							{{ buildSql() }}
+						</code>
 					</div>
 				</form>
 			</div>

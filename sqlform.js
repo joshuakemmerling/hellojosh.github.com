@@ -1,143 +1,150 @@
 window.onload = init;
 
 var data = {
-	tables: [ 'users', 'accounts', 'products' ],
 	tableSelected: '',
 	actionSelected: '',
-	columns: {
-		'users': [ 'id', 'first_name', 'last_name', 'created' ],
-		'accounts': [ 'id', 'account_name', 'plan_id' ],
-		'products': [ 'id', 'name', 'sku', 'price' ]
-	},
-	selectedColumns: {
-		'users': [],
-		'accounts': [],
-		'products': []
-	},
 	whereFilters: [{ column: '', comparator: '', value: '' }],
-	orderBy: [{ column: '', direction: '' }]
+	orderBy: [{ column: '', direction: '' }],
+	schema: {
+		'users': [
+			{ name: 'id', type: 'integer' },
+			{ name: 'first_name', type: 'text' },
+			{ name: 'last_name', type: 'text' },
+			{ name: 'created', type: 'date' }
+		],
+		'accounts': [
+			{ name: 'id', type: 'integer' },
+			{ name: 'account_name', type: 'text' },
+			{ name: 'plan_id', type: 'text' }
+		],
+		'products': [
+			{ name: 'id', type: 'integer' },
+			{ name: 'name', type: 'text' },
+			{ name: 'sku', type: 'text' },
+			{ name: 'price', type: 'text' }
+		]
+	}
 };
 
 function init () {
+	Vue.filter('inputType', function (value) {
+		if (value.toLowerCase() == 'integer')
+			return 'number';
+
+		return value;
+	});
+
 	new Vue({
 		el: '#form',
 		data: data,
 		methods: {
-			addOrderBy: function () {
-				this.orderBy.push({ column: '', direction: '' });
+			toggleColumnSelect: function (column) {
+				if (!('selected' in column))
+					column.selected = false;
+
+				column.selected = !column.selected;
 			},
 			addWhereFilter: function () {
 				this.whereFilters.push({ column: '', comparator: '', value: '' });
 			},
-			removeFilter: function (filterIndex) {
+			removeWhereFilter: function (filterIndex) {
 				this.whereFilters.$remove(filterIndex);
 			},
-			removeOrder: function (orderIndex) {
+			addOrderBy: function () {
+				this.orderBy.push({ column: '', direction: '' });
+			},
+			removeOrderBy: function (orderIndex) {
 				this.orderBy.$remove(orderIndex);
 			},
-			resetSqlParts: function () {
-				this.whereFilters = [{ column: '', comparator: '', value: '' }];
-				this.orderBy = [{ column: '', direction: '' }];	
+			buildSql: function () {
+				var sql = [],
+					action = this.actionSelected;
+
+				if (action === 'select') {
+					var selected_columns = this.schema[this.tableSelected].filter(function (column) {
+							return column.selected;
+						}).map(function (column) {
+							return column.name;
+						}).join(', ');
+
+					sql.push('SELECT', selected_columns);
+					sql.push('FROM', this.tableSelected);
+				} else if (action == 'insert') {
+					var used_columns = this.schema[this.tableSelected].filter(function (column) {
+							if (!('value' in column))
+								return false;
+
+							return column.value.trim() != '';
+						}),
+						columns = used_columns.map(function (column) { return column.name; }).join(', '),
+						values = used_columns.map(function (column) { return _prepare_value(column.value); }).join(', ');
+
+					sql.push('INSERT INTO', this.tableSelected, '(' + columns + ')');
+					sql.push('VALUES', '(' + values + ')');
+				} else if (action == 'update') {
+					var set_values = this.schema[this.tableSelected].filter(function (column) {
+							if (!('value' in column))
+								return false;
+
+							return column.value.trim() != '';
+						}).map(function (column) {
+							return column.name + ' = ' + _prepare_value(column.value);
+						}).join(', ');
+
+					sql.push('UPDATE', this.tableSelected);
+					sql.push('SET', set_values);
+				} else if ('delete') {
+					sql.push('DELETE FROM', this.tableSelected);
+				}
+
+				if ([ 'select', 'update', 'delete' ].indexOf(action) > -1) {
+					var where = where_statment();
+
+					if (where != '')
+						sql.push('WHERE', where);
+				}
+
+				if ([ 'select' ].indexOf(action) > -1) {
+					var order = order_statment();
+
+					if (order != '')
+						sql.push('ORDER BY', order);
+				}
+
+				if (sql.length > 0)
+					return sql.join(' ').trim() + ';';
+
+				return '';
 			}
 		}
 	});
-
-	parse_sql();
 }
 
-function parse_sql () {
-	var sql = 'SELECT id, last_name FROM users;';
-	// var sql = 'SELECT * FROM users WHERE id <> 34 ORDER BY id DESC, first_name ASC;';
-	// var sql = 'INSERT INTO _users (id, first_name, last_name) VALUES (0, \'Joshua\', \'Kemmerling\');';
-	// var sql = 'UPDATE _users SET first_name = \'BOB\' WHERE id = 12;';
-	// var sql = 'DELETE FROM _users WHERE id < 3000;';
+function where_statment () {
+	return data.whereFilters.filter(_non_empty_keys).map(function (where_filter) {
+		return where_filter.column + ' ' + where_filter.comparator + ' ' + _prepare_value(where_filter.value);
+	}).join(', ');
+}
 
-	var sql_parts = sql.trim().replace(';', '').split(' '),
-		type = sql_parts[0].toLowerCase(),
-		table = '',
-		columns = [],
-		where = [],
-		order = [];
+function order_statment () {
+	return data.orderBy.filter(_non_empty_keys).map(function (order_by) {
+		return order_by.column + ' ' + order_by.direction;
+	}).join(', ');
+}
 
-	var select_label = 'select',
-		from_label = 'from',
-		where_label = 'where',
-		order_label = 'order by';
+function _non_empty_keys (value) {
+	for (var i in value)
+		if (value[i] === '')
+			return false;
 
-	if (type === 'select') {		
-		var tsql = sql.toLowerCase().replace(';', '');
-			column_section = '',
-			table_section = '',
-			where_section = '',
-			order_section = '';
+	return true;
+}
 
-		if (tsql.indexOf(select_label) > -1) {
-			var start = tsql.indexOf(select_label) + select_label.length,
-				stop = tsql.indexOf(from_label);
+function _prepare_value (value) {
+	value = value.trim();
 
-			column_section = tsql.substring(start, stop).trim();
-		}
-		
-		if (tsql.indexOf(from_label) > -1) {
-			var start = tsql.indexOf(from_label) + from_label.length,
-				stop = tsql.indexOf(where_label);
+	if (isNaN(parseFloat(value)))
+		value = '\'' + value + '\'';
 
-			stop = (stop == -1) ? tsql.length : stop;
-				
-			table_section = tsql.substring(start, stop).trim();
-		}
-		
-		if (tsql.indexOf(where_label) > -1) {
-			var start = tsql.indexOf(where_label) + where_label.length,
-				stop = tsql.indexOf(order_label);
-
-			stop = (stop == -1) ? tsql.length : stop;
-				
-			where_section = tsql.substring(start, stop).trim();
-		}
-		
-		if (tsql.indexOf(order_label) > -1) {
-			var start = tsql.indexOf(order_label) + order_label.length,
-				stop = 0;
-				
-			order_section = tsql.substring(start).trim();
-		}
-
-		if (column_section != '') {
-			columns = column_section.replace(/\s/g, '').split(',');
-		}
-
-		if (table_section != '') {
-			table = table_section
-		}
-
-		if (where_section != '') {
-			var where_parts = where_section.split('and');
-
-			for (var p in where_parts) {
-				var tp = where_parts[p],
-					tps = tp.trim().split(' ');
-
-				where.push({ column: tps[0], comparator: tps[1], value: tps[2] });
-			} 
-		}
-
-		if (order_section != '') {
-			var order_parts = order_section.split(',');
-
-			for (var p in order_parts) {
-				var tp = order_parts[p],
-					tps = tp.trim().split(' ');
-
-				order.push({ column: tps[0], direction: tps[1] });
-			}
-		}
-	}
-
-	data.actionSelected = type;
-	data.tableSelected = table;
-	data.selectedColumns[table] = columns;
-	
-	if (where.length > 0) data.whereFilters = where;
-	if (order.length > 0) data.orderBy = order;
+	return value;
 }
