@@ -2,8 +2,8 @@ body { font: 14px/20px 'open sans', helvetica, arial, sans-serif; color: #000; }
 a { text-decoration: none; color: #08c; }
 img { display: block; margin-bottom: 20px; margin-right: auto; margin-left: auto; max-width: 100%; }
 p { margin-bottom: 20px; }
-strong { font-weight: 700; }
-em { font-style: italic; }
+strong, b { font-weight: 700; }
+em, i { font-style: italic; }
 
 h2 { font-size: 26px; line-height: 1.2em; font-weight: 700; margin-bottom: 20px; }
 h3 { font-size: 20px; line-height: 1.2em; font-weight: 700; margin-bottom: 20px; }
