@@ -12,9 +12,9 @@
 	<footer id="footer">
 		<div class="container clearfix">
 			<div class="grid_6">
-				Austin Crows
+				<?php bloginfo( 'name' ); ?>
 				<br />
-				2013 USAFL National Champions
+				<?php dynamic_sidebar( 'footer_widget' ); ?>
 			</div>
 		</div>
 	</footer>

@@ -22,6 +22,8 @@
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width">
 	<title><?php wp_title( '|', true, 'right' ); ?></title>
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700' rel='stylesheet' type='text/css'>
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 	<!--[if lt IE 9]>
@@ -40,36 +42,26 @@
 	</div> -->
 	<?php endif; ?>
 
-	<header id="header2">
+	<header id="header2" style="background-image: url(<?php header_image(); ?>);">
 		<div id="header_wrap">
 			<div class="container clearfix">
 				<div class="grid_8">
 					<h1>
 						<a href="/">
-							<img src="shield.png">
+							<img src="/wp-content/uploads/2014/05/shield.png">
 						</a>
 					</h1>
 					<div id="headline">
 						<div id="line1">the official site of the</div>
-						<div id="line2">Austin Crows Football Club</div>
-						<div id="line3">Bringing Aussie Rules to Austin since 2002</div>
+						<div id="line2"><?php bloginfo( 'name' ); ?></div>
+						<div id="line3"><?php bloginfo( 'description' ); ?></div>
 					</div>
 				</div>
-				<div id="header_logos" class="grid_4">
-					<a href="">
-						<img src="http://www.austinfooty.com/images/myplates.png">
-					</a>
-					<a href="">
-						<img src="http://www.austinfooty.com/images/sixlogo--converted-.png">
-					</a>
-					<a href="">
-						<img src="http://www.austinfooty.com/images/taplogo1--converted-.png">
-					</a>
-				</div>
+				<?php dynamic_sidebar( 'header_widget' ); ?>
 			</div>
 			<nav id="header_nav">
 				<div class="container clearfix">
-						<?php wp_nav_menu(array( 'theme_location' => 'primary', 'menu_class' => 'grid_12', 'items_wrap' => '' )); ?>
+						<?php wp_nav_menu(array( 'menu_class' => 'grid_12', 'items_wrap' => '', 'depth' => '1' )); ?>
 				</div>
 			</nav>
 		</div>

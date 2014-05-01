@@ -19,25 +19,38 @@ get_header(); ?>
 	// }
 ?>
 
-	<section id="content_container" class="container clearfix">
+	<div class="container">
 		<aside id="aside" class="grid_3">
-			<h4>The Crows</h4>
-			<nav id="navigation">
-				<a href="" class="active">Overview</a>
-				<a href="">History of the Crows</a>
-				<a href="">Player Profiles</a>
-				<a href="">Training Info</a>
-			</nav>
+			<?php
+				if ( have_posts() ) :
+					while ( have_posts() ) : the_post();
+						if ($post->post_parent > 0):
+							echo "<h4>" .  get_the_title($post->post_parent) . "</h4>";
+							echo '<ul id="navigation">';
+							echo '<li><a href="' . get_permalink($post->post_parent) . '">Overview</a></li>';
+							wp_list_pages(array( "title_li" => "", "child_of" => $post->post_parent ));
+							echo '</ul>';
+						else:
+							echo "<h4>" .  the_title('', '', false) . "</h4>";
+							echo '<ul id="navigation">';
+							echo '<li class="current_page_item"><a href="' . $post->slug . '">Overview</a></li>';
+							wp_list_pages(array( "title_li" => "", "child_of" => $post->ID ));
+							echo '</ul>';
+						endif;
+					endwhile;
+				endif;
+			?>
 		</aside>
 		<div id="content" class="grid_9">
-			<h2>The Crows</h2>
-			<img src="team.jpg">
-			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-			<p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
-			<p>In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</p>
-			<p>Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum.</p>
+			<?php
+				if ( have_posts() ) :
+					while ( have_posts() ) : the_post();
+						the_content();
+					endwhile;
+				endif;
+			?>
 		</div>
-	</section>
+	</div>
 
 <?php
 // get_sidebar();
