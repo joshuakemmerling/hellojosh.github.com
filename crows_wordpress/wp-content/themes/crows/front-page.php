@@ -13,31 +13,15 @@
 
 get_header(); ?>
 
-<?php
-	// if ( is_front_page() && twentyfourteen_has_featured_posts() ) {
-	// 	get_template_part( 'featured-content' );
-	// }
-?>
-	<div class="container">
-		<div class="grid_12">
-			<?php
-				if ( have_posts() ) :
-					while ( have_posts() ) : the_post();
-						the_content();
-					endwhile;
-				endif;
-			?>
-		</div>
-	</div>
-
 	<div class="container">
 		<div class="grid_12">
 			<section id="master_schedule">
 				<div id="master_schedule_wrap">
 					<div id="master_schedule_title">
 						<div class="fl">2014 Schedule</div>
-						<a href="" class="fr">View Entire Schedule</a>
+						<a href="/events/category/2014-schedule/" class="fr">View Entire Schedule</a>
 					</div>
+					<?php $events_array = tribe_get_events(array( "tribe_events_cat" => "2014-schedule", "posts_per_page" => 8 )); ?>
 					<?php foreach ($events_array as $event) { ?>
 					<div class="match first_match">
 						<div class="datetime clearfix">
@@ -178,7 +162,27 @@ get_header(); ?>
 		</div>
 	</section> -->
 
-	<section id="sponsors" class="container clearfix">
+	<section id="content_container" class="container clearfix">
+		<?php dynamic_sidebar( 'home_hero_widget' ); ?>
+	</section>
+
+	<div class="container clearfix">
+		<div class="grid_12">
+			<?php
+				if ( have_posts() ) :
+					while ( have_posts() ) : the_post();
+						the_content();
+
+						// tribe_events_before_html();
+						// tribe_get_view("month");
+						// tribe_events_after_html();
+					endwhile;
+				endif;
+			?>
+		</div>
+	</div>
+
+	<!-- <section id="sponsors" class="container clearfix">
 		<h3>Sponsors</h3>
 		<a href="">
 			<img src="http://www.austinfooty.com/images/myplates.png">
@@ -210,7 +214,7 @@ get_header(); ?>
 		<div class="grid_12">
 			<a href="">View all sponsors</a>
 		</div>
-	</section>
+	</section> -->
 
 <?php
 // get_sidebar();

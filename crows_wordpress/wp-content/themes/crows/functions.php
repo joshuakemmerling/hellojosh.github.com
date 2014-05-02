@@ -185,6 +185,15 @@ function twentyfourteen_widgets_init() {
 		'before_title'  => '<div style="display: none;">',
 		'after_title'   => '</div>',
 	));
+	register_sidebar(array(
+		'name'          => __( 'Homepage Hero', 'twentyfourteen' ),
+		'id'            => 'home_hero_widget',
+		'description'   => __( 'Homepage hero spot', 'twentyfourteen' ),
+		'before_widget' => '',
+		'after_widget'  => '',
+		'before_title'  => '<div style="display: none;">',
+		'after_title'   => '</div>',
+	));
 	// register_sidebar( array(
 	// 	'name'          => __( 'Primary Sidebar', 'twentyfourteen' ),
 	// 	'id'            => 'sidebar-1',
