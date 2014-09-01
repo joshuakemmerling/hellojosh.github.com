@@ -14,32 +14,47 @@
 			#td1 { padding: 20px 0 20px 20px !important; }
 			#td2 { padding: 20px 20px 20px 0 !important; }
 			#td3 { padding: 20px !important; }
-			#td4 { padding: 20px !important; }
+			#td4 { padding: 20px 0 !important; }
+			#td4 p { padding-right: 20px; padding-left: 20px; }
 			#td5 { padding: 20px 20px 0 20px !important; }
 			#td6 { padding: 20px !important; }
 
-			#templates_table tr td:nth-child(odd) { padding: 0 10px 20px !important; }
+			#templates_table tr td:nth-child(odd) { padding: 0 10px 20px 0 !important; }
 			#templates_table tr td:nth-child(even) { padding: 0 0 20px 10px !important; }
 
-			.desc { margin-bottom: 16px !important; margin-top: 8px !important; }
+			#followusimg { display: none; }
+			#share_links td { width: auto !important; }
+
+			#services_table a, #services_table2 a { font-size: 14px !important; }
+
+			.title { font-size: 22px !important; }
+			.desc { font-size: 14px !important; margin-bottom: 16px !important; margin-top: 8px !important; }
+		}
+
+		@media screen and (max-width: 520px) {
+			#td2 { padding-left: 20px !important; }
+			#td6 { padding: 20px 20px 0 !important; }
+
+			#services_table img, #services_table2 img { max-width: 50px !important; height: auto !important; }
+			#share_links img { height: 25px !important; width: auto !important; }
 		}
 	</style>
 	<table style="background: #737981; width: 100%;" cellpadding="0" cellspacing="0">
 		<tr>
 			<td id="td_wrap" style="padding: 50px;">
-				<table id="inner_table" style="background: #fff; width: 600px; margin: 0 auto;" cellpadding="0" cellspacing="0">
+				<table id="inner_table" style="background: #fff; width: 600px; max-width: 100%; margin: 0 auto;" cellpadding="0" cellspacing="0">
 					<tr>
-						<td id="td1" style="padding: 32px 0 32px 40px;">
+						<td id="td1" style="padding: 32px 0 32px 40px; width: 50%;">
 							<div><a href="http://gospacecraft.com/"><img src="img/spacecraft_logo.png" alt="SpaceCraft" style="margin: 0; padding: 0;"></a></div>
-							<p style="margin: 0; padding: 0; font: bold 12px/14px helvetica, arial; color: #8F969E; letter-spacing: 1.7px; text-transform: uppercase; padding-top: 7px;">Craft Your Own Space Online</p>
+							<p id="tagline" style="margin: 0; padding: 0; font: bold 12px/14px helvetica, arial; color: #8F969E; letter-spacing: 1.7px; text-transform: uppercase; padding-top: 7px;">Craft Your Own Space Online</p>
 						</td>
-						<td id="td2" style="text-align: right; padding: 32px 40px 32px 0;">
+						<td id="td2" style="text-align: right; padding: 32px 40px 32px 0; width: 50%;">
 							<a href="http://gospacecraft.com/templates"><img src="img/tryusfree1.png" alt="Try Us Free"></a>
 						</td>
 					</tr>
 					<tr>
 						<td id="td3" colspan="2" style="padding: 32px 40px 40px; background: #F5F5F5; border-top: solid 1px #D7D9DB;">
-							<p style="margin: 0; text-align: center; font-family: Helvetica-Light, helvetica, arial; font-size: 28px; color: #30343A; line-height: 34px;">Introducing Templates</p>
+							<p class="title" style="margin: 0; text-align: center; font-family: Helvetica-Light, helvetica, arial; font-size: 28px; color: #30343A; line-height: 34px;">Introducing Templates</p>
 							<p class="desc" style="margin: 14px 0 36px; text-align: center; font-family: Helvetica, arial; font-size: 16px; color: #4D4D4D; line-height: 22px;">Start building your own stunning website today using one of our NEW beautiful templates:</p>
 							<table id="templates_table" style="width: 100%; margin: 0 auto;" cellpadding="0" cellspacing="0">
 								<tr>
@@ -64,31 +79,31 @@
 					</tr>
 					<tr>
 						<td id="td4" colspan="2" style="padding: 32px 40px 40px; border-top: solid 1px #D7D9DB;">
-							<p style="margin: 0; text-align: center; font-family: Helvetica-Light, helvetica, arial; font-size: 28px; color: #30343A; line-height: 34px;">Features Built For Your Business</p>
+							<p class="title" style="margin: 0; text-align: center; font-family: Helvetica-Light, helvetica, arial; font-size: 28px; color: #30343A; line-height: 34px;">Features Built For Your Business</p>
 							<p class="desc" style="margin: 14px 0 36px; text-align: center; font-family: Helvetica, arial; font-size: 16px; color: #4D4D4D; line-height: 22px;">We've helped thousands of customers all around the world create beautifully effective websites. See our unique solutions for:</p>
-							<table style="width: 100%; margin: 0 auto;" cellpadding="0" cellspacing="0">
+							<table id="services_table" style="width: 100%; margin: 0 auto;" cellpadding="0" cellspacing="0">
 								<tr>
-									<td style="text-align: center; padding-bottom: 35px;" width="33%">
+									<td style="text-align: center; padding: 0 10px 35px;" width="33%">
 										<a href="http://gospacecraft.com/customers/businesses" style="text-decoration: none; font-family: Helvetica, arial; font-size: 16px; color: #4D4D4D; line-height: 20px;" style="text-decoration: none; font-family: Helvetica, arial; font-size: 16px; color: #4D4D4D; line-height: 20px;">
-											<div><img src="img/bussinesses.png" style="margin: 0 0 20px;" alt="Businesses"></div>
+											<div><img src="img/bussinesses.png" style="margin: 0 0 20px; width: 80px; height: 80px; max-width: 80px;" alt="Businesses"></div>
 											<div>Businesses</div>
 										</a>
 									</td>
-									<td style="text-align: center; padding-bottom: 35px;" width="33%">
+									<td style="text-align: center; padding: 0 10px 35px;" width="33%">
 										<a href="http://gospacecraft.com/customers/restaurants-bars" style="text-decoration: none; font-family: Helvetica, arial; font-size: 16px; color: #4D4D4D; line-height: 20px;">
-											<div><img src="img/bars.png" style="margin: 0 0 20px;" alt="Restaurants &amp; Bars"></div>
+											<div><img src="img/bars.png" style="margin: 0 0 20px; width: 80px; height: 80px; max-width: 80px;" alt="Restaurants &amp; Bars"></div>
 											<div>Restaurants &amp; Bars</div>
 										</a>
 									</td>
-									<td style="text-align: center; padding-bottom: 35px;" width="33%">
+									<td style="text-align: center; padding: 0 10px 35px;" width="33%">
 										<a href="http://gospacecraft.com//customers/health-fitness" style="text-decoration: none; font-family: Helvetica, arial; font-size: 16px; color: #4D4D4D; line-height: 20px;" style="text-decoration: none; font-family: Helvetica, arial; font-size: 16px; color: #4D4D4D; line-height: 20px;">
-											<div><img src="img/health.png" style="margin: 0 0 20px;" alt="Health &amp; Fitness"></div>
+											<div><img src="img/health.png" style="margin: 0 0 20px; width: 80px; height: 80px; max-width: 80px;" alt="Health &amp; Fitness"></div>
 											<div>Health &amp; Fitness</div>
 										</a>
 									</td>
 								</tr>
 							</table>
-							<table style="width: 66%; margin: 0 auto;" cellpadding="0" cellspacing="0">
+							<table id="services_table2" style="width: 66%; margin: 0 auto;" cellpadding="0" cellspacing="0">
 								<tr>
 									<td style="text-align: center; padding-bottom: 40px;" width="50%">
 										<a href="http://gospacecraft.com/customers/artists" style="text-decoration: none; font-family: Helvetica, arial; font-size: 16px; color: #4D4D4D; line-height: 20px;" style="text-decoration: none; font-family: Helvetica, arial; font-size: 16px; color: #4D4D4D; line-height: 20px;">
@@ -115,11 +130,11 @@
 					</tr>
 					<tr>
 						<td id="td5" colspan="2" style="padding: 32px 40px 0 32px; background: #F5F5F5; border-top: solid 1px #D7D9DB;">
-							<p style="margin: 0; text-align: center; font-family: Helvetica-Light, helvetica, arial; font-size: 28px; color: #30343A; line-height: 34px;">Want Help?</p>
+							<p class="title" style="margin: 0; text-align: center; font-family: Helvetica-Light, helvetica, arial; font-size: 28px; color: #30343A; line-height: 34px;">Want Help?</p>
 							<p class="desc" style="margin: 14px 0 36px; text-align: center; font-family: Helvetica, arial; font-size: 16px; color: #4D4D4D; line-height: 22px;">Let us do the work for you. Our passionate team of experts are dedicated to helping you design, build and launch your new customized website. Give us a call at (888) 534-2183.</p>
 							<table style="width: 100%; margin: 0 auto;" cellpadding="0" cellspacing="0">
 								<tr>
-									<td style="text-align: center; padding-bottom: 40px;"><a href="http://gospacecraft.com/pricing#additionalServices"><img src="img/requestaquote.png" alt="Request a Quote Online"></a></td>
+									<td style="text-align: center; padding-bottom: 20px;"><a href="http://gospacecraft.com/pricing#additionalServices"><img src="img/requestaquote.png" alt="Request a Quote Online"></a></td>
 								</tr>
 								<tr>
 									<td style="text-align: center;">
@@ -131,15 +146,17 @@
 					</tr>
 					<tr>
 						<td id="td6" colspan="2" style="padding: 32px 40px; border-top: solid 1px #D7D9DB;">
-							<p style="margin: 0; padding-bottom: 40px; text-align: center; font-family: Helvetica-Light, helvetica, arial; font-size: 20px; color: #30343A; line-height: 24px;">Beautiful Websites. Incredible SEO. Live Support.</p>
-							<table style="width: 100%; margin: 0 auto;" cellpadding="0" cellspacing="0">
+							<p style="margin: 0 0 30px; text-align: center; font-family: Helvetica-Light, helvetica, arial; font-size: 20px; color: #30343A; line-height: 24px;">Beautiful Websites. Incredible SEO. Live Support.</p>
+							<table id="share_links" style="width: 100%; margin: 0 auto;" cellpadding="0" cellspacing="0">
 								<tr>
 									<td style="text-align: left; width: 33%;">
-										<span style="font-family: helvetica, arial; font-weight: bold; font-size: 12px; color: #3F3F3F; line-height: 14px;">Follow Us:</span>
-										<a href="http://facebook.com/SpaceCraft">Facebook</a>
-										<a href="http://twitter.com/go_SpaceCraft">Twitter</a>
+										<p style="font-family: helvetica, arial; font-weight: bold; font-size: 12px; color: #3F3F3F; line-height: 30px;">
+											<img src="img/followus.png" alt="Follow Us" id="followusimg" style="margin-right: 10px;">
+											<a href="http://facebook.com/SpaceCraft" style="margin-right: 10px;"><img src="img/facebook.png" alt="Facebook"></a>
+											<a href="http://twitter.com/go_SpaceCraft"><img src="img/twitter.png" alt="Twitter"></a>
+										</p>
 									</td>
-									<td style="text-align: center; width: 33%;">
+									<td id="footer_logo" style="text-align: center; padding: 0 20px; width: 33%;">
 										<a href="http://gospacecraft.com/"><img src="img/spacecraft_logo_2.png" alt="SpaceCraft"></a>
 									</td>
 									<td style="text-align: right; width: 33%;">

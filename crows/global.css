@@ -10,6 +10,8 @@ h3 { font-size: 20px; line-height: 1.2em; font-weight: 700; margin-bottom: 20px;
 h4 { font-weight: 700; padding: 10px; text-transform: uppercase; color: #999; }
 h5 { font-weight: bold; }
 
+hr { height: 1px; background: #eee; border: 0; margin: 0 0 20px; padding: 0; }
+
 #header_wrap { background: url(http://www.austinfooty.com/images/background1.jpg) no-repeat center center; background-size: cover; }
 #header_wrap #header { background: #233159; background: rgba(35, 49, 89, 0.8); border-bottom: solid 7px #f00; }
 #header_wrap #header a { color: #fff; font-weight: 700; text-transform: uppercase; text-align: center; display: block; }
