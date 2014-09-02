@@ -12,7 +12,7 @@ section, footer { max-width: 80%; margin: 0 auto; padding: 120px 0; border-botto
 footer { border: 0;font-size: 12px; padding: 30px 0; }
 
 article { max-width: 80%; margin: 0 auto; padding: 120px 0; border-bottom: solid 1px #eee; }
-article img { margin-bottom: 40px; }
+article img { margin-bottom: 40px; margin-bottom: 0; }
 article .details strong { color: #000; font-weight: 600; }
 
 #intro h2 { margin-bottom: 40px; }
@@ -22,7 +22,7 @@ article .details strong { color: #000; font-weight: 600; }
 
 #welcome { background: url(http://www.heroconf.com/__resources/userfiles/image/austin-tx.jpg) no-repeat center; background-size: cover; min-height: 400px; }
 
-#experiencelabels div { line-height: 28px; border-top: solid 5px; font-size: 12px; color: #000; white-space: nowrap; margin-bottom: 20px; float: left; }
+#experiencelabels div { line-height: 28px; border-top: solid 5px; /*font-size: 12px;*/ color: #000; white-space: nowrap; margin-bottom: 20px; float: left; }
 #experiencelabels div span { color: #999; }
 #experiencelabels div:nth-child(0n+1) { width: 57%; border-color: #00d2ec; }
 #experiencelabels div:nth-child(0n+2) { width: 28%; border-color: #714b9d; }
