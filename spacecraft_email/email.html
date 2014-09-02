@@ -8,7 +8,7 @@
 		* { -webkit-text-adjust: none; }
 		@media screen and (max-width: 700px) {
 			table { width: 100% !important; }
-			img { max-width: 100%; }
+			img { max-width: 100%; height: auto; }
 
 			#td_wrap { padding: 10px !important; }
 			#td1 { padding: 20px 0 20px 20px !important; }
@@ -23,7 +23,6 @@
 			#templates_table tr td:nth-child(even) { padding: 0 0 20px 10px !important; }
 
 			#followusimg { display: none; }
-			#share_links td { width: auto !important; }
 
 			#services_table2 { padding-left: 50px; padding-right: 50px; }
 			#services_table a, #services_table2 a { font-size: 14px !important; }
@@ -35,8 +34,9 @@
 		@media screen and (max-width: 520px) {
 			#td2 { padding-left: 20px !important; }
 			#td6 { padding: 20px 20px 0 !important; }
+			#td4 .desc { margin-bottom: 28px !important; }
 
-			#services_table img, #services_table2 img { max-width: 50px !important; height: auto !important; }
+			#services_table img, #services_table2 img { max-width: 50px !important; height: auto !important; margin-bottom: 5px !important; }
 			#share_links img { height: 25px !important; width: auto !important; }
 
 			#tagline { display: none; }
@@ -48,7 +48,7 @@
 				<table id="inner_table" style="background: #fff; width: 600px; max-width: 100%; margin: 0 auto;" cellpadding="0" cellspacing="0">
 					<tr>
 						<td id="td1" style="padding: 32px 0 32px 40px; width: 50%;">
-							<div><a href="http://gospacecraft.com/"><img src="img/spacecraft_logo.png" alt="SpaceCraft" style="margin: 0; padding: 0;" width="154px" height="28px"></a></div>
+							<div><a href="http://gospacecraft.com/"><img src="img/spacecraft_logo.png" alt="SpaceCraft" style="margin: 0; padding: 0; display: block; max-width: none;" width="154px" height="28px"></a></div>
 							<p id="tagline" style="margin: 0; padding: 0; font: bold 12px/14px helvetica, arial; color: #8F969E; letter-spacing: 1.7px; text-transform: uppercase; padding-top: 7px;">Craft Your Own Space Online</p>
 						</td>
 						<td id="td2" style="text-align: right; padding: 32px 40px 32px 0; width: 50%;">
@@ -61,8 +61,8 @@
 							<p class="desc" style="margin: 14px 0 36px; text-align: center; font-family: Helvetica, arial; font-size: 16px; color: #4D4D4D; line-height: 22px;">Start building your own stunning website today using one of our NEW beautiful templates:</p>
 							<table id="templates_table" style="width: 100%; margin: 0 auto;" cellpadding="0" cellspacing="0">
 								<tr>
-									<td style="text-align: center; padding: 0 20px 40px 0;" valign="bottom"><a href="http://gospacecraft.com/templateshttp://gospacecraft.com/templateshttp://gospacecraft.com/templates"><img src="img/template1.png" alt="Universal"></a></td>
-									<td style="text-align: center; padding: 0 0 40px 20px;" valign="bottom"><a href="http://gospacecraft.com/templateshttp://gospacecraft.com/templates"><img src="img/template2.png" alt="Orbit"></a></td>
+									<td style="text-align: center; padding: 0 20px 40px 0;" valign="bottom"><a href="http://gospacecraft.com/templates"><img src="img/template1.png" alt="Universal"></a></td>
+									<td style="text-align: center; padding: 0 0 40px 20px;" valign="bottom"><a href="http://gospacecraft.com/templates"><img src="img/template2.png" alt="Orbit"></a></td>
 								</tr>
 								<tr>
 									<td style="text-align: center; padding: 0 20px 40px 0;" valign="bottom"><a href="http://gospacecraft.com/templates"><img src="img/template3.png" alt="Tang"></a></td>
@@ -73,7 +73,7 @@
 									<td style="text-align: center; padding: 0 0 40px 20px;" valign="bottom"><a href="http://gospacecraft.com/templates"><img src="img/template6.png" alt="Atmosphere"></a></td>
 								</tr>
 								<tr>
-									<td colspan="2" style="text-align: center;">
+									<td colspan="2" style="text-align: center; padding: 0 !important;">
 										<a href="http://gospacecraft.com/templates"><img src="img/seealltemplates.png" alt="See All Templates" width="151px" height="40px"></a>
 									</td>
 								</tr>
@@ -99,7 +99,7 @@
 										</a>
 									</td>
 									<td style="text-align: center; padding: 0 10px 35px;" width="33%" valign="top">
-										<a href="http://gospacecraft.com//customers/health-fitness" style="text-decoration: none; font-family: Helvetica, arial; font-size: 16px; color: #4D4D4D; line-height: 20px;" style="text-decoration: none; font-family: Helvetica, arial; font-size: 16px; color: #4D4D4D; line-height: 20px;">
+										<a href="http://gospacecraft.com/customers/health-fitness" style="text-decoration: none; font-family: Helvetica, arial; font-size: 16px; color: #4D4D4D; line-height: 20px;" style="text-decoration: none; font-family: Helvetica, arial; font-size: 16px; color: #4D4D4D; line-height: 20px;">
 											<div><img src="img/health.png" style="margin: 0 0 20px; width: 80px; height: 80px; max-width: 80px;" alt="Health &amp; Fitness"></div>
 											<div>Health &amp; Fitness</div>
 										</a>
@@ -115,7 +115,7 @@
 										</a>
 									</td>
 									<td style="text-align: center; padding-bottom: 40px;" width="50%" valign="top">
-										<a href="http://gospacecraft.com//customers/lifestylehttp://spacecraft.com/features/great-designs" style="text-decoration: none; font-family: Helvetica, arial; font-size: 16px; color: #4D4D4D; line-height: 20px;" style="text-decoration: none; font-family: Helvetica, arial; font-size: 16px; color: #4D4D4D; line-height: 20px;">
+										<a href="http://gospacecraft.com/customers/lifestyle" style="text-decoration: none; font-family: Helvetica, arial; font-size: 16px; color: #4D4D4D; line-height: 20px;" style="text-decoration: none; font-family: Helvetica, arial; font-size: 16px; color: #4D4D4D; line-height: 20px;">
 											<div><img src="img/lifestyle.png" style="margin: 0 0 20px;" alt="Lifestyle"></div>
 											<div>Lifestyle</div>
 										</a>
