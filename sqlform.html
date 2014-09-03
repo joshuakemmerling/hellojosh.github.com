@@ -4,7 +4,7 @@
 	<title>SQL Form</title>
 	<link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/0.10.3/vue.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/0.10.6/vue.min.js"></script>
 	<script src="sqlform.js"></script>
 </head>
 <body>
@@ -19,7 +19,7 @@
 					<div class="form-group">
 						<label class="col-md-3 control-label">Table</label>
 						<div class="col-md-9">
-							<select class="form-control input-sm" v-model="tableSelected">
+							<select class="form-control input-sm" v-model="tableSelected" v-on="change: checkTableValue">
 								<option value="">Select a Table</option>
 								<option v-repeat="schema" v-attr="selected: $key == tableSelected">{{ $key }}</option>
 							</select>
@@ -28,7 +28,7 @@
 					<div class="form-group">
 						<label class="col-md-3 control-label">Action</label>
 						<div class="col-md-9">
-							<select class="form-control input-sm" v-model="actionSelected">
+							<select class="form-control input-sm" v-model="actionSelected" v-attr="disabled: tableSelected == ''">
 								<option value="">Select an Action</option>
 								<option>select</option>
 								<option>insert</option>
@@ -107,8 +107,8 @@
 								<div class="col-md-3">
 									<select class="form-control input-sm" v-model="order.direction">
 										<option value="">Select a Direction</option>
-										<option>ASC</option>
-										<option>DESC</option>
+										<option value="ASC">ASC</option>
+										<option value="DESC">DESC</option>
 									</select>
 								</div>
 								<div class="col-md-3" v-if="orderBy.length > 1">
