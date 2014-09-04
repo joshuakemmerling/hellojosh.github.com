@@ -1,8 +1,8 @@
 window.onload = init;
 
 var sql = 'SELECT * FROM users;';
-	sql = 'SELECT first_name FROM users WHERE id = 3;';
-	sql = "SELECT first_name FROM users WHERE id = 3 AND first_name = 'joshua' ORDER BY id DESC;";
+	// sql = 'SELECT first_name FROM users WHERE id = 3;';
+	sql = "SELECT first_name FROM users WHERE id = 3 AND first_name = 'joshua' ORDER BY id DESC, first_name ASC;";
 	// sql = 'INSERT INTO users () VALUES ();';
 	// sql = 'DELETE FROM users;';
 	// sql = 'UPDATE users SET id = 2;';
@@ -163,80 +163,62 @@ function _prepare_value (value) {
 }
 
 function parse_sql (stmt) {
-	stmt = stmt.trim().toLowerCase().replace(';', '');
-
-	if (stmt.indexOf('select') == 0) {
-		parse_sql_select(stmt);
-	} else if (stmt.indexOf('insert') == 0) {
-		parse_sql_insert(stmt);
-	} else if (stmt.indexOf('update') == 0) {
-		parse_sql_update(stmt);
-	} else if (stmt.indexOf('delete') == 0) {
-		parse_sql_delete(stmt);
-	}
-}
-
-function parse_sql_select (stmt) {
-	var parts = simpleSqlParser.sql2ast(sql),
-		columns = _.map(parts.SELECT, function (v) { return v.name; });
+	var parts = simpleSqlParser.sql2ast(stmt);
 
 	console.log(parts);
 
-	data.tableSelected = parts.FROM[0].table;
+	if ('SELECT' in parts) {
+		parse_sql_select(parts);
+	} else if ('INSERT INTO' in parts) {
+		parse_sql_insert(parts);
+	} else if ('DELETE FROM' in parts) {
+		parse_sql_delete(parts);
+	} else if ('UPDATE' in parts) {
+		parse_sql_update(parts);
+	}
+
+	// if (stmt.indexOf('select') == 0) {
+	// 	parse_sql_select(stmt);
+	// } else if (stmt.indexOf('insert') == 0) {
+	// 	parse_sql_insert(stmt);
+	// } else if (stmt.indexOf('update') == 0) {
+	// 	parse_sql_update(stmt);
+	// } else if (stmt.indexOf('delete') == 0) {
+	// 	parse_sql_delete(stmt);
+	// }
+}
+
+function parse_sql_select (parts) {
 	data.actionSelected = 'select';
 
-	_.each(data.schema[data.tableSelected], function (v, k) {
-		if (columns.indexOf(v.name) > -1 || columns.indexOf('*') > -1)
-			v.selected = true;
-	});
+	if ('FROM' in parts) {
+		data.tableSelected = parts.FROM[0].table;
 
-	// var parts = stmt.split(/select|from|where|order\ by/),
-	// 	columns = parts[1].trim().split(','),
-	// 	table = parts[2].trim(),
-	// 	where_string = (parts[3] || '').trim(),
-	// 	order_string = (parts[4] || '').trim();
+		var columns = _.map(parts.SELECT, function (v) { return v.name; })
 
-	// var where = (where_string == '') ? [] : where_string.split('and'),
-	// 	order = (order_string == '') ? [] : order_string.split(',');
+		_.each(data.schema[data.tableSelected], function (v, k) {
+			if (columns.indexOf(v.name) > -1 || columns.indexOf('*') > -1)
+				v.selected = true;
+		});
+	}
 
-	// data.tableSelected = table;
-	// data.actionSelected = 'select';
+	if ('WHERE' in parts) {
+		var terms = ('terms' in parts.WHERE) ? parts.WHERE.terms : [ parts.WHERE ];
 
-	// _.each(data.schema[table], function (v, k) {
-	// 	if (columns.indexOf(v.name) > -1 || columns.indexOf('*') > -1)
-	// 		v.selected = true;
-	// });
+		data.whereFilters = _.map(terms, function (v) {
+			var val = v.right;
+				val = (val[0] == "'") ? val.substring(1) : val;
+				val = (val[val.length - 1] == "'") ? val.substring(0, val.length - 1) : val;
 
-	// if (where.length > 0) {
-	// 	data.whereFilters = [];
-	// }
+			return { column: v.left, comparator: v.operator, value: val };
+		});
+	}
 
-	// _.each(where, function (v) {
-	// 	v = v.trim();
-
-	// 	var col = v.substring(0, v.indexOf(' '));
-
-	// 	v = v.replace(col, '').trim();
-
-	// 	var sep = v.substring(0, v.indexOf(' '));
-	// 	var val = v.replace(sep, '').trim(); //.replace(/\'/g, '');
-	// 		val = (val[0] == '\'') ? val.substring(1) : val;
-	// 		val = (val[val.length - 1] == '\'') ? val.substring(0, val.length - 1) : val;
-
-	// 	data.whereFilters.push({ column: col, comparator: sep, value: val });
-	// });
-
-	// if (order.length > 0) {
-	// 	data.orderBy = [];
-	// }
-
-	// _.each(order, function (v) {
-	// 	v = v.trim();
-
-	// 	var s = v.split(' ');
-
-	// 	data.orderBy.push({ column: s[0].trim(), direction: s[1].trim().toUpperCase() });
-	// });
+	if ('ORDER BY' in parts) {
+		data.orderBy = _.map(parts['ORDER BY'], function (v) {
+			return { column: v.column, direction: v.order };
+		});
+	}
 }
 
 function parse_sql_insert (stmt) {
