@@ -1,4 +1,4 @@
-html { font-size: 62.5%; }
+/*html { font-size: 62.5%; }*/
 body { font: 300 14px/22px 'open sans' 'helvetica neue', helvetica, arial, sans-serif; color: #888; border-right: solid 20px #eee; border-left: solid 20px #eee; }
 a { text-decoration: none; color: #08c; padding: 0 3px; margin: 0 -3px; }
 a:hover { background: #08c; color: #fff; }
@@ -17,13 +17,13 @@ article img { margin-bottom: 40px; margin-bottom: 0; }
 article .details strong { color: #000; font-weight: 600; }
 
 #intro h2 { margin-bottom: 40px; }
-#intro strong { font-weight: 700; color: #fff; }
+#intro strong { font-weight: 700; color: #08c; visibility: hidden; }
 
 #about .intro { font-size: 24px; line-height: 38px; }
 
 #welcome { background: url(http://www.heroconf.com/__resources/userfiles/image/austin-tx.jpg) no-repeat center; background-size: cover; min-height: 400px; }
 
-#experiencelabels div { line-height: 28px; border-top: solid 5px; /*font-size: 12px;*/ color: #000; white-space: nowrap; margin-bottom: 20px; float: left; }
+#experiencelabels div { line-height: 28px; border-top: solid 5px; color: #000; white-space: nowrap; margin-bottom: 20px; float: left; }
 #experiencelabels div span { color: #999; }
 #experiencelabels div:nth-child(0n+1) { width: 57%; border-color: #00ffca; }
 #experiencelabels div:nth-child(0n+2) { width: 28%; border-color: #ff5640; }
@@ -31,3 +31,16 @@ article .details strong { color: #000; font-weight: 600; }
 
 #skills { margin-bottom: 20px; overflow: hidden; }
 #skills li { float: left; padding-right: 20px; }
+
+@media screen and (max-width: 1140px) {
+	h1 { top: 60px; left: 5%; }
+	section, article { padding: 60px 0; max-width: 90%; }
+	footer { max-width: 90%; }
+}
+
+@media screen and (max-width: 960px) {
+	body { border: 0; }
+	h1 { padding-left: 0; display: none; }
+
+	#intro strong { visibility: visible; }
+}
