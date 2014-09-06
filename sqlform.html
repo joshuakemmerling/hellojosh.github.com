@@ -14,8 +14,8 @@
 </head>
 <body>
 	<br>
-	<div class="container">
-		<div id="form" class="panel panel-default">
+	<div id="form" class="container">
+		<div class="panel panel-default">
 			<div class="panel-heading clearfix">
 				<h3 class="panel-title pull-left">SQL Builder</h3>
 
@@ -25,7 +25,7 @@
 				</ul>
 			</div>
 			<div class="panel-body" v-if="activeTab == 0">
-				<form class="form-horizontal">
+				<div class="form-horizontal">
 					<div class="form-group">
 						<label class="col-md-3 control-label">Table</label>
 						<div class="col-md-9">
@@ -132,22 +132,27 @@
 							</div>
 						</div>
 					</div>
-					<!-- <div id="compiled_sql" v-if="actionSelected != ''">
+					<!-- <div id="compiled_sql">
 						<hr>
 						<code>
-							{{ buildSql() }}
+							{{ ssql }}
 						</code>
 						<hr>
 						<code>
 							{{ sql }}
 						</code>
 					</div> -->
-				</form>
+				</div>
 			</div>
 			<div class="panel-body" v-if="activeTab == 1">
-				<textarea class="form-control" cols="30" rows="10" v-on="change: parseSql" v-model="sql">{{ buildSql() }}</textarea>
+				<textarea class="form-control" cols="30" rows="10" v-on="change: parseSql" v-model="ssql">{{ buildSql() }}</textarea>
 			</div>
 		</div>
+		<form action="" action="get">
+			<input type="hidden" value="{{ ssql }}">
+			<input type="submit" class="btn btn-primary pull-left" value="Save">
+			<a class="btn btn-danger pull-right">Delete</a>
+		</form>
 	</div>
 </body>
 </html>

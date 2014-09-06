@@ -59,6 +59,16 @@ function init () {
 	new Vue({
 		el: '#form',
 		data: data,
+		computed: {
+			ssql: {
+				$get: function () {
+					return this.buildSql();
+				},
+				$set: function (newvalue) {
+					parse_sql(newvalue);
+				}
+			}
+		},
 		methods: {
 			toggleColumnSelect: function (column) {
 				if (!('selected' in column))
@@ -83,64 +93,71 @@ function init () {
 					this.actionSelected = '';
 			},
 			buildSql: function () {
-				var sql = [],
-					action = this.actionSelected;
+				try {
+					var sql = [],
+						action = this.actionSelected;
 
-				if (action === 'select') {
-					var selected_columns = this.schema[this.tableSelected].filter(function (column) {
-							return column.selected;
-						}).map(function (column) {
-							return column.name;
-						}).join(', ');
+					if (action == '')
+						return '';
 
-					sql.push('SELECT', selected_columns);
-					sql.push('FROM', this.tableSelected);
-				} else if (action == 'insert') {
-					var used_columns = this.schema[this.tableSelected].filter(function (column) {
-							if (!('value' in column))
-								return false;
+					if (action === 'select') {
+						var selected_columns = this.schema[this.tableSelected].filter(function (column) {
+								return column.selected;
+							}).map(function (column) {
+								return column.name;
+							}).join(', ');
 
-							return column.value.trim() != '';
-						}),
-						columns = used_columns.map(function (column) { return column.name; }).join(', '),
-						values = used_columns.map(function (column) { return _prepare_value(column.value); }).join(', ');
+						sql.push('SELECT', selected_columns);
+						sql.push('FROM', this.tableSelected);
+					} else if (action == 'insert') {
+						var used_columns = this.schema[this.tableSelected].filter(function (column) {
+								if (!('value' in column))
+									return false;
 
-					sql.push('INSERT INTO', this.tableSelected, '(' + columns + ')');
-					sql.push('VALUES', '(' + values + ')');
-				} else if (action == 'update') {
-					var set_values = this.schema[this.tableSelected].filter(function (column) {
-							if (!('value' in column))
-								return false;
+								return column.value.trim() != '';
+							}),
+							columns = used_columns.map(function (column) { return column.name; }).join(', '),
+							values = used_columns.map(function (column) { return _prepare_value(column.value); }).join(', ');
 
-							return column.value.trim() != '';
-						}).map(function (column) {
-							return column.name + ' = ' + _prepare_value(column.value);
-						}).join(', ');
+						sql.push('INSERT INTO', this.tableSelected, '(' + columns + ')');
+						sql.push('VALUES', '(' + values + ')');
+					} else if (action == 'update') {
+						var set_values = this.schema[this.tableSelected].filter(function (column) {
+								if (!('value' in column))
+									return false;
 
-					sql.push('UPDATE', this.tableSelected);
-					sql.push('SET', set_values);
-				} else if ('delete') {
-					sql.push('DELETE FROM', this.tableSelected);
+								return column.value.trim() != '';
+							}).map(function (column) {
+								return column.name + ' = ' + _prepare_value(column.value);
+							}).join(', ');
+
+						sql.push('UPDATE', this.tableSelected);
+						sql.push('SET', set_values);
+					} else if ('delete') {
+						sql.push('DELETE FROM', this.tableSelected);
+					}
+
+					if ([ 'select', 'update', 'delete' ].indexOf(action) > -1) {
+						var where = where_statment();
+
+						if (where != '')
+							sql.push('WHERE', where);
+					}
+
+					if ([ 'select' ].indexOf(action) > -1) {
+						var order = order_statment();
+
+						if (order != '')
+							sql.push('ORDER BY', order);
+					}
+
+					if (sql.length > 0)
+						return sql.join(' ').trim() + ';';
+
+					return '';
+				} catch (e) {
+					return '';
 				}
-
-				if ([ 'select', 'update', 'delete' ].indexOf(action) > -1) {
-					var where = where_statment();
-
-					if (where != '')
-						sql.push('WHERE', where);
-				}
-
-				if ([ 'select' ].indexOf(action) > -1) {
-					var order = order_statment();
-
-					if (order != '')
-						sql.push('ORDER BY', order);
-				}
-
-				if (sql.length > 0)
-					return sql.join(' ').trim() + ';';
-
-				return '';
 			},
 			parseSql: function () {
 				parse_sql(this.sql);
@@ -212,7 +229,8 @@ function parse_sql_select (parts) {
 	data.actionSelected = 'select';
 
 	if ('FROM' in parts) {
-		data.tableSelected = parts.FROM[0].table;
+		if (parts.FROM.length > 0)
+			data.tableSelected = parts.FROM[0].table;
 
 		var columns = _.map(parts.SELECT, function (v) { return v.name; })
 
@@ -249,7 +267,8 @@ function parse_sql_update (parts) {
 	data.actionSelected = 'update';
 
 	if ('UPDATE' in parts) {
-		data.tableSelected = parts.UPDATE[0].table;
+		if (parts.UPDATE.length > 0)
+			data.tableSelected = parts.UPDATE[0].table;
 
 		if ('SET' in parts) {
 			var names = _.chain(data.schema[data.tableSelected]).map(function (v) { return v.name; }).value();
@@ -271,7 +290,8 @@ function parse_sql_delete (parts) {
 	data.actionSelected = 'delete';
 
 	if ('DELETE FROM' in parts) {
-		data.tableSelected = parts['DELETE FROM'][0].table || '';
+		if (parts['DELETE FROM'].length > 0)
+			data.tableSelected = parts['DELETE FROM'][0].table || '';
 	}
 }
 
