@@ -1,6 +1,6 @@
 window.onload = init;
 
-var sql = '';
+// var sql = '';
 
 	// sql = 'SELECT * FROM users;';
 	// sql = 'SELECT first_name FROM users WHERE id = 3;';
@@ -40,13 +40,11 @@ var data = {
 			{ name: 'sku', type: 'text' },
 			{ name: 'price', type: 'text' }
 		]
-	},
-	sql: sql
+	}
 };
 
 function init () {
-	parse_sql(sql);
-
+	Vue.config({ debug: false });
 	Vue.filter('inputType', function (value) {
 		if (value.toLowerCase() == 'integer')
 			return 'number';
@@ -59,34 +57,24 @@ function init () {
 	new Vue({
 		el: '#form',
 		data: data,
-		computed: {
-			ssql: {
-				$get: function () {
-					return this.buildSql();
-				},
-				$set: function (newvalue) {
-					parse_sql(newvalue);
-				}
-			}
-		},
-		methods: {
-			toggleColumnSelect: function (column) {
-				if (!('selected' in column))
-					column.selected = false;
+		// computed: {
+		// 	ssql: {
+		// 		$get: function () {
+		// 			return Math.random();
 
-				column.selected = !column.selected;
-			},
+		// 			// return this.buildSql();
+		// 		},
+		// 		$set: function (newvalue) {
+		// 			parse_sql(newvalue);
+		// 		}
+		// 	}
+		// },
+		methods: {
 			addWhereFilter: function () {
 				this.whereFilters.push({ column: '', comparator: '', value: '' });
 			},
-			removeWhereFilter: function (filterIndex) {
-				this.whereFilters.$remove(filterIndex);
-			},
 			addOrderBy: function () {
 				this.orderBy.push({ column: '', direction: '' });
-			},
-			removeOrderBy: function (orderIndex) {
-				this.orderBy.$remove(orderIndex);
 			},
 			checkTableValue: function () {
 				if (this.tableSelected == '')
@@ -156,8 +144,12 @@ function init () {
 
 					return '';
 				} catch (e) {
+					console.log(e);
+
 					return '';
 				}
+
+				return '';
 			},
 			parseSql: function () {
 				parse_sql(this.sql);
