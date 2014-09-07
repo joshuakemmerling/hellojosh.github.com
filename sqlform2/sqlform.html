@@ -4,7 +4,21 @@
 	<title>SQL Form</title>
 	<link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 	<style>
+		a { cursor: pointer; }
+
+		.sb_nav { float: left; }
+		.sb_nav.sb_nav_right { float: right; }
+		.sb_nav > a, .sb_nav .dropdown > a { color: #fff; padding: 10px 0; float: left; margin-right: 20px; }
+		.sb_nav.sb_nav_right > a, .sb_nav.sb_nav_right .dropdown > a { margin-right: 0; margin-left: 20px; }
+		.sb_nav > a:hover, .sb_nav .dropdown > a:hover { text-decoration: none; color: rgba(255, 255, 255, 0.6); }
+
 		.nav > li > a { padding: 5px 12px; margin-top: 6px; cursor: pointer; }
+		.form-horizontal .control-label { text-align: left; }
+
+		#header { background: #2980b9; color: #fff; font-size: 12px; line-height: 20px; }
+
+		#subnav { background: #0E2C40; margin-bottom: 20px; color: #fff; font-size: 12px; line-height: 20px; }
+		#subnav .sb_nav > a { color: rgba(255, 255, 255, 0.6); }
 	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -13,22 +27,86 @@
 	<script src="sqlform.js"></script>
 </head>
 <body>
-	<br>
-	<div class="container">
+	<header id="header" class="clearfix">
+		<div class="col-md-12">
+			<div class="sb_nav">
+				<a>Simpleblimp</a>
+			</div>
+			<div class="sb_nav sb_nav_right">
+				<a href="">Docs</a>
+				<a href="">All Blimps</a>
+				<a href="">New Blimp</a>
+				<div class="pull-left dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown">
+						Scvngr
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu dropdown-menu-right">
+						<li><a role="menuitem" href="#">Scvngr</a></li>
+						<li><a role="menuitem" href="#">Tasty Trailers</a></li>
+						<li><a role="menuitem" href="#">Demo</a></li>
+						<li class="divider"></li>
+						<li><a role="menuitem" href="#">New Blimp</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</header>
+	<section id="subnav" class="clearfix">
+		<div class="col-md-12">
+			<div class="sb_nav dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown">
+					Scvngr
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a role="menuitem" href="#">Scvngr</a></li>
+					<li><a role="menuitem" href="#">Tasty Trailers</a></li>
+					<li><a role="menuitem" href="#">Demo</a></li>
+					<li class="divider"></li>
+					<li><a role="menuitem" href="#">New Blimp</a></li>
+				</ul>
+			</div>
+			<div class="sb_nav sb_nav_right">
+				<a href="">Dashboard</a>
+				<a href="">Tables</a>
+				<a href="">URLs</a>
+				<a href="">API Keys</a>
+				<a href="">Settings</a>
+				<a href="">SQL</a>
+			</div>
+		</div>
+	</section>
+	<div class="col-md-12">
+		<div class="form-group">
+			<label for="method">Method</label>
+			<select class="form-control" id="method" name="method"><option selected="selected" value="get">GET</option>
+				<option value="post">POST</option>
+				<option value="put">PUT</option>
+				<option value="delete">DELETE</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="url">URL</label>
+			<input type="text" class="form-control" name="url" id="url" value="/scavenger/:number" required="">
+		</div>
+		<div>
+			<label>SQL Builder</label>
+		</div>
 		<div id="form" class="panel panel-default">
 			<div class="panel-heading clearfix">
-				<h3 class="panel-title pull-left">SQL Builder</h3>
-
+				<!-- <h3 class="panel-title pull-left">SQL Builder</h3> -->
+				<!-- <label>SQL Builder</label> -->
 				<ul id="tabs" class="nav nav-tabs pull-right" style="margin: -10px -15px; border: 0;">
-					<li v-class="active: activeTab == 0"><a v-on="click: activeTab = 0">Form</a></li>
-					<li v-class="active: activeTab == 1"><a v-on="click: activeTab = 1">Text</a></li>
+					<li v-class="active: activeTab == 0"><a v-on="click: activeTab = 0">Simple</a></li>
+					<li v-class="active: activeTab == 1"><a v-on="click: activeTab = 1">Advanced</a></li>
 				</ul>
 			</div>
 			<div class="panel-body" v-if="activeTab == 0">
-				<form class="form-horizontal">
+				<div class="form-horizontal">
 					<div class="form-group">
-						<label class="col-md-3 control-label">Table</label>
-						<div class="col-md-9">
+						<label class="col-md-2 control-label">Table</label>
+						<div class="col-md-10">
 							<select class="form-control input-sm" v-model="tableSelected" v-on="change: checkTableValue">
 								<option value="">Select a Table</option>
 								<option v-repeat="schema" v-attr="selected: $key == tableSelected">{{ $key }}</option>
@@ -36,8 +114,8 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-md-3 control-label">Action</label>
-						<div class="col-md-9">
+						<label class="col-md-2 control-label">Action</label>
+						<div class="col-md-10">
 							<select class="form-control input-sm" v-model="actionSelected" v-attr="disabled: tableSelected == ''">
 								<option value="">Select an Action</option>
 								<option>select</option>
@@ -48,29 +126,37 @@
 						</div>
 					</div>
 					<div class="form-group" v-if="tableSelected != '' && [ 'select' ].indexOf(actionSelected) > -1">
-						<label class="col-md-3 control-label">Columns</label>
-						<div class="col-md-9">
+						<label class="col-md-2 control-label">Columns</label>
+						<div class="col-md-10">
 							<div class="checkbox" v-repeat="schema[tableSelected]">
-								<label><input type="checkbox" v-on="click: toggleColumnSelect(this)" v-attr="checked: selected" /> {{ name }}</label>
+								<!-- <label><input type="checkbox" v-on="click: toggleColumnSelect(this)" v-attr="checked: selected" /> {{ name }}</label> -->
+								<label><input type="checkbox" v-on="click: selected = !selected" v-attr="checked: selected" /> {{ name }}</label>
 							</div>
+							<!-- <div>
+								<br>
+								<a v-on="click: selectAllColumns" v-if="!allColumnsSelected">Select All Columns</a>
+								<a v-on="click: deselectAllColumns" v-if="allColumnsSelected">Deselect All Columns</a>
+								<br>
+								{{ allColumnsSelected }}
+							</div> -->
 						</div>
 					</div>
 					<div class="form-group" v-if="tableSelected != '' && [ 'insert', 'update' ].indexOf(actionSelected) > -1">
-						<label class="col-md-3 control-label">Values</label>
-						<div class="col-md-9">
+						<label class="col-md-2 control-label">Values</label>
+						<div class="col-md-10">
 							<div class="form-group" v-repeat="schema[tableSelected]">
 								<div class="col-md-3">
 									<label class="control-label">{{ name }}</label>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control input-sm" type="{{ type | inputType }}" v-model="value">
+									<input class="form-control input-sm" type="{{ type | inputType }}" v-model="value" placeholder="value">
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="form-group" v-if="tableSelected != '' && [ 'select', 'update', 'delete' ].indexOf(actionSelected) > -1">
-						<label class="col-md-3 control-label">Where</label>
-						<div class="col-md-9">
+						<label class="col-md-2 control-label">Filters</label>
+						<div class="col-md-10">
 							<div class="form-group" v-repeat="filter: whereFilters">
 								<div class="col-md-3">
 									<select class="form-control input-sm input-sm input-sm" v-model="filter.column">
@@ -80,21 +166,21 @@
 								</div>
 								<div class="col-md-3">
 									<select class="form-control input-sm input-sm" v-model="filter.comparator">
-										<option>Select a Compare</option>
-										<option>=</option>
-										<option><</option>
-										<option>></option>
-										<option><></option>
-										<option>LIKE</option>
-										<option>IN</option>
-										<option>NOT IN</option>
+										<option value="">Select a Comparator</option>
+										<option value="=">equal to</option>
+										<option value="<">less than</option>
+										<option value=">">greater than</option>
+										<option value="<>">not equal to</option>
+										<option value="LIKE">like</option>
+										<option value="IN">in</option>
+										<option value="NOT IN">not in</option>
 									</select>
 								</div>
 								<div class="col-md-3">
-									<input class="form-control input-sm" type="text" v-model="filter.value" />
+									<input class="form-control input-sm" type="text" v-model="filter.value" placeholder="value" />
 								</div>
 								<div class="col-md-3" v-if="whereFilters.length > 1">
-									<a class="btn btn-danger btn-sm" v-on="click: removeWhereFilter($index)"><i class="glyphicon glyphicon-remove"></i></a>
+									<a class="btn btn-danger btn-sm" v-on="click: whereFilters.$remove($index)"><i class="glyphicon glyphicon-remove"></i></a>
 								</div>
 							</div>
 							<div class="row">
@@ -105,8 +191,8 @@
 						</div>
 					</div>
 					<div class="form-group" v-if="tableSelected != '' && actionSelected == 'select'">
-						<label class="col-md-3 control-label">Order</label>
-						<div class="col-md-9">
+						<label class="col-md-2 control-label">Sort</label>
+						<div class="col-md-10">
 							<div class="form-group" v-repeat="order: orderBy">
 								<div class="col-md-3">
 									<select class="form-control input-sm" v-model="order.column">
@@ -117,12 +203,12 @@
 								<div class="col-md-3">
 									<select class="form-control input-sm" v-model="order.direction">
 										<option value="">Select a Direction</option>
-										<option value="ASC">ASC</option>
-										<option value="DESC">DESC</option>
+										<option value="ASC">A &rarr; Z</option>
+										<option value="DESC">Z &rarr; A</option>
 									</select>
 								</div>
 								<div class="col-md-3" v-if="orderBy.length > 1">
-									<a class="btn btn-danger btn-sm" v-on="click: removeOrderBy($index)"><i class="glyphicon glyphicon-remove"></i></a>
+									<a class="btn btn-danger btn-sm" v-on="click: orderBy.$remove($index)"><i class="glyphicon glyphicon-remove"></i></a>
 								</div>
 							</div>
 							<div class="row">
@@ -132,21 +218,24 @@
 							</div>
 						</div>
 					</div>
-					<div id="compiled_sql" v-if="actionSelected != ''">
-						<hr>
-						<code>
-							{{ buildSql() }}
-						</code>
+					<!-- <div id="compiled_sql">
 						<hr>
 						<code>
 							{{ sql }}
 						</code>
-					</div>
-				</form>
+					</div> -->
+				</div>
 			</div>
 			<div class="panel-body" v-if="activeTab == 1">
-				<textarea class="form-control" cols="30" rows="10" v-on="change: parseSql" v-model="sql">{{ buildSql() }}</textarea>
+				<!-- <textarea class="form-control" cols="30" rows="10" v-on="change: parseSql" v-model="sql">{{ buildSql() }}</textarea> -->
+				<textarea class="form-control" cols="30" rows="10" v-model="rawSql"></textarea>
 			</div>
+		</div>
+		<div class="form-group">
+			<input type="submit" value="Save" id="save_url_button" class="btn btn-primary" name="submit">
+			<a href="#" id="delete_url_link" class="btn btn-danger pull-right" data-original-title="" title="">
+				<i class="glyphicon glyphicon-remove"></i> Delete URL
+			</a>
 		</div>
 	</div>
 </body>

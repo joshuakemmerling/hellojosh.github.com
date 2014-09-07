@@ -133,11 +133,7 @@
 							</div>
 						</div>
 					</div>
-<<<<<<< HEAD:sqlform.html
-					<div id="compiled_sql" v-if="actionSelected != ''">
-=======
 					<div id="compiled_sql">
->>>>>>> 4827d21b5f401f9dca68a93214b556e392a6a8b8:sqlbuilder/sqlform.html
 						<hr>
 						<code>
 							{{ ssql }}
@@ -147,18 +143,8 @@
 							{{ buildSql() }}
 						</code>
 					</div>
-<<<<<<< HEAD:sqlform.html
-				</form>
-			</div>
-			<div class="panel-body" v-if="activeTab == 1">
-				<textarea class="form-control" cols="30" rows="10" v-on="change: parseSql" v-model="sql">{{ buildSql() }}</textarea>
-=======
 				</div>
->>>>>>> 4827d21b5f401f9dca68a93214b556e392a6a8b8:sqlbuilder/sqlform.html
 			</div>
-			<!-- <div class="panel-body" v-if="activeTab == 1">
-				<textarea class="form-control" cols="30" rows="10" v-on="change: parseSql" v-model="sql"></textarea>
-			</div> -->
 		</div>
 		<form action="" action="get">
 			<input type="hidden" value="{{ ssql }}">

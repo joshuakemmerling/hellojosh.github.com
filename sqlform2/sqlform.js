@@ -4,7 +4,7 @@ var sql = '';
 
 	// sql = 'SELECT * FROM users;';
 	// sql = 'SELECT first_name FROM users WHERE id = 3;';
-	// sql = "SELECT first_name FROM users WHERE id = 3 AND first_name = 'joshua' ORDER BY id DESC, first_name ASC;";
+	// sql = "SELECT first_name, joshua FROM users WHERE id = 3 AND first_name = 'joshua' ORDER BY id DESC, first_name ASC;";
 
 	// sql = 'INSERT INTO users () VALUES ();';
 	// sql = "INSERT INTO users (first_name, id) VALUES ('joshua', 12);";
@@ -16,6 +16,8 @@ var sql = '';
 	// sql = "UPDATE users SET id = 2, first_name = 'joshua';";
 	// sql = "UPDATE users SET id = 2, first_name = 'joshua' WHERE id > 23;";
 	// sql = "UPDATE users SET id = 2, first_name = 'joshua' WHERE id > 23 AND first_name = 'bob';";
+
+	// sql = "SELECT id, last_name, created FROM users WHERE id > 0;";
 
 var data = {
 	tableSelected: '',
@@ -40,8 +42,7 @@ var data = {
 			{ name: 'sku', type: 'text' },
 			{ name: 'price', type: 'text' }
 		]
-	},
-	sql: sql
+	}
 };
 
 function init () {
@@ -55,92 +56,109 @@ function init () {
 	});
 
 	data.activeTab = 0;
+	data.rawSql = sql;
 
 	new Vue({
 		el: '#form',
 		data: data,
+		computed: {
+			sql: {
+				$get: function () {
+					// return this.buildSql();
+					return this.rawSql;
+				},
+				$set: function (value) {
+					parse_sql(value);
+				}
+			}
+		},
 		methods: {
-			toggleColumnSelect: function (column) {
-				if (!('selected' in column))
-					column.selected = false;
-
-				column.selected = !column.selected;
+			selectAllColumns: function () {
+				for (var i = 0, l = this.schema[this.tableSelected].length; i < l; i++) {
+					this.schema[this.tableSelected][i].selected = true;
+				}
+			},
+			deselectAllColumns: function () {
+				for (var i = 0, l = this.schema[this.tableSelected].length; i < l; i++) {
+					this.schema[this.tableSelected][i].selected = false;
+				}
 			},
 			addWhereFilter: function () {
 				this.whereFilters.push({ column: '', comparator: '', value: '' });
 			},
-			removeWhereFilter: function (filterIndex) {
-				this.whereFilters.$remove(filterIndex);
-			},
 			addOrderBy: function () {
 				this.orderBy.push({ column: '', direction: '' });
-			},
-			removeOrderBy: function (orderIndex) {
-				this.orderBy.$remove(orderIndex);
 			},
 			checkTableValue: function () {
 				if (this.tableSelected == '')
 					this.actionSelected = '';
 			},
 			buildSql: function () {
-				var sql = [],
-					action = this.actionSelected;
+				try {
+					var sql = [],
+						action = this.actionSelected;
 
-				if (action === 'select') {
-					var selected_columns = this.schema[this.tableSelected].filter(function (column) {
-							return column.selected;
-						}).map(function (column) {
-							return column.name;
-						}).join(', ');
+					if (action == '')
+						return '';
 
-					sql.push('SELECT', selected_columns);
-					sql.push('FROM', this.tableSelected);
-				} else if (action == 'insert') {
-					var used_columns = this.schema[this.tableSelected].filter(function (column) {
-							if (!('value' in column))
-								return false;
+					if (action === 'select') {
+						var selected_columns = this.schema[this.tableSelected].filter(function (column) {
+								return column.selected;
+							}).map(function (column) {
+								return column.name;
+							}).join(', ');
 
-							return column.value.trim() != '';
-						}),
-						columns = used_columns.map(function (column) { return column.name; }).join(', '),
-						values = used_columns.map(function (column) { return _prepare_value(column.value); }).join(', ');
+						sql.push('SELECT', selected_columns);
+						sql.push('FROM', this.tableSelected);
+					} else if (action == 'insert') {
+						var used_columns = this.schema[this.tableSelected].filter(function (column) {
+								if (!('value' in column))
+									return false;
 
-					sql.push('INSERT INTO', this.tableSelected, '(' + columns + ')');
-					sql.push('VALUES', '(' + values + ')');
-				} else if (action == 'update') {
-					var set_values = this.schema[this.tableSelected].filter(function (column) {
-							if (!('value' in column))
-								return false;
+								return column.value.trim() != '';
+							}),
+							columns = used_columns.map(function (column) { return column.name; }).join(', '),
+							values = used_columns.map(function (column) { return _prepare_value(column.value); }).join(', ');
 
-							return column.value.trim() != '';
-						}).map(function (column) {
-							return column.name + ' = ' + _prepare_value(column.value);
-						}).join(', ');
+						sql.push('INSERT INTO', this.tableSelected, '(' + columns + ')');
+						sql.push('VALUES', '(' + values + ')');
+					} else if (action == 'update') {
+						var set_values = this.schema[this.tableSelected].filter(function (column) {
+								if (!('value' in column))
+									return false;
 
-					sql.push('UPDATE', this.tableSelected);
-					sql.push('SET', set_values);
-				} else if ('delete') {
-					sql.push('DELETE FROM', this.tableSelected);
+								return column.value.trim() != '';
+							}).map(function (column) {
+								return column.name + ' = ' + _prepare_value(column.value);
+							}).join(', ');
+
+						sql.push('UPDATE', this.tableSelected);
+						sql.push('SET', set_values);
+					} else if ('delete') {
+						sql.push('DELETE FROM', this.tableSelected);
+					}
+
+					if ([ 'select', 'update', 'delete' ].indexOf(action) > -1) {
+						var where = where_statment();
+
+						if (where != '')
+							sql.push('WHERE', where);
+					}
+
+					if ([ 'select' ].indexOf(action) > -1) {
+						var order = order_statment();
+
+						if (order != '')
+							sql.push('ORDER BY', order);
+					}
+
+					if (sql.length > 0)
+						return sql.join(' ').trim() + ';';
+
+					return '';
+				} catch (e) {
+					return '';
 				}
-
-				if ([ 'select', 'update', 'delete' ].indexOf(action) > -1) {
-					var where = where_statment();
-
-					if (where != '')
-						sql.push('WHERE', where);
-				}
-
-				if ([ 'select' ].indexOf(action) > -1) {
-					var order = order_statment();
-
-					if (order != '')
-						sql.push('ORDER BY', order);
-				}
-
-				if (sql.length > 0)
-					return sql.join(' ').trim() + ';';
-
-				return '';
 			},
 			parseSql: function () {
 				parse_sql(this.sql);
