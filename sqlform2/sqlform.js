@@ -46,6 +46,8 @@ var data = {
 };
 
 function init () {
+	$('[data-toggle="tooltip"]').tooltip();
+
 	parse_sql(sql);
 
 	Vue.filter('inputType', function (value) {

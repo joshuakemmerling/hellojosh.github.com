@@ -2,7 +2,8 @@
 <html>
 <head>
 	<title>SQL Form</title>
-	<link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 	<style>
 		a { cursor: pointer; }
 
@@ -15,10 +16,24 @@
 		.nav > li > a { padding: 5px 12px; margin-top: 6px; cursor: pointer; }
 		.form-horizontal .control-label { text-align: left; }
 
+		.form-control, .form-control:focus { box-shadow: 0 0; }
+		.form-control:focus { border-color: #2980b9; }
+
 		#header { background: #2980b9; color: #fff; font-size: 12px; line-height: 20px; }
+		#header #account_dropdown { border: 0; box-shadow: 0 0; margin: 0 -15px 0 0; border-radius: 0; background: #2980b9; font-size: 12px; padding-top: 0; }
+		#header #account_dropdown li.divider { background-color: rgba(255, 255, 255, 0.2); margin: 5px 0; }
+		#header #account_dropdown li a { color: #fff; padding: 3px 15px; }
+		#header #account_dropdown li a:hover { background: rgba(255, 255, 255, 0.2); }
 
 		#subnav { background: #0E2C40; margin-bottom: 20px; color: #fff; font-size: 12px; line-height: 20px; }
 		#subnav .sb_nav > a { color: rgba(255, 255, 255, 0.6); }
+		#subnav .sb_nav > a:hover { color: #fff; }
+		#subnav #blimps_dropdown { border: 0; box-shadow: 0 0; margin: 0 0 0 -15px; border-radius: 0; background: #0E2C40; font-size: 12px; padding-top: 0; }
+		#subnav #blimps_dropdown li.divider { background-color: rgba(255, 255, 255, 0.2); margin: 5px 0; }
+		#subnav #blimps_dropdown li a { color: #fff; padding: 3px 15px; }
+		#subnav #blimps_dropdown li a:hover { background: rgba(255, 255, 255, 0.2); }
+
+		#logo { text-transform: uppercase; }
 	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -30,23 +45,21 @@
 	<header id="header" class="clearfix">
 		<div class="col-md-12">
 			<div class="sb_nav">
-				<a>Simpleblimp</a>
+				<a id="logo">Simple<strong>blimp</strong></a>
 			</div>
 			<div class="sb_nav sb_nav_right">
-				<a href="">Docs</a>
-				<a href="">All Blimps</a>
+				<a href="">Documentation</a>
 				<a href="">New Blimp</a>
 				<div class="pull-left dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown">
-						Scvngr
+						<img src="http://www.gravatar.com/avatar/4ff773eb93037d8f1d97875121e225ac" width="20" height="20" class="img-circle">
+						Joshua
 						<span class="caret"></span>
 					</a>
-					<ul class="dropdown-menu dropdown-menu-right">
-						<li><a role="menuitem" href="#">Scvngr</a></li>
-						<li><a role="menuitem" href="#">Tasty Trailers</a></li>
-						<li><a role="menuitem" href="#">Demo</a></li>
+					<ul id="account_dropdown" class="dropdown-menu dropdown-menu-right">
+						<li><a role="menuitem" href="#">Account</a></li>
 						<li class="divider"></li>
-						<li><a role="menuitem" href="#">New Blimp</a></li>
+						<li><a role="menuitem" href="#">Logout</a></li>
 					</ul>
 				</div>
 			</div>
@@ -59,7 +72,7 @@
 					Scvngr
 					<span class="caret"></span>
 				</a>
-				<ul class="dropdown-menu">
+				<ul id="blimps_dropdown" class="dropdown-menu">
 					<li><a role="menuitem" href="#">Scvngr</a></li>
 					<li><a role="menuitem" href="#">Tasty Trailers</a></li>
 					<li><a role="menuitem" href="#">Demo</a></li>
@@ -74,169 +87,170 @@
 				<a href="">API Keys</a>
 				<a href="">Settings</a>
 				<a href="">SQL</a>
+				<a href="">Team</a>
 			</div>
 		</div>
 	</section>
-	<div class="col-md-12">
-		<div class="form-group">
-			<label for="method">Method</label>
-			<select class="form-control" id="method" name="method"><option selected="selected" value="get">GET</option>
-				<option value="post">POST</option>
-				<option value="put">PUT</option>
-				<option value="delete">DELETE</option>
-			</select>
-		</div>
-		<div class="form-group">
-			<label for="url">URL</label>
-			<input type="text" class="form-control" name="url" id="url" value="/scavenger/:number" required="">
-		</div>
-		<div>
-			<label>SQL Builder</label>
-		</div>
-		<div id="form" class="panel panel-default">
-			<div class="panel-heading clearfix">
-				<!-- <h3 class="panel-title pull-left">SQL Builder</h3> -->
-				<!-- <label>SQL Builder</label> -->
-				<ul id="tabs" class="nav nav-tabs pull-right" style="margin: -10px -15px; border: 0;">
-					<li v-class="active: activeTab == 0"><a v-on="click: activeTab = 0">Simple</a></li>
-					<li v-class="active: activeTab == 1"><a v-on="click: activeTab = 1">Advanced</a></li>
-				</ul>
+	<section id="content" class="clearfix">
+		<div class="col-md-12">
+			<div class="form-group">
+				<label for="method">Method</label>
+				<select class="form-control" id="method" name="method"><option selected="selected" value="get">GET</option>
+					<option value="post">POST</option>
+					<option value="put">PUT</option>
+					<option value="delete">DELETE</option>
+				</select>
 			</div>
-			<div class="panel-body" v-if="activeTab == 0">
-				<div class="form-horizontal">
-					<div class="form-group">
-						<label class="col-md-2 control-label">Table</label>
-						<div class="col-md-10">
-							<select class="form-control input-sm" v-model="tableSelected" v-on="change: checkTableValue">
-								<option value="">Select a Table</option>
-								<option v-repeat="schema" v-attr="selected: $key == tableSelected">{{ $key }}</option>
-							</select>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-md-2 control-label">Action</label>
-						<div class="col-md-10">
-							<select class="form-control input-sm" v-model="actionSelected" v-attr="disabled: tableSelected == ''">
-								<option value="">Select an Action</option>
-								<option>select</option>
-								<option>insert</option>
-								<option>update</option>
-								<option>delete</option>
-							</select>
-						</div>
-					</div>
-					<div class="form-group" v-if="tableSelected != '' && [ 'select' ].indexOf(actionSelected) > -1">
-						<label class="col-md-2 control-label">Columns</label>
-						<div class="col-md-10">
-							<div class="checkbox" v-repeat="schema[tableSelected]">
-								<!-- <label><input type="checkbox" v-on="click: toggleColumnSelect(this)" v-attr="checked: selected" /> {{ name }}</label> -->
-								<label><input type="checkbox" v-on="click: selected = !selected" v-attr="checked: selected" /> {{ name }}</label>
-							</div>
-							<!-- <div>
-								<br>
-								<a v-on="click: selectAllColumns" v-if="!allColumnsSelected">Select All Columns</a>
-								<a v-on="click: deselectAllColumns" v-if="allColumnsSelected">Deselect All Columns</a>
-								<br>
-								{{ allColumnsSelected }}
-							</div> -->
-						</div>
-					</div>
-					<div class="form-group" v-if="tableSelected != '' && [ 'insert', 'update' ].indexOf(actionSelected) > -1">
-						<label class="col-md-2 control-label">Values</label>
-						<div class="col-md-10">
-							<div class="form-group" v-repeat="schema[tableSelected]">
-								<div class="col-md-3">
-									<label class="control-label">{{ name }}</label>
-								</div>
-								<div class="col-md-3">
-									<input class="form-control input-sm" type="{{ type | inputType }}" v-model="value" placeholder="value">
-								</div>
+			<div class="form-group">
+				<label for="url">URL</label>
+				<input type="text" class="form-control" name="url" id="url" value="/scavenger/:number" required="">
+			</div>
+			<div>
+				<label>SQL Builder</label>
+			</div>
+			<div id="form" class="panel panel-default">
+				<div class="panel-heading clearfix">
+					<ul id="tabs" class="nav nav-tabs pull-right" style="margin: -10px -12px -10px -15px; border: 0;">
+						<li v-class="active: activeTab == 0"><a v-on="click: activeTab = 0">Simple</a></li>
+						<li v-class="active: activeTab == 1"><a v-on="click: activeTab = 1">Advanced</a></li>
+					</ul>
+				</div>
+				<div class="panel-body" v-if="activeTab == 0">
+					<div class="form-horizontal">
+						<div class="form-group">
+							<label class="col-md-2 control-label">Table</label>
+							<div class="col-md-10">
+								<select class="form-control input-sm" v-model="tableSelected" v-on="change: checkTableValue">
+									<option value="">Select a Table</option>
+									<option v-repeat="schema" v-attr="selected: $key == tableSelected">{{ $key }}</option>
+								</select>
 							</div>
 						</div>
-					</div>
-					<div class="form-group" v-if="tableSelected != '' && [ 'select', 'update', 'delete' ].indexOf(actionSelected) > -1">
-						<label class="col-md-2 control-label">Filters</label>
-						<div class="col-md-10">
-							<div class="form-group" v-repeat="filter: whereFilters">
-								<div class="col-md-3">
-									<select class="form-control input-sm input-sm input-sm" v-model="filter.column">
-										<option value="">Select a Column</option>
-										<option v-repeat="schema[tableSelected]" v-attr="selected: name == filter.column">{{ name }}</option>
-									</select>
-								</div>
-								<div class="col-md-3">
-									<select class="form-control input-sm input-sm" v-model="filter.comparator">
-										<option value="">Select a Comparator</option>
-										<option value="=">equal to</option>
-										<option value="<">less than</option>
-										<option value=">">greater than</option>
-										<option value="<>">not equal to</option>
-										<option value="LIKE">like</option>
-										<option value="IN">in</option>
-										<option value="NOT IN">not in</option>
-									</select>
-								</div>
-								<div class="col-md-3">
-									<input class="form-control input-sm" type="text" v-model="filter.value" placeholder="value" />
-								</div>
-								<div class="col-md-3" v-if="whereFilters.length > 1">
-									<a class="btn btn-danger btn-sm" v-on="click: whereFilters.$remove($index)"><i class="glyphicon glyphicon-remove"></i></a>
-								</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label">Action</label>
+							<div class="col-md-10">
+								<select class="form-control input-sm" v-model="actionSelected" v-attr="disabled: tableSelected == ''">
+									<option value="">Select an Action</option>
+									<option>select</option>
+									<option>insert</option>
+									<option>update</option>
+									<option>delete</option>
+								</select>
 							</div>
-							<div class="row">
-								<div class="col-md-12">
-									<a class="btn btn-success btn-xs" v-on="click: addWhereFilter"><i class="glyphicon glyphicon-plus"></i> Filter</a>
+						</div>
+						<div class="form-group" v-if="tableSelected != '' && [ 'select' ].indexOf(actionSelected) > -1">
+							<label class="col-md-2 control-label">Columns</label>
+							<div class="col-md-10">
+								<div class="checkbox" v-repeat="schema[tableSelected]">
+									<!-- <label><input type="checkbox" v-on="click: toggleColumnSelect(this)" v-attr="checked: selected" /> {{ name }}</label> -->
+									<label><input type="checkbox" v-on="click: selected = !selected" v-attr="checked: selected" /> {{ name }}</label>
+								</div>
+								<!-- <div>
+									<br>
+									<a v-on="click: selectAllColumns" v-if="!allColumnsSelected">Select All Columns</a>
+									<a v-on="click: deselectAllColumns" v-if="allColumnsSelected">Deselect All Columns</a>
+									<br>
+									{{ allColumnsSelected }}
+								</div> -->
+							</div>
+						</div>
+						<div class="form-group" v-if="tableSelected != '' && [ 'insert', 'update' ].indexOf(actionSelected) > -1">
+							<label class="col-md-2 control-label">Values</label>
+							<div class="col-md-10">
+								<div class="form-group" v-repeat="schema[tableSelected]">
+									<div class="col-md-3">
+										<label class="control-label">{{ name }}</label>
+									</div>
+									<div class="col-md-3">
+										<input class="form-control input-sm" type="{{ type | inputType }}" v-model="value" placeholder="value">
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="form-group" v-if="tableSelected != '' && actionSelected == 'select'">
-						<label class="col-md-2 control-label">Sort</label>
-						<div class="col-md-10">
-							<div class="form-group" v-repeat="order: orderBy">
-								<div class="col-md-3">
-									<select class="form-control input-sm" v-model="order.column">
-										<option value="">Select an Column</option>
-										<option v-repeat="schema[tableSelected]" v-attr="selected: name == order.column">{{ name }}</option>
-									</select>
+						<div class="form-group" v-if="tableSelected != '' && [ 'select', 'update', 'delete' ].indexOf(actionSelected) > -1">
+							<label class="col-md-2 control-label">Filters</label>
+							<div class="col-md-10">
+								<div class="form-group" v-repeat="filter: whereFilters">
+									<div class="col-md-3">
+										<select class="form-control input-sm input-sm input-sm" v-model="filter.column">
+											<option value="">Select a Column</option>
+											<option v-repeat="schema[tableSelected]" v-attr="selected: name == filter.column">{{ name }}</option>
+										</select>
+									</div>
+									<div class="col-md-3">
+										<select class="form-control input-sm input-sm" v-model="filter.comparator">
+											<option value="">Select a Comparator</option>
+											<option value="=">equal to</option>
+											<option value="<">less than</option>
+											<option value=">">greater than</option>
+											<option value="<>">not equal to</option>
+											<option value="LIKE">like</option>
+											<option value="IN">in</option>
+											<option value="NOT IN">not in</option>
+										</select>
+									</div>
+									<div class="col-md-3">
+										<input class="form-control input-sm" type="text" v-model="filter.value" placeholder="value" />
+									</div>
+									<div class="col-md-3" v-if="whereFilters.length > 1">
+										<a class="btn btn-danger btn-sm" v-on="click: whereFilters.$remove($index)"><i class="glyphicon glyphicon-remove"></i></a>
+									</div>
 								</div>
-								<div class="col-md-3">
-									<select class="form-control input-sm" v-model="order.direction">
-										<option value="">Select a Direction</option>
-										<option value="ASC">A &rarr; Z</option>
-										<option value="DESC">Z &rarr; A</option>
-									</select>
-								</div>
-								<div class="col-md-3" v-if="orderBy.length > 1">
-									<a class="btn btn-danger btn-sm" v-on="click: orderBy.$remove($index)"><i class="glyphicon glyphicon-remove"></i></a>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-12">
-									<a class="btn btn-success btn-xs" v-on="click: addOrderBy"><i class="glyphicon glyphicon-plus"></i> Parameter</a>
+								<div class="row">
+									<div class="col-md-12">
+										<a class="btn btn-success btn-xs" v-on="click: addWhereFilter"><i class="glyphicon glyphicon-plus"></i> Filter</a>
+									</div>
 								</div>
 							</div>
 						</div>
+						<div class="form-group" v-if="tableSelected != '' && actionSelected == 'select'">
+							<label class="col-md-2 control-label">Sort</label>
+							<div class="col-md-10">
+								<div class="form-group" v-repeat="order: orderBy">
+									<div class="col-md-3">
+										<select class="form-control input-sm" v-model="order.column">
+											<option value="">Select an Column</option>
+											<option v-repeat="schema[tableSelected]" v-attr="selected: name == order.column">{{ name }}</option>
+										</select>
+									</div>
+									<div class="col-md-3">
+										<select class="form-control input-sm" v-model="order.direction">
+											<option value="">Select a Direction</option>
+											<option value="ASC">A &rarr; Z</option>
+											<option value="DESC">Z &rarr; A</option>
+										</select>
+									</div>
+									<div class="col-md-3" v-if="orderBy.length > 1">
+										<a class="btn btn-danger btn-sm" v-on="click: orderBy.$remove($index)"><i class="glyphicon glyphicon-remove"></i></a>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<a class="btn btn-success btn-xs" v-on="click: addOrderBy"><i class="glyphicon glyphicon-plus"></i> Parameter</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- <div id="compiled_sql">
+							<hr>
+							<code>
+								{{ sql }}
+							</code>
+						</div> -->
 					</div>
-					<!-- <div id="compiled_sql">
-						<hr>
-						<code>
-							{{ sql }}
-						</code>
-					</div> -->
+				</div>
+				<div class="panel-body" v-if="activeTab == 1">
+					<!-- <textarea class="form-control" cols="30" rows="10" v-on="change: parseSql" v-model="sql">{{ buildSql() }}</textarea> -->
+					<textarea class="form-control" cols="30" rows="10" v-model="rawSql"></textarea>
 				</div>
 			</div>
-			<div class="panel-body" v-if="activeTab == 1">
-				<!-- <textarea class="form-control" cols="30" rows="10" v-on="change: parseSql" v-model="sql">{{ buildSql() }}</textarea> -->
-				<textarea class="form-control" cols="30" rows="10" v-model="rawSql"></textarea>
+			<div class="form-group">
+				<input type="submit" value="Save" id="save_url_button" class="btn btn-primary" name="submit">
+				<a href="#" id="delete_url_link" class="btn btn-danger pull-right" data-original-title="" title="">
+					<i class="glyphicon glyphicon-remove"></i> Delete URL
+				</a>
 			</div>
 		</div>
-		<div class="form-group">
-			<input type="submit" value="Save" id="save_url_button" class="btn btn-primary" name="submit">
-			<a href="#" id="delete_url_link" class="btn btn-danger pull-right" data-original-title="" title="">
-				<i class="glyphicon glyphicon-remove"></i> Delete URL
-			</a>
-		</div>
-	</div>
+	</section>
 </body>
 </html>
