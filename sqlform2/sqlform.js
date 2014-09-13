@@ -31,6 +31,11 @@ var sql = '',
 
 function init () {
 	$('[data-toggle="tooltip"]').tooltip();
+	$('[data-toggle="popover"]').popover();
+
+	$('body').on('mouseover', '[data-toggle="popover"][data-trigger="hover"]', function () {
+		$(this).popover('show');
+	});
 
 	parse_sql(sql);
 

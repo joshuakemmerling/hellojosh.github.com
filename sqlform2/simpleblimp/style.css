@@ -10,7 +10,7 @@
 	font-style: normal;
 }
 
-[class^="sb-"], [class*=" sb-"] {
+[class^="sb-icon-"], [class*=" sb-icon-"] {
 	font-family: 'simpleblimp';
 	speak: none;
 	font-style: normal;
@@ -24,6 +24,6 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.sb-simpleblimp:before {
+.sb-icon-simpleblimp:before {
 	content: "\e600";
 }
