@@ -60,16 +60,6 @@ function init () {
 			}
 		},
 		methods: {
-			selectAllColumns: function () {
-				for (var i = 0, l = this.schema[this.tableSelected].length; i < l; i++) {
-					this.schema[this.tableSelected][i].selected = true;
-				}
-			},
-			deselectAllColumns: function () {
-				for (var i = 0, l = this.schema[this.tableSelected].length; i < l; i++) {
-					this.schema[this.tableSelected][i].selected = false;
-				}
-			},
 			addWhereFilter: function () {
 				this.whereFilters.push({ column: '', comparator: '', value: '' });
 			},
