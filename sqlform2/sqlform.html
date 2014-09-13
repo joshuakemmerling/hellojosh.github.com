@@ -2,9 +2,11 @@
 <html>
 <head>
 	<title>SQL Form</title>
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700|Open+Sans+Condensed:300,300italic,700">
 	<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 	<style>
+		body { font-family: 'open sans'; }
 		a { cursor: pointer; }
 
 		.sb_nav { float: left; }
@@ -34,6 +36,8 @@
 		#subnav #blimps_dropdown li a:hover { background: rgba(255, 255, 255, 0.2); }
 
 		#logo { text-transform: uppercase; }
+
+		#profile_dropdown_image { margin-top: -2px; }
 	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -52,12 +56,13 @@
 				<a href="">New Blimp</a>
 				<div class="pull-left dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown">
-						<img src="http://www.gravatar.com/avatar/4ff773eb93037d8f1d97875121e225ac" width="20" height="20" class="img-circle">
+						<img src="http://www.gravatar.com/avatar/4ff773eb93037d8f1d97875121e225ac" width="20" height="20" class="img-circle" id="profile_dropdown_image">
 						Joshua
 						<span class="caret"></span>
 					</a>
 					<ul id="account_dropdown" class="dropdown-menu dropdown-menu-right">
 						<li><a role="menuitem" href="#">Account</a></li>
+						<li><a role="menuitem" href="#">Payment Method</a></li>
 						<li class="divider"></li>
 						<li><a role="menuitem" href="#">Logout</a></li>
 					</ul>
@@ -92,7 +97,7 @@
 		</div>
 	</section>
 	<section id="content" class="clearfix">
-		<div class="col-md-12">
+		<div id="form" class="col-md-12">
 			<div class="form-group">
 				<label for="method">Method</label>
 				<select class="form-control" id="method" name="method"><option selected="selected" value="get">GET</option>
@@ -108,7 +113,7 @@
 			<div>
 				<label>SQL Builder</label>
 			</div>
-			<div id="form" class="panel panel-default">
+			<div class="panel panel-default">
 				<div class="panel-heading clearfix">
 					<ul id="tabs" class="nav nav-tabs pull-right" style="margin: -10px -12px -10px -15px; border: 0;">
 						<li v-class="active: activeTab == 0"><a v-on="click: activeTab = 0">Simple</a></li>
@@ -127,7 +132,9 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-2 control-label">Action</label>
+							<label class="col-md-2 control-label">
+								Action
+							</label>
 							<div class="col-md-10">
 								<select class="form-control input-sm" v-model="actionSelected" v-attr="disabled: tableSelected == ''">
 									<option value="">Select an Action</option>
@@ -142,16 +149,15 @@
 							<label class="col-md-2 control-label">Columns</label>
 							<div class="col-md-10">
 								<div class="checkbox" v-repeat="schema[tableSelected]">
-									<!-- <label><input type="checkbox" v-on="click: toggleColumnSelect(this)" v-attr="checked: selected" /> {{ name }}</label> -->
 									<label><input type="checkbox" v-on="click: selected = !selected" v-attr="checked: selected" /> {{ name }}</label>
 								</div>
-								<!-- <div>
+								<div>
 									<br>
 									<a v-on="click: selectAllColumns" v-if="!allColumnsSelected">Select All Columns</a>
 									<a v-on="click: deselectAllColumns" v-if="allColumnsSelected">Deselect All Columns</a>
 									<br>
 									{{ allColumnsSelected }}
-								</div> -->
+								</div>
 							</div>
 						</div>
 						<div class="form-group" v-if="tableSelected != '' && [ 'insert', 'update' ].indexOf(actionSelected) > -1">
@@ -231,24 +237,25 @@
 								</div>
 							</div>
 						</div>
-						<!-- <div id="compiled_sql">
-							<hr>
-							<code>
-								{{ sql }}
-							</code>
-						</div> -->
 					</div>
 				</div>
 				<div class="panel-body" v-if="activeTab == 1">
-					<!-- <textarea class="form-control" cols="30" rows="10" v-on="change: parseSql" v-model="sql">{{ buildSql() }}</textarea> -->
 					<textarea class="form-control" cols="30" rows="10" v-model="rawSql"></textarea>
+				</div>
+				<div class="panel-body">
+					<textarea class="form-control" cols="30" rows="10" v-model="sql"></textarea>
 				</div>
 			</div>
 			<div class="form-group">
-				<input type="submit" value="Save" id="save_url_button" class="btn btn-primary" name="submit">
-				<a href="#" id="delete_url_link" class="btn btn-danger pull-right" data-original-title="" title="">
-					<i class="glyphicon glyphicon-remove"></i> Delete URL
-				</a>
+				<form action="" method="get">
+					<input type="submit" value="Save" id="save_url_button" class="btn btn-primary" name="submit">
+					<a href="#" id="delete_url_link" class="btn btn-danger pull-right" data-original-title="" title="">
+						<i class="glyphicon glyphicon-remove"></i> Delete URL
+					</a>
+					<div class="clear"></div>
+
+					<input type="hidden" name="sql" v-model="sql">
+				</form>
 			</div>
 		</div>
 	</section>

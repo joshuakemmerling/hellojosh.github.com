@@ -2,48 +2,32 @@ window.onload = init;
 
 var sql = '';
 
-	// sql = 'SELECT * FROM users;';
-	// sql = 'SELECT first_name FROM users WHERE id = 3;';
-	// sql = "SELECT first_name, joshua FROM users WHERE id = 3 AND first_name = 'joshua' ORDER BY id DESC, first_name ASC;";
-
-	// sql = 'INSERT INTO users () VALUES ();';
-	// sql = "INSERT INTO users (first_name, id) VALUES ('joshua', 12);";
-
-	// sql = 'DELETE FROM users;';
-	// sql = 'DELETE FROM users WHERE id > 23;';
-	// sql = "DELETE FROM users WHERE id > 23 AND first <> 'joshua';";
-
-	// sql = "UPDATE users SET id = 2, first_name = 'joshua';";
-	// sql = "UPDATE users SET id = 2, first_name = 'joshua' WHERE id > 23;";
-	// sql = "UPDATE users SET id = 2, first_name = 'joshua' WHERE id > 23 AND first_name = 'bob';";
-
-	// sql = "SELECT id, last_name, created FROM users WHERE id > 0;";
-
-var data = {
-	tableSelected: '',
-	actionSelected: '',
-	whereFilters: [{ column: '', comparator: '', value: '' }],
-	orderBy: [{ column: '', direction: '' }],
-	schema: {
-		'users': [
-			{ name: 'id', type: 'integer' },
-			{ name: 'first_name', type: 'text' },
-			{ name: 'last_name', type: 'text' },
-			{ name: 'created', type: 'date' }
-		],
-		'accounts': [
-			{ name: 'id', type: 'integer' },
-			{ name: 'account_name', type: 'text' },
-			{ name: 'plan_id', type: 'text' }
-		],
-		'products': [
-			{ name: 'id', type: 'integer' },
-			{ name: 'name', type: 'text' },
-			{ name: 'sku', type: 'text' },
-			{ name: 'price', type: 'text' }
-		]
-	}
-};
+var sql = '',
+	data = {
+		tableSelected: '',
+		actionSelected: '',
+		whereFilters: [{ column: '', comparator: '', value: '' }],
+		orderBy: [{ column: '', direction: '' }],
+		schema: {
+			'users': [
+				{ name: 'id', type: 'integer' },
+				{ name: 'first_name', type: 'text' },
+				{ name: 'last_name', type: 'text' },
+				{ name: 'created', type: 'date' }
+			],
+			'accounts': [
+				{ name: 'id', type: 'integer' },
+				{ name: 'account_name', type: 'text' },
+				{ name: 'plan_id', type: 'text' }
+			],
+			'products': [
+				{ name: 'id', type: 'integer' },
+				{ name: 'name', type: 'text' },
+				{ name: 'sku', type: 'text' },
+				{ name: 'price', type: 'text' }
+			]
+		}
+	};
 
 function init () {
 	$('[data-toggle="tooltip"]').tooltip();
@@ -51,6 +35,8 @@ function init () {
 	parse_sql(sql);
 
 	Vue.filter('inputType', function (value) {
+		return 'text';
+
 		if (value.toLowerCase() == 'integer')
 			return 'number';
 
@@ -64,14 +50,13 @@ function init () {
 		el: '#form',
 		data: data,
 		computed: {
-			sql: {
-				$get: function () {
-					// return this.buildSql();
-					return this.rawSql;
-				},
-				$set: function (value) {
-					parse_sql(value);
-				}
+			sql: function () {
+				this.$data;
+
+				if (this.activeTab == 0)
+					return this.buildSql();
+
+				return this.rawSql;
 			}
 		},
 		methods: {
@@ -96,71 +81,67 @@ function init () {
 					this.actionSelected = '';
 			},
 			buildSql: function () {
-				try {
-					var sql = [],
-						action = this.actionSelected;
+				var sql = [],
+					action = this.actionSelected;
 
-					if (action == '')
-						return '';
-
-					if (action === 'select') {
-						var selected_columns = this.schema[this.tableSelected].filter(function (column) {
-								return column.selected;
-							}).map(function (column) {
-								return column.name;
-							}).join(', ');
-
-						sql.push('SELECT', selected_columns);
-						sql.push('FROM', this.tableSelected);
-					} else if (action == 'insert') {
-						var used_columns = this.schema[this.tableSelected].filter(function (column) {
-								if (!('value' in column))
-									return false;
-
-								return column.value.trim() != '';
-							}),
-							columns = used_columns.map(function (column) { return column.name; }).join(', '),
-							values = used_columns.map(function (column) { return _prepare_value(column.value); }).join(', ');
-
-						sql.push('INSERT INTO', this.tableSelected, '(' + columns + ')');
-						sql.push('VALUES', '(' + values + ')');
-					} else if (action == 'update') {
-						var set_values = this.schema[this.tableSelected].filter(function (column) {
-								if (!('value' in column))
-									return false;
-
-								return column.value.trim() != '';
-							}).map(function (column) {
-								return column.name + ' = ' + _prepare_value(column.value);
-							}).join(', ');
-
-						sql.push('UPDATE', this.tableSelected);
-						sql.push('SET', set_values);
-					} else if ('delete') {
-						sql.push('DELETE FROM', this.tableSelected);
-					}
-
-					if ([ 'select', 'update', 'delete' ].indexOf(action) > -1) {
-						var where = where_statment();
-
-						if (where != '')
-							sql.push('WHERE', where);
-					}
-
-					if ([ 'select' ].indexOf(action) > -1) {
-						var order = order_statment();
-
-						if (order != '')
-							sql.push('ORDER BY', order);
-					}
-
-					if (sql.length > 0)
-						return sql.join(' ').trim() + ';';
-
+				if (action == '')
 					return '';
-				} catch (e) {
-					return '';
+
+				if (action === 'select') {
+					var selected_columns = this.schema[this.tableSelected].filter(function (column) {
+							return column.selected;
+						}).map(function (column) {
+							return column.name;
+						}).join(', ');
+
+					sql.push('SELECT', selected_columns);
+					sql.push('FROM', this.tableSelected);
+				} else if (action == 'insert') {
+					var used_columns = this.schema[this.tableSelected].filter(function (column) {
+							if (!('value' in column))
+								return false;
+
+							return column.value.trim() != '';
+						}),
+						columns = used_columns.map(function (column) { return column.name; }).join(', '),
+						values = used_columns.map(function (column) { return _prepare_value(column.value); }).join(', ');
+
+					sql.push('INSERT INTO', this.tableSelected, '(' + columns + ')');
+					sql.push('VALUES', '(' + values + ')');
+				} else if (action == 'update') {
+					var set_values = this.schema[this.tableSelected].filter(function (column) {
+							if (!('value' in column))
+								return false;
+
+							return column.value.trim() != '';
+						}).map(function (column) {
+							return column.name + ' = ' + _prepare_value(column.value);
+						}).join(', ');
+
+					sql.push('UPDATE', this.tableSelected);
+					sql.push('SET', set_values);
+				} else if ('delete') {
+					sql.push('DELETE FROM', this.tableSelected);
 				}
+
+				if ([ 'select', 'update', 'delete' ].indexOf(action) > -1) {
+					var where = where_statment();
+
+					if (where != '')
+						sql.push('WHERE', where);
+				}
+
+				if ([ 'select' ].indexOf(action) > -1) {
+					var order = order_statment();
+
+					if (order != '')
+						sql.push('ORDER BY', order);
+				}
+
+				if (sql.length > 0)
+					return sql.join(' ').trim() + ';';
+
+				return '';
 			},
 			parseSql: function () {
 				parse_sql(this.sql);
@@ -190,9 +171,7 @@ function _non_empty_keys (value) {
 }
 
 function _prepare_value (value) {
-	value = value.trim();
-
-	if (isNaN(parseFloat(value)))
+	if (isNaN(value))
 		value = '\'' + value + '\'';
 
 	return value;
@@ -202,34 +181,14 @@ function parse_sql (stmt) {
 	var parts = simpleSqlParser.sql2ast(stmt);
 
 	if ('SELECT' in parts) {
-		parse_sql_select(parts);
+		data.actionSelected = 'select';
 	} else if ('INSERT INTO' in parts) {
-		parse_sql_insert(parts);
+		data.actionSelected = 'insert';
 	} else if ('DELETE FROM' in parts) {
-		parse_sql_delete(parts);
+		data.actionSelected = 'update';
 	} else if ('UPDATE' in parts) {
-		parse_sql_update(parts);
+		data.actionSelected = 'delete';
 	}
-
-	if ('WHERE' in parts) {
-		data.whereFilters = _.map(parts.WHERE.terms || [parts.WHERE], function (v) {
-			var val = v.right;
-				val = (val[0] == "'") ? val.substring(1) : val;
-				val = (val[val.length - 1] == "'") ? val.substring(0, val.length - 1) : val;
-
-			return { column: v.left, comparator: v.operator, value: val };
-		});
-	}
-
-	if ('ORDER BY' in parts) {
-		data.orderBy = _.map(parts['ORDER BY'], function (v) {
-			return { column: v.column, direction: v.order };
-		});
-	}
-}
-
-function parse_sql_select (parts) {
-	data.actionSelected = 'select';
 
 	if ('FROM' in parts) {
 		data.tableSelected = parts.FROM[0].table;
@@ -241,10 +200,6 @@ function parse_sql_select (parts) {
 				v.selected = true;
 		});
 	}
-}
-
-function parse_sql_insert (parts) {
-	data.actionSelected = 'insert';
 
 	if ('INSERT INTO' in parts) {
 		data.tableSelected = parts['INSERT INTO'].table || '';
@@ -263,10 +218,6 @@ function parse_sql_insert (parts) {
 			});
 		}
 	}
-}
-
-function parse_sql_update (parts) {
-	data.actionSelected = 'update';
 
 	if ('UPDATE' in parts) {
 		data.tableSelected = parts.UPDATE[0].table;
@@ -285,13 +236,25 @@ function parse_sql_update (parts) {
 			}).value();
 		}
 	}
-}
-
-function parse_sql_delete (parts) {
-	data.actionSelected = 'delete';
 
 	if ('DELETE FROM' in parts) {
 		data.tableSelected = parts['DELETE FROM'][0].table || '';
+	}
+
+	if ('WHERE' in parts) {
+		data.whereFilters = _.map(parts.WHERE.terms || [parts.WHERE], function (v) {
+			var val = v.right;
+				val = (val[0] == "'") ? val.substring(1) : val;
+				val = (val[val.length - 1] == "'") ? val.substring(0, val.length - 1) : val;
+
+			return { column: v.left, comparator: v.operator, value: val };
+		});
+	}
+
+	if ('ORDER BY' in parts) {
+		data.orderBy = _.map(parts['ORDER BY'], function (v) {
+			return { column: v.column, direction: v.order };
+		});
 	}
 }
 
