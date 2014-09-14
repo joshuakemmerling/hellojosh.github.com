@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SQL Form</title>
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700|Open+Sans+Condensed:300,300italic,700">
+	<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="simpleblimp/style.css" rel="stylesheet">
+	<style>
+		body { font-family: 'open sans'; min-width: 960px; }
+		a { cursor: pointer; color: #3498db; }
+
+		.sb_nav { float: left; }
+		.sb_nav.sb_nav_right { float: right; }
+		.sb_nav > a, .sb_nav .dropdown > a { color: #fff; padding: 10px 0; float: left; margin-right: 20px; }
+		.sb_nav.sb_nav_right > a, .sb_nav.sb_nav_right .dropdown > a { margin-right: 0; margin-left: 20px; }
+		.sb_nav > a:hover, .sb_nav .dropdown > a:hover { text-decoration: none; color: rgba(255, 255, 255, 0.6); }
+
+		/*.nav > li > a { padding: 5px 12px; margin-top: 6px; cursor: pointer; }*/
+		.form-horizontal .control-label { text-align: left; }
+
+		.form-control, .form-control:focus { box-shadow: 0 0; }
+		.form-control:focus { border-color: #2980b9; }
+
+		.container-sb { max-width: 1280px; min-width: 960px; margin-left: auto; margin-right: auto; }
+
+		.sql-panel-tabs { margin: -10px -12px -10px -15px; border: 0; }
+		.sql-panel-tabs > li > a { padding: 5px 12px; margin-top: 6px; cursor: pointer; }
+
+		.sb-tabs { margin-bottom: 20px; }
+		.sb-tabs > li { margin: 0 30px 0 0; }
+		.sb-tabs > li > a, .sb-tabs > li.active > a { border: 0; margin: 0; background: none; padding-left: 0; padding-right: 0; color: #aaa; }
+		.sb-tabs > li.active > a, .sb-tabs > li.active > a:hover, .sb-tabs > li > a:hover { border: 0; border-bottom: solid 3px #3498db; background: none; color: #000; }
+
+		.popover { font-size: 11px; }
+
+		.input-group-addon.middle-addon { border-width: 1px 0; }
+
+		#header { background: #2980b9; color: #fff; font-size: 12px; line-height: 20px; }
+		#header #account_dropdown { border: 0; box-shadow: 0 0; margin: 0 -15px 0 0; border-radius: 0; background: #2980b9; font-size: 12px; padding-top: 0; }
+		#header #account_dropdown li.divider { background-color: rgba(255, 255, 255, 0.2); margin: 5px 0; }
+		#header #account_dropdown li a { color: #fff; padding: 3px 15px; }
+		#header #account_dropdown li a:hover { background: rgba(255, 255, 255, 0.2); }
+
+		#subnav { background: #0E2C40; margin-bottom: 20px; color: #fff; font-size: 12px; line-height: 20px; }
+		#subnav .sb_nav > a { color: rgba(255, 255, 255, 0.6); }
+		#subnav .sb_nav > a:hover { color: #fff; }
+		#subnav #blimps_dropdown { border: 0; box-shadow: 0 0; margin: 0 0 0 -15px; border-radius: 0; background: #0E2C40; font-size: 12px; padding-top: 0; }
+		#subnav #blimps_dropdown li.divider { background-color: rgba(255, 255, 255, 0.2); margin: 5px 0; }
+		#subnav #blimps_dropdown li a { color: #fff; padding: 3px 15px; }
+		#subnav #blimps_dropdown li a:hover { background: rgba(255, 255, 255, 0.2); }
+
+		#logo { text-transform: uppercase; line-height: 20px; font-size: 14px; }
+
+		#profile_dropdown_image { margin-top: -2px; margin-right: 3px; }
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
+	<script src="sqlform.js"></script>
+</head>
+<body>
+	<header id="header" class="clearfix">
+		<div class="container-sb">
+			<div class="col-xs-12">
+				<div class="sb_nav">
+					<a id="logo" class="sb-icon-">Simpleblimp</a>
+				</div>
+				<div class="sb_nav sb_nav_right">
+					<a href="">Documentation</a>
+					<a href="">New Blimp</a>
+					<div class="pull-left dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown">
+							<img src="http://www.gravatar.com/avatar/4ff773eb93037d8f1d97875121e225ac" width="20" height="20" class="img-circle" id="profile_dropdown_image">
+							<span class="caret"></span>
+						</a>
+						<ul id="account_dropdown" class="dropdown-menu dropdown-menu-right">
+							<li><a role="menuitem" href="#">Account</a></li>
+							<li><a role="menuitem" href="#">Payment Method</a></li>
+							<li class="divider"></li>
+							<li><a role="menuitem" href="#">Logout</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<section id="subnav" class="clearfix">
+		<div class="container-sb">
+			<div class="col-xs-12">
+				<div class="sb_nav dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown">
+						Scvngr
+						<span class="caret"></span>
+					</a>
+					<ul id="blimps_dropdown" class="dropdown-menu">
+						<li><a role="menuitem" href="#">Scvngr</a></li>
+						<li><a role="menuitem" href="#">Tasty Trailers</a></li>
+						<li><a role="menuitem" href="#">Demo</a></li>
+						<li class="divider"></li>
+						<li><a role="menuitem" href="#">New Blimp</a></li>
+					</ul>
+				</div>
+				<div class="sb_nav sb_nav_right">
+					<a href="">Dashboard</a>
+					<a href="">Tables</a>
+					<a href="">URLs</a>
+					<a href="">API Keys</a>
+					<a href="">Settings</a>
+					<!-- <a href="">SQL</a> -->
+					<a href="">Team</a>
+					<a href="">Log</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section id="content" class="clearfix">
+		<div class="container-sb">
+			<div class="col-xs-12">
+				<h4>Table Name</h4>
+				<ul class="nav nav-tabs sb-tabs">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="#">Profile</a></li>
+					<li><a href="#">Messages</a></li>
+				</ul>
+			</div>
+		</div>
+	</section>
+	<section id="content" class="clearfix">
+		<div class="container-sb">
+			<div id="form" class="col-xs-12"></div>
+		</div>
+	</section>
+
+	<script id="sql_form_template" type="text/template">
+		<div class="form-group row">
+			<div class="col-xs-6">
+				<label for="method">Method</label>
+				<select class="form-control input-sm" id="method" name="method"><option selected="selected" value="get">GET</option>
+					<option value="post">POST</option>
+					<option value="put">PUT</option>
+					<option value="delete">DELETE</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group row">
+			<div class="col-xs-6">
+				<label for="url">URL</label>
+				<input type="text" class="form-control input-sm" name="url" id="url" value="/scavenger/:number" required="">
+			</div>
+		</div>
+		<div>
+			<label>SQL Builder</label>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading clearfix">
+				<ul class="nav nav-tabs pull-right sql-panel-tabs">
+					<li class="<%= (activeTab == 0) ? 'active' : '' %>"><a data-tab="0">Simple</a></li>
+					<li class="<%= (activeTab == 1) ? 'active' : '' %>"><a data-tab="1">Advanced</a></li>
+				</ul>
+			</div>
+			<% if (activeTab == 0) { %>
+			<div class="panel-body" v-if="activeTab == 0">
+				<div class="form-horizontal">
+					<div class="form-group">
+						<label class="col-xs-2 control-label">Table</label>
+						<div class="col-xs-10">
+							<select id="sql_form_table" class="form-control input-sm">
+								<option value="">Select a Table</option>
+								<% _.forEach(schema, function (v, k) { %>
+									<option value="<%= k %>" <%= (k == tableSelected) ? 'selected' : '' %>><%= k %></option>
+								<% }); %>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-2 control-label">
+							Action
+							<i class="glyphicon glyphicon-question-sign text-muted" data-container="body" data-toggle="popover" data-placement="right" data-content="Action refers to the type of query that will be executed. More info can be found in the documentation." data-trigger="hover" data-html="true"></i>
+						</label>
+						<div class="col-xs-10">
+							<select id="sql_form_action" class="form-control input-sm" <%= (tableSelected == '') ? 'disabled' : '' %>>
+								<option value="">Select an Action</option>
+								<option <%= (actionSelected == 'select') ? 'selected' : '' %>>select</option>
+								<option <%= (actionSelected == 'insert') ? 'selected' : '' %>>insert</option>
+								<option <%= (actionSelected == 'update') ? 'selected' : '' %>>update</option>
+								<option <%= (actionSelected == 'delete') ? 'selected' : '' %>>delete</option>
+							</select>
+						</div>
+					</div>
+					<% if (tableSelected != '') { %>
+						<% if ([ 'select' ].indexOf(actionSelected) > -1) { %>
+						<div class="form-group">
+							<label class="col-xs-2 control-label">Columns</label>
+							<div id="sql_form_column" class="col-xs-10">
+								<% _.forEach(schema[tableSelected], function (v) { %>
+									<div class="checkbox">
+										<label><input type="checkbox" value="<%= v.name %>" <% (v.selected) ? 'checked' : ''; %> /> <%= v.name %></label>
+									</div>
+								<% }); %>
+							</div>
+						</div>
+						<% } %>
+						<% if ([ 'insert', 'update' ].indexOf(actionSelected) > -1) { %>
+						<div class="form-group">
+							<label class="col-xs-2 control-label">Values</label>
+							<div class="col-xs-10">
+								<div class="form-group" v-repeat="schema[tableSelected]">
+									<div class="col-xs-3">
+										<label class="control-label">{{ name }}</label>
+									</div>
+									<div class="col-xs-3">
+										<input class="form-control input-sm" type="{{ type | inputType }}" v-model="value" placeholder="value">
+									</div>
+								</div>
+							</div>
+						</div>
+						<% } %>
+						<% if ([ 'select', 'update', 'delete' ].indexOf(actionSelected) > -1) { %>
+						<div class="form-group">
+							<label class="col-xs-2 control-label">Filters</label>
+							<div class="col-xs-10">
+								<div class="form-group" v-repeat="filter: whereFilters">
+									<div class="col-xs-3">
+										<select class="form-control input-sm input-sm input-sm" v-model="filter.column">
+											<option value="">Select a Column</option>
+											<option v-repeat="schema[tableSelected]" v-attr="selected: name == filter.column">{{ name }}</option>
+										</select>
+									</div>
+									<div class="col-xs-3">
+										<select class="form-control input-sm input-sm" v-model="filter.comparator">
+											<option value="">Select a Comparator</option>
+											<option value="=">equal to</option>
+											<option value="<">less than</option>
+											<option value=">">greater than</option>
+											<option value="<>">not equal to</option>
+											<option value="LIKE">like</option>
+											<option value="IN">in</option>
+											<option value="NOT IN">not in</option>
+										</select>
+									</div>
+									<div class="col-xs-3">
+										<input class="form-control input-sm" type="text" v-model="filter.value" placeholder="value" />
+									</div>
+									<div class="col-xs-3" v-if="whereFilters.length > 1">
+										<a class="btn btn-danger btn-sm" v-on="click: whereFilters.$remove($index)"><i class="glyphicon glyphicon-remove"></i></a>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-12">
+										<a class="btn btn-success btn-xs" v-on="click: addWhereFilter"><i class="glyphicon glyphicon-plus"></i> Filter</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<% } %>
+						<% if ([ 'select' ].indexOf(actionSelected) > -1) { %>
+						<div class="form-group">
+							<label class="col-xs-2 control-label">Sort</label>
+							<div class="col-xs-10">
+								<div class="form-group" v-repeat="order: orderBy">
+									<div class="col-xs-3">
+										<select class="form-control input-sm" v-model="order.column">
+											<option value="">Select an Column</option>
+											<option v-repeat="schema[tableSelected]" v-attr="selected: name == order.column">{{ name }}</option>
+										</select>
+									</div>
+									<div class="col-xs-3">
+										<select class="form-control input-sm" v-model="order.direction">
+											<option value="">Select a Direction</option>
+											<option value="ASC">A &rarr; Z</option>
+											<option value="DESC">Z &rarr; A</option>
+										</select>
+									</div>
+									<div class="col-xs-3" v-if="orderBy.length > 1">
+										<a class="btn btn-danger btn-sm" v-on="click: orderBy.$remove($index)"><i class="glyphicon glyphicon-remove"></i></a>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-12">
+										<a class="btn btn-success btn-xs" v-on="click: addOrderBy"><i class="glyphicon glyphicon-plus"></i> Parameter</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<% } %>
+					<% } %>
+				</div>
+			</div>
+			<% } else if (activeTab == 1) { %>
+			<div class="panel-body">
+				<textarea class="form-control" cols="30" rows="10" v-model="rawSql"></textarea>
+			</div>
+			<% } %>
+		</div>
+		<div class="form-group">
+			<form action="" method="get">
+				<input type="submit" value="Save" id="save_url_button" class="btn btn-primary" name="submit">
+				<a href="#" id="delete_url_link" class="btn btn-danger pull-right" data-original-title="" title="">
+					<i class="glyphicon glyphicon-remove"></i> Delete URL
+				</a>
+				<input type="hidden" name="sql" v-model="sql">
+			</form>
+		</div>
+	</script>
+
+	<script>
+		[].slice.call(document.querySelectorAll('.sb-icon-')).forEach(function (v) {
+			v.innerHTML = (v.text.toLowerCase() == 'simpleblimp') ? '&#xe600;' : v.innerHTML;
+		});
+	</script>
+</body>
+</html>
