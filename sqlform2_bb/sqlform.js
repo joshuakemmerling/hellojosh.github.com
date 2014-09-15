@@ -6,8 +6,8 @@ var sql = '',
 	data = {
 		tableSelected: '',
 		actionSelected: '',
-		whereFilters: [{ column: '', comparator: '', value: '' }],
-		orderBy: [{ column: '', direction: '' }],
+		whereFilters: [],
+		orderBy: [],
 		schema: {
 			'users': [
 				{ name: 'id', type: 'integer' },
@@ -56,7 +56,12 @@ function init () {
 	data.activeTab = 0;
 	data.rawSql = sql;
 	data.buildSql = function () {
-		buildSql();
+		console.log('building sql...');
+
+		if (sql_form_modal.get('activeTab') == 1)
+			return sql_form_modal.get('rawSql');
+
+		return buildSql(sql_form_modal.attributes);
 	};
 
 	var AppModel = Backbone.Model.extend({
@@ -66,7 +71,7 @@ function init () {
 
 	var AppView = Backbone.View.extend({
 		el: $("#form"),
-		model: new AppModel(),
+		model: sql_form_modal,
 		template: _.template($('#sql_form_template').html()),
 		events: {
 			'click .sql-panel-tabs a': 'switchTabs',
@@ -79,11 +84,17 @@ function init () {
 			'change .order_by_group .order_by_attribute': 'setOrderByAttribute',
 			'click #add_order_by_link': 'addOrderBy',
 			'click .remove_order_by_link': 'removeOrderBy',
-			'change .column_value_attribute': 'setColumnValue',
-			'blur #raw_sql_textarea': 'setRawSql'
+			'keyup .column_value_attribute': 'setColumnValue',
+			'keyup #raw_sql_textarea': 'setRawSql'
 		},
 		initialize: function () {
-			this.listenTo(this.model, 'change', this.render);
+			this.listenTo(this.model, 'change:tableSelected', this.render);
+			this.listenTo(this.model, 'change:actionSelected', this.render);
+			this.listenTo(this.model, 'change:whereFilters', this.render);
+			this.listenTo(this.model, 'change:orderBy', this.render);
+			this.listenTo(this.model, 'change:activeTab', this.render);
+			this.listenTo(this.model, 'change', this.setOutputSql);
+
 			this.render();
 		},
 		render: function() {
@@ -92,6 +103,12 @@ function init () {
 			this.$el.html(this.template(this.model.attributes));
 
 			return this;
+		},
+		setOutputSql: function () {
+			var sql = this.model.get('buildSql')();
+
+			$('#rawSqlTest').val(sql);
+			$('#raw_sql_textarea').val(sql);
 		},
 		switchTabs: function (e) {
 			this.model.set({ activeTab: $(e.currentTarget).data('tab') });
@@ -103,10 +120,15 @@ function init () {
 			this.model.set({ actionSelected: $(e.currentTarget).val() });
 		},
 		checkColumn: function (e) {
-			_.forEach(this.model.get('schema')[this.model.get('tableSelected')], function (v) {
+			var s = this.model.get('schema');
+
+			_.forEach(s[this.model.get('tableSelected')], function (v) {
 				if (v.name == $(e.currentTarget).val())
 					v.selected = $(e.currentTarget).is(':checked');
 			});
+
+			this.model.set('schema', {});
+			this.model.set('schema', s);
 		},
 		addWhereFilter: function (e) {
 			var wf = this.model.get('whereFilters');
@@ -127,17 +149,6 @@ function init () {
 			this.model.set('whereFilters', {});
 			this.model.set('whereFilters', wf);
 		},
-		setWhereFilterColumn: function (e) {
-			var $this = $(e.currentTarget),
-				$p = $this.parent().parent(),
-				$pp = $this.parent().parent().parent().find('.form-group'),
-				index = $pp.index($p);
-
-			var wf = this.model.get('whereFilters');
-				wf[index].column = $this.val();
-
-			this.model.set('whereFilters', wf);
-		},
 		setWhereFilterAttribute: function (e) {
 			var $this = $(e.currentTarget),
 				$p = $this.parent().parent(),
@@ -147,6 +158,7 @@ function init () {
 			var wf = this.model.get('whereFilters');
 				wf[index][$this.data('attribute')] = $this.val();
 
+			this.model.set('whereFilters', {});
 			this.model.set('whereFilters', wf);
 		},
 		addOrderBy: function () {
@@ -177,15 +189,20 @@ function init () {
 			var wf = this.model.get('orderBy');
 				wf[index][$this.data('attribute')] = $this.val();
 
+			this.model.set('orderBy', {});
 			this.model.set('orderBy', wf);
 		},
 		setColumnValue: function (e) {
-			var $this = $(e.currentTarget);
+			var $this = $(e.currentTarget),
+				s = this.model.get('schema');
 
-			_.forEach(this.model.get('schema')[this.model.get('tableSelected')], function (v) {
-				if (v.name == $(e.currentTarget).data('attribute'))
+			_.forEach(s[this.model.get('tableSelected')], function (v) {
+				if (v.name == $this.data('attribute'))
 					v.value = $this.val();
 			});
+
+			this.model.set('schema', {});
+			this.model.set('schema', s);
 		},
 		setRawSql: function (e) {
 			this.model.set('rawSql', $(e.currentTarget).val());
@@ -300,47 +317,49 @@ function init () {
 }
 
 function buildSql (data) {
-	var sql = [],
-		action = this.actionSelected;
+	console.log(data);
 
-	if (action == '')
+	var sql = [],
+		action = data.actionSelected;
+
+	if (action == '' || data.schema.length == 0)
 		return '';
 
 	if (action === 'select') {
-		var selected_columns = this.schema[this.tableSelected].filter(function (column) {
+		var selected_columns = _.chain(data.schema[data.tableSelected]).filter(function (column) {
 				return column.selected;
 			}).map(function (column) {
 				return column.name;
-			}).join(', ');
+			}).value().join(', ');
 
 		sql.push('SELECT', selected_columns);
-		sql.push('FROM', this.tableSelected);
+		sql.push('FROM', data.tableSelected);
 	} else if (action == 'insert') {
-		var used_columns = this.schema[this.tableSelected].filter(function (column) {
+		var used_columns = _.chain(data.schema[data.tableSelected]).filter(function (column) {
 				if (!('value' in column))
 					return false;
 
 				return column.value.trim() != '';
-			}),
-			columns = used_columns.map(function (column) { return column.name; }).join(', '),
-			values = used_columns.map(function (column) { return _prepare_value(column.value); }).join(', ');
+			}).value(),
+			columns = _.map(used_columns, function (column) { return column.name; }).join(', '),
+			values = _.map(used_columns, function (column) { return _prepare_value(column.value); }).join(', ');
 
-		sql.push('INSERT INTO', this.tableSelected, '(' + columns + ')');
+		sql.push('INSERT INTO', data.tableSelected, '(' + columns + ')');
 		sql.push('VALUES', '(' + values + ')');
 	} else if (action == 'update') {
-		var set_values = this.schema[this.tableSelected].filter(function (column) {
+		var set_values = _.chain(data.schema[data.tableSelected]).filter(function (column) {
 				if (!('value' in column))
 					return false;
 
 				return column.value.trim() != '';
 			}).map(function (column) {
 				return column.name + ' = ' + _prepare_value(column.value);
-			}).join(', ');
+			}).value().join(', ');
 
-		sql.push('UPDATE', this.tableSelected);
+		sql.push('UPDATE', data.tableSelected);
 		sql.push('SET', set_values);
 	} else if ('delete') {
-		sql.push('DELETE FROM', this.tableSelected);
+		sql.push('DELETE FROM', data.tableSelected);
 	}
 
 	if ([ 'select', 'update', 'delete' ].indexOf(action) > -1) {
