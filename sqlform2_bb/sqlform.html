@@ -161,7 +161,7 @@
 				</ul>
 			</div>
 			<% if (activeTab == 0) { %>
-			<div class="panel-body" v-if="activeTab == 0">
+			<div class="panel-body">
 				<div class="form-horizontal">
 					<div class="form-group">
 						<label class="col-xs-2 control-label">Table</label>
@@ -196,7 +196,7 @@
 							<div id="sql_form_column" class="col-xs-10">
 								<% _.forEach(schema[tableSelected], function (v) { %>
 									<div class="checkbox">
-										<label><input type="checkbox" value="<%= v.name %>" <% (v.selected) ? 'checked' : ''; %> /> <%= v.name %></label>
+										<label><input type="checkbox" value="<%= v.name %>" <%= (v.selected) ? 'checked' : '' %> /> <%= v.name %></label>
 									</div>
 								<% }); %>
 							</div>
@@ -206,14 +206,16 @@
 						<div class="form-group">
 							<label class="col-xs-2 control-label">Values</label>
 							<div class="col-xs-10">
-								<div class="form-group" v-repeat="schema[tableSelected]">
-									<div class="col-xs-3">
-										<label class="control-label">{{ name }}</label>
+								<% _.forEach(schema[tableSelected], function (v) { %>
+									<div class="form-group">
+										<div class="col-xs-3">
+											<label class="control-label"><%= v.name %></label>
+										</div>
+										<div class="col-xs-3">
+											<input class="form-control input-sm column_value_attribute" type="text" placeholder="value" value="<%= v.value %>" data-attribute="<%= v.name %>">
+										</div>
 									</div>
-									<div class="col-xs-3">
-										<input class="form-control input-sm" type="{{ type | inputType }}" v-model="value" placeholder="value">
-									</div>
-								</div>
+								<% }); %>
 							</div>
 						</div>
 						<% } %>
@@ -221,35 +223,36 @@
 						<div class="form-group">
 							<label class="col-xs-2 control-label">Filters</label>
 							<div class="col-xs-10">
-								<div class="form-group" v-repeat="filter: whereFilters">
+								<% _.forEach(whereFilters, function (v) { %>
+								<div class="form-group where_filter_group">
 									<div class="col-xs-3">
-										<select class="form-control input-sm input-sm input-sm" v-model="filter.column">
+										<select class="form-control input-sm input-sm input-sm where_filter_attribute" data-attribute="column">
 											<option value="">Select a Column</option>
-											<option v-repeat="schema[tableSelected]" v-attr="selected: name == filter.column">{{ name }}</option>
+											<% _.forEach(schema[tableSelected], function (h) { %>
+												<option value="<%= h.name %>" <%= (v.column == h.name) ? 'selected' : '' %>><%= h.name %></option>
+											<% }); %>
 										</select>
 									</div>
 									<div class="col-xs-3">
-										<select class="form-control input-sm input-sm" v-model="filter.comparator">
-											<option value="">Select a Comparator</option>
-											<option value="=">equal to</option>
-											<option value="<">less than</option>
-											<option value=">">greater than</option>
-											<option value="<>">not equal to</option>
-											<option value="LIKE">like</option>
-											<option value="IN">in</option>
-											<option value="NOT IN">not in</option>
+										<select class="form-control input-sm input-sm where_filter_attribute" data-attribute="comparator">
+											<% _.forEach(comparatorOptions, function (h) { %>
+												<option value="<%= h.value %>" <%= (v.comparator == h.value) ? 'selected' : '' %>><%= h.name %></option>
+											<% }); %>
 										</select>
 									</div>
 									<div class="col-xs-3">
-										<input class="form-control input-sm" type="text" v-model="filter.value" placeholder="value" />
+										<input class="form-control input-sm where_filter_attribute" type="text" placeholder="value" value="<%= v.value %>" data-attribute="value" />
 									</div>
-									<div class="col-xs-3" v-if="whereFilters.length > 1">
-										<a class="btn btn-danger btn-sm" v-on="click: whereFilters.$remove($index)"><i class="glyphicon glyphicon-remove"></i></a>
+									<% if (whereFilters.length > 1) { %>
+									<div class="col-xs-3">
+										<a class="btn btn-danger btn-sm remove_where_filter_link"><i class="glyphicon glyphicon-remove"></i></a>
 									</div>
+									<% } %>
 								</div>
+								<% }); %>
 								<div class="row">
 									<div class="col-xs-12">
-										<a class="btn btn-success btn-xs" v-on="click: addWhereFilter"><i class="glyphicon glyphicon-plus"></i> Filter</a>
+										<a id="add_where_filter_link" class="btn btn-success btn-xs"><i class="glyphicon glyphicon-plus"></i> Filter</a>
 									</div>
 								</div>
 							</div>
@@ -259,27 +262,31 @@
 						<div class="form-group">
 							<label class="col-xs-2 control-label">Sort</label>
 							<div class="col-xs-10">
-								<div class="form-group" v-repeat="order: orderBy">
+								<% _.forEach(orderBy, function (v) { %>
+								<div class="form-group order_by_group">
 									<div class="col-xs-3">
-										<select class="form-control input-sm" v-model="order.column">
+										<select class="form-control input-sm order_by_attribute" data-attribute="column">
 											<option value="">Select an Column</option>
-											<option v-repeat="schema[tableSelected]" v-attr="selected: name == order.column">{{ name }}</option>
+											<% _.forEach(schema[tableSelected], function (h) { %>
+												<option value="<%= h.name %>" <%= (v.column == h.name) ? 'selected' : '' %>><%= h.name %></option>
+											<% }); %>
 										</select>
 									</div>
 									<div class="col-xs-3">
-										<select class="form-control input-sm" v-model="order.direction">
-											<option value="">Select a Direction</option>
-											<option value="ASC">A &rarr; Z</option>
-											<option value="DESC">Z &rarr; A</option>
+										<select class="form-control input-sm order_by_attribute" data-attribute="direction">
+											<% _.forEach(sortOptions, function (h) { %>
+												<option value="<%= h.value %>" <%= (v.direction == h.value) ? 'selected' : '' %>><%= h.name %></option>
+											<% }); %>
 										</select>
 									</div>
 									<div class="col-xs-3" v-if="orderBy.length > 1">
-										<a class="btn btn-danger btn-sm" v-on="click: orderBy.$remove($index)"><i class="glyphicon glyphicon-remove"></i></a>
+										<a class="btn btn-danger btn-sm remove_order_by_link"><i class="glyphicon glyphicon-remove"></i></a>
 									</div>
 								</div>
+								<% }); %>
 								<div class="row">
 									<div class="col-xs-12">
-										<a class="btn btn-success btn-xs" v-on="click: addOrderBy"><i class="glyphicon glyphicon-plus"></i> Parameter</a>
+										<a id="add_order_by_link" class="btn btn-success btn-xs"><i class="glyphicon glyphicon-plus"></i> Parameter</a>
 									</div>
 								</div>
 							</div>
@@ -290,7 +297,7 @@
 			</div>
 			<% } else if (activeTab == 1) { %>
 			<div class="panel-body">
-				<textarea class="form-control" cols="30" rows="10" v-model="rawSql"></textarea>
+				<textarea id="raw_sql_textarea" class="form-control" rows="10"><%= rawSql %></textarea>
 			</div>
 			<% } %>
 		</div>
@@ -300,7 +307,14 @@
 				<a href="#" id="delete_url_link" class="btn btn-danger pull-right" data-original-title="" title="">
 					<i class="glyphicon glyphicon-remove"></i> Delete URL
 				</a>
-				<input type="hidden" name="sql" v-model="sql">
+				<input type="hidden" name="sql">
+				<div class="row">
+					<div class="col-xs-12">
+						<br />
+						<textarea class="form-control" rows="10"></textarea>
+						<br />
+					</div>
+				</div>
 			</form>
 		</div>
 	</script>

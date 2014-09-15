@@ -26,13 +26,27 @@ var sql = '',
 				{ name: 'sku', type: 'text' },
 				{ name: 'price', type: 'text' }
 			]
-		}
+		},
+		comparatorOptions: [
+			{ name: 'Select a Comparator', value: '' },
+			{ name: 'equal to', value: '=' },
+			{ name: 'not equal to', value: '<>' },
+			{ name: 'less than', value: '<' },
+			{ name: 'greater than', value: '>' },
+			{ name: 'like', value: 'LIKE' },
+			{ name: 'in', value: 'IN' },
+			{ name: 'not', value: 'NOT IN' }
+		],
+		sortOptions: [
+			{ name: 'Select Direction', value: '' },
+			{ name: 'A &rarr; Z', value: 'ASC' },
+			{ name: 'Z &rarr; A', value: 'DESC' }
+		]
 	};
 
 function init () {
 	$('[data-toggle="tooltip"]').tooltip();
 	$('[data-toggle="popover"]').popover();
-
 	$('body').on('mouseover', '[data-toggle="popover"][data-trigger="hover"]', function () {
 		$(this).popover('show');
 	});
@@ -41,6 +55,9 @@ function init () {
 
 	data.activeTab = 0;
 	data.rawSql = sql;
+	data.buildSql = function () {
+		buildSql();
+	};
 
 	var AppModel = Backbone.Model.extend({
 		defaults: data
@@ -49,42 +66,129 @@ function init () {
 
 	var AppView = Backbone.View.extend({
 		el: $("#form"),
-		model: sql_form_modal,
+		model: new AppModel(),
 		template: _.template($('#sql_form_template').html()),
 		events: {
 			'click .sql-panel-tabs a': 'switchTabs',
 			'change #sql_form_table': 'switchTable',
 			'change #sql_form_action': 'switchAction',
-			'change #sql_form_column input': 'checkColumn'
+			'change #sql_form_column input': 'checkColumn',
+			'click #add_where_filter_link': 'addWhereFilter',
+			'click .remove_where_filter_link': 'removeWhereFilter',
+			'change .where_filter_group .where_filter_attribute': 'setWhereFilterAttribute',
+			'change .order_by_group .order_by_attribute': 'setOrderByAttribute',
+			'click #add_order_by_link': 'addOrderBy',
+			'click .remove_order_by_link': 'removeOrderBy',
+			'change .column_value_attribute': 'setColumnValue',
+			'blur #raw_sql_textarea': 'setRawSql'
 		},
 		initialize: function () {
-			this.listenTo(sql_form_modal, 'change', this.render);
+			this.listenTo(this.model, 'change', this.render);
 			this.render();
 		},
 		render: function() {
+			console.log('rendering...');
+
 			this.$el.html(this.template(this.model.attributes));
-			
+
 			return this;
 		},
 		switchTabs: function (e) {
-			this.model.set({ activeTab: $(e.target).data('tab') });
+			this.model.set({ activeTab: $(e.currentTarget).data('tab') });
 		},
 		switchTable: function (e) {
-			this.model.set({ tableSelected: $(e.target).val() });
+			this.model.set({ tableSelected: $(e.currentTarget).val() });
 		},
 		switchAction: function (e) {
-			this.model.set({ actionSelected: $(e.target).val() });
+			this.model.set({ actionSelected: $(e.currentTarget).val() });
 		},
 		checkColumn: function (e) {
-			var name = $(e.target).val(),
-				schema = this.model.get('schema');
-
-			_.forEach(schema[this.model.get('tableSelected')], function (v) {
-				if (v.name == name)
-					v.selected = true;
+			_.forEach(this.model.get('schema')[this.model.get('tableSelected')], function (v) {
+				if (v.name == $(e.currentTarget).val())
+					v.selected = $(e.currentTarget).is(':checked');
 			});
+		},
+		addWhereFilter: function (e) {
+			var wf = this.model.get('whereFilters');
+				wf.push({ column: '', comparator: '', value: '' });
 
-			this.model.set('schema', schema);
+			this.model.set('whereFilters', {});
+			this.model.set('whereFilters', wf);
+		},
+		removeWhereFilter: function (e) {
+			var $this = $(e.currentTarget),
+				$p = $this.parent().parent(),
+				$pp = $this.parent().parent().parent().find('.form-group'),
+				index = $pp.index($p);
+
+			var wf = this.model.get('whereFilters');
+				wf.splice(index, 1);
+
+			this.model.set('whereFilters', {});
+			this.model.set('whereFilters', wf);
+		},
+		setWhereFilterColumn: function (e) {
+			var $this = $(e.currentTarget),
+				$p = $this.parent().parent(),
+				$pp = $this.parent().parent().parent().find('.form-group'),
+				index = $pp.index($p);
+
+			var wf = this.model.get('whereFilters');
+				wf[index].column = $this.val();
+
+			this.model.set('whereFilters', wf);
+		},
+		setWhereFilterAttribute: function (e) {
+			var $this = $(e.currentTarget),
+				$p = $this.parent().parent(),
+				$pp = $this.parent().parent().parent().find('.form-group'),
+				index = $pp.index($p);
+
+			var wf = this.model.get('whereFilters');
+				wf[index][$this.data('attribute')] = $this.val();
+
+			this.model.set('whereFilters', wf);
+		},
+		addOrderBy: function () {
+			var wf = this.model.get('orderBy');
+				wf.push({ column: '', direction: '' });
+
+			this.model.set('orderBy', {});
+			this.model.set('orderBy', wf);
+		},
+		removeOrderBy: function (e) {
+			var $this = $(e.currentTarget),
+				$p = $this.parent().parent(),
+				$pp = $this.parent().parent().parent().find('.form-group'),
+				index = $pp.index($p);
+
+			var wf = this.model.get('orderBy');
+				wf.splice(index, 1);
+
+			this.model.set('orderBy', {});
+			this.model.set('orderBy', wf);
+		},
+		setOrderByAttribute: function (e) {
+			var $this = $(e.currentTarget),
+				$p = $this.parent().parent(),
+				$pp = $this.parent().parent().parent().find('.form-group'),
+				index = $pp.index($p);
+
+			var wf = this.model.get('orderBy');
+				wf[index][$this.data('attribute')] = $this.val();
+
+			this.model.set('orderBy', wf);
+		},
+		setColumnValue: function (e) {
+			var $this = $(e.currentTarget);
+
+			_.forEach(this.model.get('schema')[this.model.get('tableSelected')], function (v) {
+				if (v.name == $(e.currentTarget).data('attribute'))
+					v.value = $this.val();
+			});
+		},
+		setRawSql: function (e) {
+			this.model.set('rawSql', $(e.currentTarget).val());
 		}
 	});
 
@@ -193,6 +297,70 @@ function init () {
 		}
 	});
 	*/
+}
+
+function buildSql (data) {
+	var sql = [],
+		action = this.actionSelected;
+
+	if (action == '')
+		return '';
+
+	if (action === 'select') {
+		var selected_columns = this.schema[this.tableSelected].filter(function (column) {
+				return column.selected;
+			}).map(function (column) {
+				return column.name;
+			}).join(', ');
+
+		sql.push('SELECT', selected_columns);
+		sql.push('FROM', this.tableSelected);
+	} else if (action == 'insert') {
+		var used_columns = this.schema[this.tableSelected].filter(function (column) {
+				if (!('value' in column))
+					return false;
+
+				return column.value.trim() != '';
+			}),
+			columns = used_columns.map(function (column) { return column.name; }).join(', '),
+			values = used_columns.map(function (column) { return _prepare_value(column.value); }).join(', ');
+
+		sql.push('INSERT INTO', this.tableSelected, '(' + columns + ')');
+		sql.push('VALUES', '(' + values + ')');
+	} else if (action == 'update') {
+		var set_values = this.schema[this.tableSelected].filter(function (column) {
+				if (!('value' in column))
+					return false;
+
+				return column.value.trim() != '';
+			}).map(function (column) {
+				return column.name + ' = ' + _prepare_value(column.value);
+			}).join(', ');
+
+		sql.push('UPDATE', this.tableSelected);
+		sql.push('SET', set_values);
+	} else if ('delete') {
+		sql.push('DELETE FROM', this.tableSelected);
+	}
+
+	if ([ 'select', 'update', 'delete' ].indexOf(action) > -1) {
+		var where = where_statment();
+
+		if (where != '')
+			sql.push('WHERE', where);
+	}
+
+	if ([ 'select' ].indexOf(action) > -1) {
+		var order = order_statment();
+
+		if (order != '')
+			sql.push('ORDER BY', order);
+	}
+
+	if (sql.length > 0)
+		return sql.join(' ').trim() + ';';
+
+	return '';
 }
 
 function where_statment () {
