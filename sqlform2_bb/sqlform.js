@@ -56,12 +56,17 @@ function init () {
 	data.activeTab = 0;
 	data.rawSql = sql;
 	data.buildSql = function () {
-		console.log('building sql...');
-
 		if (sql_form_modal.get('activeTab') == 1)
 			return sql_form_modal.get('rawSql');
 
 		return buildSql(sql_form_modal.attributes);
+	};
+	data.allColumnsSelected = function () {
+		var c = sql_form_modal.get('schema')[sql_form_modal.get('tableSelected')],
+			l = c.length,
+			sl = _.filter(c, 'selected').length;
+
+		return l == sl;
 	};
 
 	var AppModel = Backbone.Model.extend({
@@ -85,7 +90,9 @@ function init () {
 			'click #add_order_by_link': 'addOrderBy',
 			'click .remove_order_by_link': 'removeOrderBy',
 			'keyup .column_value_attribute': 'setColumnValue',
-			'keyup #raw_sql_textarea': 'setRawSql'
+			'keyup #raw_sql_textarea': 'setRawSql',
+			'click #select_all_columns_link': 'selectAllColumns',
+			'click #deselect_all_columns_link': 'deselectAllColumns'
 		},
 		initialize: function () {
 			this.listenTo(this.model, 'change:tableSelected', this.render);
@@ -206,6 +213,30 @@ function init () {
 		},
 		setRawSql: function (e) {
 			this.model.set('rawSql', $(e.currentTarget).val());
+		},
+		selectAllColumns: function () {
+			var s = this.model.get('schema');
+
+			_.forEach(s[this.model.get('tableSelected')], function (v) {
+				v.selected = true;
+			});
+
+			this.model.set('schema', {});
+			this.model.set('schema', s);
+
+			this.render();
+		},
+		deselectAllColumns: function () {
+			var s = this.model.get('schema');
+
+			_.forEach(s[this.model.get('tableSelected')], function (v) {
+				v.selected = false;
+			});
+
+			this.model.set('schema', {});
+			this.model.set('schema', s);
+
+			this.render();
 		}
 	});
 

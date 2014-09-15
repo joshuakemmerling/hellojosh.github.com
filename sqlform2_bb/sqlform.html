@@ -53,6 +53,8 @@
 		#logo { text-transform: uppercase; line-height: 20px; font-size: 14px; }
 
 		#profile_dropdown_image { margin-top: -2px; margin-right: 3px; }
+
+		#all_columns_links { padding-top: 15px; }
 	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -129,27 +131,31 @@
 	</section>
 	<section id="content" class="clearfix">
 		<div class="container-sb">
-			<div id="form" class="col-xs-12"></div>
+			<div class="col-xs-12">
+				<form action="" method="get">
+					<div class="form-group row">
+						<div class="col-xs-6">
+							<label for="method">Method</label>
+							<select class="form-control input-sm" id="method" name="method"><option selected="selected" value="get">GET</option>
+								<option value="post">POST</option>
+								<option value="put">PUT</option>
+								<option value="delete">DELETE</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-xs-6">
+							<label for="url">URL</label>
+							<input type="text" class="form-control input-sm" name="url" id="url" value="/scavenger/:number" required="">
+						</div>
+					</div>
+					<div id="form"></div>
+				</form>
+			</div>
 		</div>
 	</section>
 
 	<script id="sql_form_template" type="text/template">
-		<div class="form-group row">
-			<div class="col-xs-6">
-				<label for="method">Method</label>
-				<select class="form-control input-sm" id="method" name="method"><option selected="selected" value="get">GET</option>
-					<option value="post">POST</option>
-					<option value="put">PUT</option>
-					<option value="delete">DELETE</option>
-				</select>
-			</div>
-		</div>
-		<div class="form-group row">
-			<div class="col-xs-6">
-				<label for="url">URL</label>
-				<input type="text" class="form-control input-sm" name="url" id="url" value="/scavenger/:number" required="">
-			</div>
-		</div>
 		<div>
 			<label>SQL Builder</label>
 		</div>
@@ -191,104 +197,111 @@
 					</div>
 					<% if (tableSelected != '') { %>
 						<% if ([ 'select' ].indexOf(actionSelected) > -1) { %>
-						<div class="form-group">
-							<label class="col-xs-2 control-label">Columns</label>
-							<div id="sql_form_column" class="col-xs-10">
-								<% _.forEach(schema[tableSelected], function (v) { %>
-									<div class="checkbox">
-										<label><input type="checkbox" value="<%= v.name %>" <%= (v.selected) ? 'checked' : '' %> /> <%= v.name %></label>
+							<div class="form-group">
+								<label class="col-xs-2 control-label">Columns</label>
+								<div id="sql_form_column" class="col-xs-10">
+									<% _.forEach(schema[tableSelected], function (v) { %>
+										<div class="checkbox">
+											<label><input type="checkbox" value="<%= v.name %>" <%= (v.selected) ? 'checked' : '' %> /> <%= v.name %></label>
+										</div>
+									<% }); %>
+									<div id="all_columns_links">
+										<% if (allColumnsSelected()) { %>
+											<a id="deselect_all_columns_link">Deselect All Columns</a>
+										<% } else { %>
+											<a id="select_all_columns_link">Select All Columns</a>
+										<% } %>
 									</div>
-								<% }); %>
+								</div>
 							</div>
-						</div>
 						<% } %>
 						<% if ([ 'insert', 'update' ].indexOf(actionSelected) > -1) { %>
-						<div class="form-group">
-							<label class="col-xs-2 control-label">Values</label>
-							<div class="col-xs-10">
-								<% _.forEach(schema[tableSelected], function (v) { %>
-									<div class="form-group">
-										<div class="col-xs-3">
-											<label class="control-label"><%= v.name %></label>
+							<div class="form-group">
+								<label class="col-xs-2 control-label">Values</label>
+								<div class="col-xs-10">
+									<% _.forEach(schema[tableSelected], function (v) { %>
+										<div class="form-group">
+											<div class="col-xs-3">
+												<label class="control-label"><%= v.name %></label>
+											</div>
+											<div class="col-xs-3">
+												<input class="form-control input-sm column_value_attribute" type="text" placeholder="value" value="<%= v.value %>" data-attribute="<%= v.name %>">
+											</div>
 										</div>
-										<div class="col-xs-3">
-											<input class="form-control input-sm column_value_attribute" type="text" placeholder="value" value="<%= v.value %>" data-attribute="<%= v.name %>">
-										</div>
-									</div>
-								<% }); %>
+									<% }); %>
+								</div>
 							</div>
-						</div>
 						<% } %>
 						<% if ([ 'select', 'update', 'delete' ].indexOf(actionSelected) > -1) { %>
-						<div class="form-group">
-							<label class="col-xs-2 control-label">Filters</label>
-							<div class="col-xs-10">
-								<% _.forEach(whereFilters, function (v) { %>
-								<div class="form-group where_filter_group">
-									<div class="col-xs-3">
-										<select class="form-control input-sm input-sm input-sm where_filter_attribute" data-attribute="column">
-											<option value="">Select a Column</option>
-											<% _.forEach(schema[tableSelected], function (h) { %>
-												<option value="<%= h.name %>" <%= (v.column == h.name) ? 'selected' : '' %>><%= h.name %></option>
-											<% }); %>
-										</select>
+							<div class="form-group">
+								<label class="col-xs-2 control-label">Filters</label>
+								<div class="col-xs-10">
+									<% _.forEach(whereFilters, function (v) { %>
+									<div class="form-group where_filter_group">
+										<div class="col-xs-3">
+											<select class="form-control input-sm input-sm input-sm where_filter_attribute" data-attribute="column">
+												<option value="">Select a Column</option>
+												<% _.forEach(schema[tableSelected], function (h) { %>
+													<option value="<%= h.name %>" <%= (v.column == h.name) ? 'selected' : '' %>><%= h.name %></option>
+												<% }); %>
+											</select>
+										</div>
+										<div class="col-xs-3">
+											<select class="form-control input-sm input-sm where_filter_attribute" data-attribute="comparator">
+												<% _.forEach(comparatorOptions, function (h) { %>
+													<option value="<%= h.value %>" <%= (v.comparator == h.value) ? 'selected' : '' %>><%= h.name %></option>
+												<% }); %>
+											</select>
+										</div>
+										<div class="col-xs-3">
+											<input class="form-control input-sm where_filter_attribute" type="text" placeholder="value" value="<%= v.value %>" data-attribute="value" />
+										</div>
+										<div class="col-xs-3">
+											<a class="btn btn-danger btn-sm remove_where_filter_link"><i class="glyphicon glyphicon-remove"></i></a>
+										</div>
 									</div>
-									<div class="col-xs-3">
-										<select class="form-control input-sm input-sm where_filter_attribute" data-attribute="comparator">
-											<% _.forEach(comparatorOptions, function (h) { %>
-												<option value="<%= h.value %>" <%= (v.comparator == h.value) ? 'selected' : '' %>><%= h.name %></option>
-											<% }); %>
-										</select>
-									</div>
-									<div class="col-xs-3">
-										<input class="form-control input-sm where_filter_attribute" type="text" placeholder="value" value="<%= v.value %>" data-attribute="value" />
-									</div>
-									<div class="col-xs-3">
-										<a class="btn btn-danger btn-sm remove_where_filter_link"><i class="glyphicon glyphicon-remove"></i></a>
-									</div>
-								</div>
-								<% }); %>
-								<div class="row">
-									<div class="col-xs-12">
-										<a id="add_where_filter_link" class="btn btn-success btn-xs"><i class="glyphicon glyphicon-plus"></i> Filter</a>
+									<% }); %>
+									<div class="row">
+										<div class="col-xs-12">
+											<a id="add_where_filter_link" class="btn btn-success btn-xs"><i class="glyphicon glyphicon-plus"></i> Filter</a>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
 						<% } %>
 						<% if ([ 'select' ].indexOf(actionSelected) > -1) { %>
-						<div class="form-group">
-							<label class="col-xs-2 control-label">Sort</label>
-							<div class="col-xs-10">
-								<% _.forEach(orderBy, function (v) { %>
-								<div class="form-group order_by_group">
-									<div class="col-xs-3">
-										<select class="form-control input-sm order_by_attribute" data-attribute="column">
-											<option value="">Select an Column</option>
-											<% _.forEach(schema[tableSelected], function (h) { %>
-												<option value="<%= h.name %>" <%= (v.column == h.name) ? 'selected' : '' %>><%= h.name %></option>
-											<% }); %>
-										</select>
+							<div class="form-group">
+								<label class="col-xs-2 control-label">Sort</label>
+								<div class="col-xs-10">
+									<% _.forEach(orderBy, function (v) { %>
+									<div class="form-group order_by_group">
+										<div class="col-xs-3">
+											<select class="form-control input-sm order_by_attribute" data-attribute="column">
+												<option value="">Select an Column</option>
+												<% _.forEach(schema[tableSelected], function (h) { %>
+													<option value="<%= h.name %>" <%= (v.column == h.name) ? 'selected' : '' %>><%= h.name %></option>
+												<% }); %>
+											</select>
+										</div>
+										<div class="col-xs-3">
+											<select class="form-control input-sm order_by_attribute" data-attribute="direction">
+												<% _.forEach(sortOptions, function (h) { %>
+													<option value="<%= h.value %>" <%= (v.direction == h.value) ? 'selected' : '' %>><%= h.name %></option>
+												<% }); %>
+											</select>
+										</div>
+										<div class="col-xs-3" v-if="orderBy.length > 1">
+											<a class="btn btn-danger btn-sm remove_order_by_link"><i class="glyphicon glyphicon-remove"></i></a>
+										</div>
 									</div>
-									<div class="col-xs-3">
-										<select class="form-control input-sm order_by_attribute" data-attribute="direction">
-											<% _.forEach(sortOptions, function (h) { %>
-												<option value="<%= h.value %>" <%= (v.direction == h.value) ? 'selected' : '' %>><%= h.name %></option>
-											<% }); %>
-										</select>
-									</div>
-									<div class="col-xs-3" v-if="orderBy.length > 1">
-										<a class="btn btn-danger btn-sm remove_order_by_link"><i class="glyphicon glyphicon-remove"></i></a>
-									</div>
-								</div>
-								<% }); %>
-								<div class="row">
-									<div class="col-xs-12">
-										<a id="add_order_by_link" class="btn btn-success btn-xs"><i class="glyphicon glyphicon-plus"></i> Parameter</a>
+									<% }); %>
+									<div class="row">
+										<div class="col-xs-12">
+											<a id="add_order_by_link" class="btn btn-success btn-xs"><i class="glyphicon glyphicon-plus"></i> Parameter</a>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
 						<% } %>
 					<% } %>
 				</div>
@@ -300,20 +313,11 @@
 			<% } %>
 		</div>
 		<div class="form-group">
-			<form action="" method="get">
-				<input type="submit" value="Save" id="save_url_button" class="btn btn-primary" name="submit">
-				<a href="#" id="delete_url_link" class="btn btn-danger pull-right" data-original-title="" title="">
-					<i class="glyphicon glyphicon-remove"></i> Delete URL
-				</a>
-				<input type="hidden" name="sql" value="<%= buildSql() %>">
-				<!--<div class="row">
-					<div class="col-xs-12">
-						<br />
-						<textarea id="rawSqlTest" class="form-control" rows="10"><%= buildSql() %></textarea>
-						<br />
-					</div>
-				</div>-->
-			</form>
+			<input type="submit" value="Save" id="save_url_button" class="btn btn-primary">
+			<a href="#" id="delete_url_link" class="btn btn-danger pull-right" data-original-title="" title="">
+				<i class="glyphicon glyphicon-remove"></i> Delete URL
+			</a>
+			<input type="hidden" name="sql" value="<%= buildSql() %>">
 		</div>
 	</script>
 
