@@ -1,13 +1,13 @@
 /*html { font-size: 62.5%; }*/
-body { font: 300 14px/22px 'open sans' 'helvetica neue', helvetica, arial, sans-serif; color: #888; border-right: solid 20px #eee; border-left: solid 20px #eee; }
+body { font: 300 14px/22px 'open sans' 'helvetica neue', helvetica, arial, sans-serif; color: #888; }
 a { text-decoration: none; color: #08c; padding: 0 3px; margin: 0 -3px; }
 a:hover { background: #08c; color: #fff; }
 p { margin-bottom: 20px; }
 em { font-style: italic; }
 img { display: block; margin: 0 auto 20px; max-width: 100%; }
 h1, h2 { font-size: 32px; line-height: 52px; color: #000; margin-bottom: 20px; }
-h1 { font-weight: 700; position: fixed; top: 120px; left: 10%; color: #08c; margin-bottom: 0; padding-left: 15px; }
-h3 { color: #ddd; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px; }
+h1 { font-weight: 700; position: fixed; top: 120px; left: 10%; color: #08c; margin-bottom: 0; }
+h3 { color: #000; font-weight: 400; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px; }
 
 section, footer { max-width: 80%; margin: 0 auto; padding: 120px 0; border-bottom: solid 1px #eee; }
 footer { border: 0;font-size: 12px; padding: 30px 0; }
