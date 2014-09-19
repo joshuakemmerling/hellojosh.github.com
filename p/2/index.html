@@ -3,61 +3,41 @@
 <html>
 <head>
 	<title>hellojosh</title>
-	<link rel="stylesheet" type="text/css" href="../../css/reset.css">
+	<link href="../../css/reset.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700' rel='stylesheet'>
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="global.css">
 </head>
 <body>
-	<a id="hamburger">
-		<div class="bar"></div>
-		<div class="bar"></div>
-		<div class="bar"></div>
-	</a>
 	<div id="welcome">
 		<div class="container clearfix">
-			<div class="grid_12">
-				<h3>Hello</h3>
-				<p>My name is Joshua Kemmerling and I build mobile and web stuff. I am a Senior UI Developer at <a href="http://projekt202.com">Projekt202</a>, an interactive agency located in Austin, TX specializing in user centered design research, visual design and development.</p>
-				<h3>Past</h3>
-				<ul>
-					<li>Senior Developer, <a href="">Element Creative</a></li>
-					<li>Senior Developer, <a href="">Springbox</a></li>
-				</ul>
-				<h3>Interest</h3>
-				<ul>
-					<li>Basketball, Australian Rules Football, any sport</li>
-					<li>The internet (of course)</li>
-					<li>Playing guitar</li>
-					<li>Sunkist orange soda</li>
-					<li>Pizza</li>
-				</ul>
-				<h3>Elsewhere</h3>
-				<ul>
-					<li><a href="">LinkedIn</a></li>
-					<li><a href="">Github</a></li>
-				</ul>
+			<div id="profile_image">
+				<img src="../../img/profile.jpeg" alt="Profile image" />
+				<div id="frame"></div>
+			</div>
+			<div class="grid_8 prefix_2 suffix_2">
+				<p class="big"><strong>Joshua Kemmerling</strong> is a developer at <a href="http://projekt202.com">Projekt202</a>. He is currently working on something special.</p>
+				<p><a href="" class="fa fa-github"></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" class="fa fa-linkedin"></a></p>
 			</div>
 		</div>
 	</div>
 	<section class="project">
 		<div class="container clearfix">
 			<div class="grid_12">
-				<h3>LIVESTRONG Foundation</h3>
+				<h3>
+					LIVESTRONG Foundation
+					<i class="bullet">&bull;</i>
+					<i class="fa fa-desktop"><span>Web</span></i>
+					<i class="fa fa-tablet"><span>iPad</span></i>
+					<i class="fa fa-mobile"><span>iPhone</span></i>
+					<i class="bullet">&bull;</i>
+					iOS, HTML5
+				</h3>
 				<h4>English/Spanish Cancer Dictionary</h4>
 			</div>
 			<div class="grid_12">
-				<div class="row">
-					<div class="grid_9">
-						<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>
-					</div>
-					<div class="grid_3">
-						<ul>
-							<li>XHTML</li>
-							<li><a href="">Download Here</a></li>
-						</ul>
-					</div>
-				</div>
+				<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>
 			</div>
 			<div class="grid_6">
 				<img src="../../img/projects/myt1.png">
@@ -67,7 +47,7 @@
 			</div>
 		</div>
 	</section>
-	<section class="project fill">
+	<section class="project">
 		<div class="container clearfix">
 			<div class="grid_12">
 				<h3>LIVESTRONG Foundation</h3>
@@ -75,10 +55,10 @@
 			</div>
 			<div class="grid_12">
 				<div class="row">
-					<div class="grid_9">
+					<div class="grid_8">
 						<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>
 					</div>
-					<div class="grid_3">
+					<div class="grid_4">
 						<ul>
 							<li>XHTML</li>
 							<li><a href="">Download Here</a></li>
@@ -102,10 +82,10 @@
 			</div>
 			<div class="grid_12">
 				<div class="row">
-					<div class="grid_9">
+					<div class="grid_8">
 						<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>
 					</div>
-					<div class="grid_3">
+					<div class="grid_4">
 						<ul>
 							<li>XHTML</li>
 							<li><a href="">Download Here</a></li>
@@ -124,16 +104,32 @@
 			</div>
 		</div>
 	</section>
-	<footer id="footer">
+	<section class="project">
 		<div class="container clearfix">
 			<div class="grid_12">
-				<div class="clearfix">
-					<a href="">Github</a>
-					<a href="">LinkedIn</a>
+				<h3>LIVESTRONG Foundation</h3>
+				<h4>English/Spanish Cancer Dictionary</h4>
+			</div>
+			<div class="grid_12">
+				<div class="row">
+					<div class="grid_8">
+						<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>
+					</div>
+					<div class="grid_4">
+						<ul>
+							<li>XHTML</li>
+							<li><a href="">Download Here</a></li>
+						</ul>
+					</div>
 				</div>
-				<div>&copy; 2014 Joshua Kemmerling or whomever made it.</div>
+			</div>
+			<div class="grid_4">
+				<img src="../../img/projects/brew1.jpg">
+			</div>
+			<div class="grid_8">
+				<img src="../../img/projects/lsredesign4.jpg">
 			</div>
 		</div>
-	</footer>
+	</section>
 </body>
 </html>
