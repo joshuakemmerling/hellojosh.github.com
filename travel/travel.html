@@ -14,7 +14,7 @@
 		ul li { color: #aaa; }
 		ul li.visited { color: #111; }
 		em { display: block; font-style: italic; font-size: 12px; line-height: 14px; margin-bottom: 10px; }
-		
+
 		.col { width: 25%; padding: 0 20px; float: left; }
 		.count { float: right; margin-top: -45px; color: #aaa; }
 	</style>
@@ -23,65 +23,65 @@
 		jQuery.fn.sort = function () {
 			return this.pushStack([].sort.apply(this, arguments), []);
 		};
-		
+
 		$(init);
-		
+
 		function init () {
 			states();
 			parks();
 			world();
 		}
-		
+
 		function states () {
 			var li = '';
-			
-			$.get('/states.json', function (states) {
+
+			$.get('states.json', function (states) {
 				var count = states.states.length,
 					check_count = get_visited_count(states.states);
 
 				$.each(states.states, function (i, state) {
 					li += li_string(state.name, state.visited == '1');
 				});
-				
+
 				$('#states').append('<span class="count">' + check_count + '/' + count + '</span><ul>' + li + '</ul>');
-			});	
+			});
 		}
-		
+
 		function parks () {
 			var li = '';
-			
-			$.get('/parks.json', function (parks) {
+
+			$.get('parks.json', function (parks) {
 				var sorted = $(parks.parks).sort(sort_by_state),
 					count = parks.parks.length,
 					check_count = 0;
-				
+
 				$.each(sorted, function (i, park) {
 					li += li_string(park.name + '<em>' + park.location + '</em>', park.visited == '1');
-					
+
 					if (park.visited == '1')
 						check_count++;
 				});
-				
+
 				$('#parks').append('<span class="count">' + check_count + '/' + count + '</span><ul>' + li + '</ul>');
-			});	
+			});
 		}
-		
+
 		function world () {
 			var li = '';
-			
-			$.get('/countries.json', function (countries) {
+
+			$.get('countries.json', function (countries) {
 				var count = countries['countries'].length,
 					check_count = 0;
-				
+
 				$.each(countries['countries'], function (i, country) {
 					li += '<li' + ((country.visited == '1') ? ' class="visited"' : '') + '>' + country.city + '<em>' + country.country + '</em></li>';
-					
+
 					if (country.visited == '1')
 						check_count++;
 				});
-				
+
 				$('#world').append('<span class="count">' + check_count + '/' + count + '</span><ul>' + li + '</ul>');
-			});	
+			});
 		}
 
 		function li_string (html, visited) {
@@ -98,10 +98,10 @@
 
 			return filtered.length;
 		}
-		
+
 		function sort_by_state (a, b) {
 			return a.location > b.location ? 1 : -1;
-			
+
 			return 0;
 		}
 	</script>
@@ -129,7 +129,7 @@
 			</svg>
 			Travel Bucket List
 		</h1>
-		
+
 		<div id="states" class="col">
 			<h2>States</h2>
 		</div>
