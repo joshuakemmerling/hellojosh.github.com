@@ -5,9 +5,12 @@ a { -webkit-transition-property: all; -moz-transition-property: all; -o-transiti
 a:hover { color: #50b9a5; border-bottom: 1px solid rgba(61, 153, 135, 0); }
 strong { font-weight: 600; }
 em { font-style: italic; }
-img { display: block; max-width: 100%; margin-bottom: 32px; }
+img { display: block; max-width: 100%; margin: 0 auto 32px; }
+img.mobile { max-width: 50%; }
 p { font-size: 20px; line-height: 32px; margin-bottom: 32px; }
+p.meta { font-size: 14px; line-height: 24px; }
+h2 { text-transform: uppercase; font-weight: 600; border-bottom: solid 1px #eee; margin-bottom: 32px; margin-top: 96px; }
 
-article { max-width: 600px; margin: 0 auto; }
-article p:first-of-type { color: #1a1a1a; font-weight: 300; font-size: 32px; line-height: 48px; /*margin-bottom: 48px;*/ margin-top: 96px; }
-article p:last-of-type { margin-bottom: 96px; }
+article { max-width: 600px; margin: 0 auto; padding: 96px 0; }
+
+#intro { color: #1a1a1a; font-weight: 300; font-size: 32px; line-height: 48px; /*margin-bottom: 48px;*/ /*margin-top: 96px;*/ }
