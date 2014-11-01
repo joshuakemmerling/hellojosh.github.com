@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>hellojosh</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="css/reset.css">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,700,600,800,300|Open+Sans+Condensed:300,300italic,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/global.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="http://masonry.desandro.com/masonry.pkgd.min.js"></script>
+	<script>
+		$(init);
+		$(window).load(window_load);
+
+		function init () {
+			about();
+		}
+
+		function window_load () {
+			projects();
+		}
+
+		function projects () {
+			$('#projects').masonry({
+				columnWidth: 220,
+				itemSelector: '.col',
+				gutter: 20
+			});
+		}
+
+		function about () {
+			$('#about_section_link').on('click', function () {
+				var $this = $(this);
+
+				$this.toggleClass('open');
+
+				if ($this.hasClass('open')) {
+					$this.html('&times;');
+					$('#about_section > div').animate({ marginTop: '0px', marginBottom: '0px' }, 250);
+				} else {
+					$this.html('&plus;');
+					$('#about_section > div').animate({ marginTop: '-465px', marginBottom: '-190px' }, 250);
+				}
+
+				return false;
+			});
+		}
+	</script>
+</head>
+<body>
+	<header>
+		<h1><a href="">hellojosh</a></h1>
+		<em>builder of mobile and web stuff</em>
+	</header>
+
+	<hr>
+
+	<div id="about_section">
+		<div style="margin-top: -465px; margin-bottom: -190px;">
+			<img src="img/joshk.png">
+			<h3>Hello</h3>
+			<p class="always_show">My name is <strong>Joshua Kemmerling</strong> and I am a builder of mobile and web stuff.</p>
+			<p class="always_show">I am currently a senior UI developer at <a href="">Projekt202</a>, an interactive agency located in Austin, TX specializing in user centered design and development. I am the co-founder of <a href="">Tasty Trailers</a>, a new way to discover food trailers near you, on the go.</p>
+			<h3>The "I" List</h3>
+			<p>I am addicted to Sunkist orange soda and pizza. I like to play all sports. I am an Eagle Scout. I enjoy all things outdoors: climbing, camping, hiking, cycling. I have a cat named Moonpie.</p>
+			<h3>Elsewhere</h3>
+			<p><a href="">Github</a>, <a href="">LinkedIn</a></p>
+		</div>
+	</div>
+	<a href="" id="about_section_link">&plus;</a>
+
+	<hr>
+
+	<div id="projects_section">
+		<section id="projects" class="clearfix">
+			<div class="col wide2 height2">
+				<a href="" style="background-image: url(http://hellojosh.com/img/projects/lbs1.png);">
+					<img src="http://hellojosh.com/img/projects/lbs1.png">
+					<span></span>
+					<strong>Project Title</strong>
+					<em>iPad</em>
+				</a>
+			</div>
+			<div class="col wide2">
+				<a href="" style="background-image: url(http://hellojosh.com/img/projects/myt1.png);">
+					<img src="http://hellojosh.com/img/projects/myt1.png">
+					<span></span>
+					<strong>Project Title</strong>
+					<em>C#, jQuery, HTML5, CSS3</em>
+				</a>
+			</div>
+			<div class="col">
+				<a href="" style="background-image: url(http://hellojosh.com/img/projects/qr1.jpg);">
+					<img src="http://hellojosh.com/img/projects/qr1.jpg">
+					<span></span>
+					<strong>Project Title</strong>
+					<em>PHP, HTML5, CSS3, jQuery</em>
+				</a>
+			</div>
+			<div class="col wide3">
+				<a href="" style="background-image: url(http://hellojosh.com/img/projects/elem1.png);">
+					<img src="http://hellojosh.com/img/projects/elem1.png">
+					<span></span>
+					<strong>Project Title</strong>
+					<em>PHP, HTML5, CSS3, jQuery</em>
+				</a>
+			</div>
+			<div class="col height2">
+				<a href="" style="background-image: url(http://hellojosh.com/img/projects/elem3.png);">
+					<img src="http://hellojosh.com/img/projects/elem3.png">
+					<span></span>
+					<strong>Project Title</strong>
+					<em>HTML5, CSS3, Mobile Web</em>
+				</a>
+			</div>
+			<div class="col height2">
+				<a href="" style="background-image: url(http://hellojosh.com/img/projects/tt1.png);">
+					<img src="http://hellojosh.com/img/projects/tt1.png">
+					<span></span>
+					<strong>Project Title</strong>
+					<em>PHP, HTML5, CSS3, jQuery</em>
+				</a>
+			</div>
+			<div class="col wide2">
+				<a href="" style="background-image: url(http://hellojosh.com/img/projects/route66/3.png);">
+					<img src="http://hellojosh.com/img/projects/route66/3.png">
+					<span></span>
+					<strong>Project Title</strong>
+					<em>PHP, HTML5, CSS3, jQuery</em>
+				</a>
+			</div>
+			<div class="col">
+				<a href="" style="background-image: url(http://hellojosh.com/img/projects/lsiphoneapp2.jpg);">
+					<img src="http://hellojosh.com/img/projects/lsiphoneapp2.jpg">
+					<span></span>
+					<strong>Project Title</strong>
+					<em>PHP, HTML5, CSS3, jQuery</em>
+				</a>
+			</div>
+			<div class="col">
+				<a href="" style="background-image: url(http://hellojosh.com/img/projects/lsredesign1.jpg);">
+					<img src="http://hellojosh.com/img/projects/lsredesign1.jpg">
+					<span></span>
+					<strong>Project Title</strong>
+					<em>PHP, HTML5, CSS3, jQuery</em>
+				</a>
+			</div>
+			<div class="col wide2">
+				<a href="" style="background-image: url(http://hellojosh.com/img/projects/ftf1.jpg);">
+					<img src="http://hellojosh.com/img/projects/ftf1.jpg">
+					<span></span>
+					<strong>Project Title</strong>
+					<em>PHP, HTML5, CSS3, jQuery</em>
+				</a>
+			</div>
+		</section>
+	</div>
+
+	<footer>
+		Joshua Kemmerling. <span>★</span> 30º 16' 29" N 97º 44' 25" W
+		<br>
+		<a href="#backtotop">back to top?</a>
+	</footer>
+</body>
+</html>

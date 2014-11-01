@@ -1,0 +1,30 @@
+html, body { height: 100%; }
+body { font: 14px/22px 'open sans' 'helvetica neue', helvetica, arial, sans-serif; background: #111; }
+header { color: #fff; background: #111; width: 33%; min-height: 100%; overflow: hidden; }
+header > div { padding: 20% 10%; }
+p { margin-bottom: 20px; }
+a { text-decoration: none; font-weight: bold; color: #cf482d; }
+a:hover { opacity: 0.5; }
+ul { overflow: hidden; }
+ul li { float: left; margin-right: 20px; }
+ul li a { display: block; }
+h1 { overflow: hidden; margin-bottom: 20px; line-height: 25px; text-transform: uppercase; font-weight: bold; }
+
+#mountain { width: 53px; height: 25px; position: relative; float: left; margin: 0 10px 0 0; }
+#mountain > div { position: absolute; top: 0; left: 0; }
+#mountain #one { width: 0; height: 0; border-left: 20px solid transparent; border-right: 20px solid transparent; border-bottom: 25px solid #fff; }
+#mountain #two { width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 7px solid #000; left: 15px; top: 2px; }
+#mountain #three { width: 0; height: 0; border-left: 3px solid transparent; border-right: 5px solid transparent; border-top: 5px solid #000; left: 15px; top: 9px; }
+#mountain #four { width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-top: 4px solid #000; left: 20px; top: 9px; }
+#mountain #five { width: 0; height: 0; border-left: 15px solid transparent; border-right: 15px solid transparent; border-bottom: 20px solid #fff; top: 5px; left: 23px; }
+#mountain #six { width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-bottom: 5px solid #000; top: 7px; left: 35px; }
+#mountain #seven { width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-top: 3px solid #000; top: 12px; left: 35px; }
+#mountain #eight { width: 0; height: 0; border-left: 20px solid transparent; border-right: 20px solid transparent; border-bottom: 25px solid #000; left: 2px; }
+
+@media screen and (max-width: 1024px) {
+	header { width: 50%; }
+}
+
+@media screen and (max-width: 768px) {
+	header { min-height: 0; margin: 20px; width: auto; /*background: rgba(17, 17, 17, 0.5);*/ }
+}
