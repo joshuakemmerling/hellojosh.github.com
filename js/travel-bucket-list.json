@@ -1,0 +1,11 @@
+{
+	"attractions": [
+		{ "name": "Great Wall of China", "city": "Beijing", "country": "China" },
+		{ "name": "Terracotta Army", "city": "Xi’an", "country": "China" },
+		{ "name": "Pyramids of Giza", "city": "Giza", "country": "Egypt" },
+		{ "name": "Acropolis", "city": "Athens", "country": "Greece" },
+		{ "name": "Terracotta Army", "city": "Xi’an", "country": "China" },
+		{ "name": "Terracotta Army", "city": "Xi’an", "country": "China" },
+		{ "name": "Terracotta Army", "city": "Xi’an", "country": "China" },
+	]
+}
