@@ -15,7 +15,7 @@
 	"cities": [
 		{ "city": "Santorini", "country": "Greece", "continent": "Europe" },
 		{ "city": "Gan", "country": "Maldives", "continent": "Asia" },
-		{ "city": "Victoria": "country": "Seychelles", "continent": "Africa" },
+		{ "city": "Victoria", "country": "Seychelles", "continent": "Africa" },
 		{ "city": "Suva", "country": "Fiji", "continent": "Oceania" },
 		{ "city": "Sydney", "country": "New South Wales", "continent": "Australia" }
 	],
