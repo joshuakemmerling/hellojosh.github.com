@@ -3,21 +3,25 @@
 		{ "name": "Great Wall of China", "city": "Beijing", "country": "China" },
 		{ "name": "Terracotta Army", "city": "Xi’an", "country": "China" },
 		{ "name": "Pyramids of Giza", "city": "Giza", "country": "Egypt" },
-		{ "name": "Acropolis", "city": "Athens", "country": "Greece" },
 		{ "name": "Angkor Wat", "city": "Siem Reap", "country": "Cambodia", "description": "Largest religious monument in the world, with site measuring 162.6 hectares." },
 		{ "name": "Machu Picchu", "city": "Machu Picchu", "country": "Peru" },
 		{ "name": "Bagan Ancient Temples", "city": "Bagan", "country": "Myanmar", "description": "Largest concentration of Buddhist temples in the world, many of which were built in the 1000s and 1100s." },
 		{ "name": "Acropolis", "city": "Athens", "country": "Greece", "description": "Dating from between the 5th and 4th century BC and dominating the site, the Parthenon is the largest and most recognizable structure from this period and symbolizes the extensive history of this country." },
 		{ "name": "Mesa Verde National Park", "city": "Mesa Verde", "state": "Colorado", "country": "USA", "description": "Mesa Verde is home to one of the most visually stunning archeological sites in the USA and some of the most well preserved Indian ruins in North America." },
 		{ "name": "Petra", "city": "Petra", "country": "Jordan", "description": "This ancient capital city of the Nabataeans has roots that trace back to as early as the 4th or 5th century BC." },
-		{ "name": "Chichen Itza", "city": "Yucatan", "country": "Mexico", "description": "Chichén Itzá is a world-famous complex of Mayan ruins on Mexico's Yucatán Peninsula." }
+		{ "name": "Chichen Itza", "city": "Yucatan", "country": "Mexico", "description": "Chichén Itzá is a world-famous complex of Mayan ruins on Mexico's Yucatán Peninsula." },
+		{ "name": "Auschwitz", "city": "Oświęcim", "country": "Poland" }
 	],
 	"cities": [
 		{ "city": "Santorini", "country": "Greece", "continent": "Europe" },
 		{ "city": "Gan", "country": "Maldives", "continent": "Asia" },
 		{ "city": "Victoria", "country": "Seychelles", "continent": "Africa" },
 		{ "city": "Suva", "country": "Fiji", "continent": "Oceania" },
-		{ "city": "Sydney", "country": "New South Wales", "continent": "Australia" }
+		{ "city": "Sydney", "country": "New South Wales", "continent": "Australia" },
+		{ "city": "New York City", "state": "New York", "country": "USA", "continent": "North America" },
+		{ "city": "Dublin", "country": "Ireland", "continent": "Europe" },
+		{ "city": "Warsaw", "country": "Poland", "continent": "Europe" },
+		{ "city": "Reykjavik", "country": "Iceland", "continent": "Europe" }
 	],
 	"article-sources": [
 		"http://www.planetware.com/world/top-world-heritage-sites-per-1-2.htm"
