@@ -30,8 +30,6 @@ textarea { overflow: auto; vertical-align: top; }
 
 *, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 
-.clearfix:before, .clearfix:after { content: '.'; display: block; overflow: hidden; visibility: hidden; font-size: 0; line-height: 0; width: 0; height: 0; }
-.clearfix:after { clear: both; }
-.clearfix { zoom: 1; }
+.clearfix:after { content: ""; display: block; clear: both; }
 
 .clear { clear: both; display: block; overflow: hidden; visibility: hidden; width: 0; height: 0; }
