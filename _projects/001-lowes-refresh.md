@@ -3,13 +3,13 @@ layout: project
 title: Lowe's Refresh
 color: 08c
 images:
-  - /images/lowes-refresh-001.png
-  - /images/lowes-refresh-002.png
-  - /images/lowes-refresh-007.png
-  - /images/lowes-refresh-003.png
-  - /images/lowes-refresh-004.png
-  - /images/lowes-refresh-005.png
-  - /images/lowes-refresh-006.png
+  - /img/lowes-refresh-001.png
+  - /img/lowes-refresh-002.png
+  - /img/lowes-refresh-007.png
+  - /img/lowes-refresh-003.png
+  - /img/lowes-refresh-004.png
+  - /img/lowes-refresh-005.png
+  - /img/lowes-refresh-006.png
 meta:
   tech: XHTML, CSS, Angular, Electron, Node, MySQL
   client: Lowe's
