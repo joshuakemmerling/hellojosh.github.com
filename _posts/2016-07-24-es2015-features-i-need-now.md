@@ -4,7 +4,7 @@ posted-on: projekt202.com
 external-url: https://projekt202.com/blog/2016/es2015-features-i-need-now/
 ---
 
-![ES2015](/images/es2015.png)
+![ES2015](/img/es2015.png)
 
 ES2015, also known as [ECMAScript](https://en.wikipedia.org/wiki/ECMAScript) 2015, was released in June 2015 with a bunch of new features that developers have been waiting a long time to get their hands on, but just because the new spec was released doesn’t mean we can start using these features now. The new spec will need to be added to all JavaScript engines before we can start using these amazing additions. Now, to be fair, we _could_ start using these features now, but we will need to use a JavaScript compiler like [Babel](https://babeljs.io/) to help us out, but I want to use the features without help from another framework. I’m not going to go through all of the new features. I am just going to showcase a few features and how they could help us improve what we do now.
 

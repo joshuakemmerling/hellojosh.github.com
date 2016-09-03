@@ -4,7 +4,7 @@ posted-on: projekt202.com
 external-url: https://projekt202.com/blog/2016/application-authentication-with-json-web-tokens/
 ---
 
-![](/images/application-authentication-with-json-web-tokens.png)
+![](/img/application-authentication-with-json-web-tokens.png)
 
 JSON web tokens are a great way to add simple security to your applications to satisfy most security needs. I previously wrote an article titled [*User Authentication with JSON Web Tokens*](https://projekt202.com/blog/2016/user-authentication-with-json-web-tokens) where I introduced JSON web tokens. If you aren't familiar with JSON web tokens, I would start by reading that article. It won't take that long. In that article, I describe how we at projekt202 use JSON web tokens to authenticate API requests after a user has logged in. Here, I want to talk about how we can use JSON web tokens to authenticate API requests of other applications that have previously received permissions. And, for anyone that is familiar with [OAuth 2.0](http://oauth.net/2/), this is sort of a simple version of OAuth.
 
@@ -12,7 +12,7 @@ JSON web tokens are a great way to add simple security to your applications to s
 
 Our situation is going to be pretty simple. We have a central API server, api.example.com, that contains a database and a number of endpoints for serving data. We also have other web servers - stores.example.com and admin.example.com - that will need access to api.example.com to retrieve needed information. Here is a simple diagram of the setup:
 
-![Application Diagram](/images/application-diagram.png)
+![Application Diagram](/img/application-diagram.png)
 
 ## How Are We Going to Secure Them?
 

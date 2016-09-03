@@ -4,7 +4,7 @@ posted-on: projekt202.com
 external-url: https://projekt202.com/blog/2016/es-next-what-do-i-need-to-know/
 ---
 
-![The Future!](/images/back-to-the-future-hoverboard.gif)
+![The Future!](/img/back-to-the-future-hoverboard.gif)
 
 ## What is ES Next?
 
