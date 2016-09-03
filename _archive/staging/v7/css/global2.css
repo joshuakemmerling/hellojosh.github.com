@@ -1,7 +1,0 @@
-body { color: #777; }
-
-section { max-width: 600px; }
-section > div { clear: none; float: none; }
-section > div > h2, section > div > * { width: auto; float: none; }
-
-#welcome_page section { width: 480px; padding-bottom: 20px; }

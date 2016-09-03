@@ -1,1 +1,12 @@
-permalink: pretty
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post2"
+      permalink: /article/:slug
+collections:
+  projects:
+    output: true
+    permalink: /project/:path

@@ -1,0 +1,22 @@
+---
+layout: new
+---
+<div class="col-12">
+	<section class="row">
+		<div class="col-8">
+			<span class="section-title">{{ page.title }}</span>
+			{% for meta in page.meta %}
+			<p class="item">
+				<span class="project-meta">
+					<strong>{{ meta[0] | capitalize }}</strong>: {{ meta[1] }}
+				</span>
+			</p>
+			{% endfor %}
+		</div>
+		{% for image in page.images %}
+			<div class="col-12">
+				<img src="{{ image }}">
+			</div>
+		{% endfor %}
+	</section>
+</div>

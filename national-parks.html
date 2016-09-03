@@ -1,0 +1,30 @@
+---
+layout: new
+permalink: /national-parks
+---
+<div class="col-8">
+	<section>
+		<span class="section-title black">National Parks</span>
+		<p>I have a goal of visiting all of the national parks in the U.S. Here is a ongoing list of the national parks I have visited. I have a long way to go.</p>
+		{% assign protocols_count = '' %}
+		{% for park in site.data.parks %}
+			{% if park.visited == 'yes' %}
+				{% assign protocols_count = protocols_count | append: 'x' %}
+			{% endif %}
+		{% endfor %}
+	</section>
+	<section>
+		<span class="section-title">Count: {{ protocols_count.size }}/{{ site.data.parks | size }}</span>
+		{% for park in site.data.parks %}
+			{% if park.visited == 'yes' %}
+			<p class="item visited">
+			{% else %}
+			<p class="item">
+			{% endif %}
+				<span class="black-text">{{ park.name }}</span>
+				<br>
+				<span>{{ park.location }}</span>
+			</p>
+		{% endfor %}
+	</section>
+</div>
