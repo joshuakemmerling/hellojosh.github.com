@@ -36,7 +36,7 @@ textarea { overflow: auto; vertical-align: top; }
 .clearfix { zoom: 1; }
 */
 
-.clearfix:after { content: ""; display: block; clear: both; }
+.clearfix:after { content: ''; display: block; clear: both; overflow: hidden; }
 
 .clear { clear: both; display: block; overflow: hidden; visibility: hidden; width: 0; height: 0; }
 
