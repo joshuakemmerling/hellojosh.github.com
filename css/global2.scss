@@ -17,7 +17,7 @@ section .item.visited { text-decoration: line-through; }
 
 .clearfix:after { content: ""; display: block; clear: both; }
 
-.container { padding: 0 20px; max-width: 960px; margin: 100px 0 100px 200px; }
+.container { padding: 0 20px; max-width: 960px; margin: 100px auto; }
 
 #logo { position: relative; margin-bottom: 100px; }
 #logo .icon { font-size: 20px; line-height: 24px; margin: 0 5px 0 -25px; float: left; }
@@ -45,3 +45,6 @@ article {
 	pre code { display: block; padding: 5px 10px; color: #000; overflow: auto; }
 }
 
+@media (max-width: 768px) {
+	.container { margin-top: 20px; margin-top: 20px; }
+}
