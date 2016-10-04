@@ -47,4 +47,5 @@ article {
 
 @media (max-width: 768px) {
 	.container { margin-top: 20px; margin-top: 20px; }
+	[class*="col-"] { width: 100%; }
 }
