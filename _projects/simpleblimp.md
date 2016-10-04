@@ -10,5 +10,5 @@ meta:
 type: desktop
 permalink: /project/simpleblimp
 year: 2015
-hide: true
+hide: false
 ---

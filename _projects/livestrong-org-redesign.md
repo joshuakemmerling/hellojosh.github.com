@@ -17,5 +17,6 @@ meta:
   year: 2010
   link: http://google.com
 type: desktop
-hide: true
+hide: false
+year: 2010
 ---

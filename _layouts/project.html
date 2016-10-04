@@ -5,13 +5,34 @@ layout: new
 	<section class="row">
 		<div class="col-8">
 			<span class="section-title">{{ page.title }}</span>
-			{% for meta in page.meta %}
+			{% if page.meta.tech %}
 			<p class="item">
 				<span class="project-meta">
-					<strong>{{ meta[0] | capitalize }}</strong>: {{ meta[1] }}
+					<strong>Tech</strong>: {{ page.meta.tech }}
 				</span>
 			</p>
-			{% endfor %}
+			{% endif %}
+			{% if page.meta.client %}
+			<p class="item">
+				<span class="project-meta">
+					<strong>Client</strong>: {{ page.meta.client }}
+				</span>
+			</p>
+			{% endif %}
+			{% if page.meta.agency %}
+			<p class="item">
+				<span class="project-meta">
+					<strong>Agency</strong>: {{ page.meta.agency }}
+				</span>
+			</p>
+			{% endif %}
+			{% if page.meta.year %}
+			<p class="item">
+				<span class="project-meta">
+					<strong>Year</strong>: {{ page.meta.year }}
+				</span>
+			</p>
+			{% endif %}
 		</div>
 		{% for image in page.images %}
 			<div class="col-12">

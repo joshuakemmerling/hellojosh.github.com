@@ -1,7 +1,6 @@
 ---
 layout: project
 title: Lowe's Refresh
-color: 08c
 images:
   - /img/projects/Lowes Refresh - Lowes/canvas/1.jpg
   - /img/projects/Lowes Refresh - Lowes/canvas/3.jpg
