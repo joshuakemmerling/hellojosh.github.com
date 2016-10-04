@@ -16,6 +16,6 @@ meta:
   year: 2012
   link: http://google.com
 type: mobile
-hide: false
+hide: true
 year: 2012
 ---

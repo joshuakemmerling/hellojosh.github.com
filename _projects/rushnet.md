@@ -13,6 +13,6 @@ meta:
   agency: projekt202
   year: 2015
 type: mobile
-hide: false
+hide: true
 year: 2015
 ---
