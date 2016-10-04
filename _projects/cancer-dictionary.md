@@ -17,4 +17,5 @@ meta:
   year: 2010
   link: http://google.com
 type: mobile
+hide: true
 ---

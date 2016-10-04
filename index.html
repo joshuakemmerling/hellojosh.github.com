@@ -9,9 +9,12 @@ layout: new
 		<p><a href="/who-am-i">More about me</a>.</p>
 	</section>
 
+	{% assign sorted_projects = site.projects | sort:"year" | reverse %}
+
 	<section>
 		<span class="section-title">Select Projects</span>
-		{% for project in site.projects reversed %}
+		{% for project in sorted_projects %}
+			{% if project.hide != true %}
 			<p class="item">
 				<a href="{{ project.url }}">{{ project.title }}</a>
 				<br>
@@ -19,6 +22,7 @@ layout: new
 				<br>
 				{{ project.meta.tech }}
 			</p>
+			{% endif %}
 		{% endfor %}
 	</section>
 

@@ -16,4 +16,6 @@ meta:
   agency: projekt202
   year: 2016
 type: desktop
+permalink: /project/lowes-refresh
+year: 2016
 ---

@@ -14,4 +14,5 @@ meta:
   agency: projekt202
   year: 2014
 type: desktop
+hide: true
 ---

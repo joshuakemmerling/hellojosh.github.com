@@ -14,4 +14,5 @@ meta:
   agency: projekt202
   year: 2015
 type: mobile
+hide: true
 ---
