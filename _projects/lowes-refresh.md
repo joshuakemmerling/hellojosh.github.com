@@ -9,12 +9,10 @@ images:
   - /img/projects/Lowes Refresh - Lowes/scheduler/4.jpg
   - /img/projects/Lowes Refresh - Lowes/stylist/4.jpg
   - /img/projects/Lowes Refresh - Lowes/stylist/6.jpg
-meta:
-  tech: XHTML, CSS, Angular, Electron, Node, MySQL
-  client: Lowe's
-  agency: projekt202
-  year: 2016
+tech: XHTML, CSS, Angular, Electron, Node, MySQL
+client: Lowe's
+agency: projekt202
+year: 2016
 type: desktop
 permalink: /project/lowes-refresh
-year: 2016
 ---

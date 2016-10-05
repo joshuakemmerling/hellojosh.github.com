@@ -5,31 +5,38 @@ layout: new
 	<section class="row">
 		<div class="col-8">
 			<span class="section-title">{{ page.title }}</span>
-			{% if page.meta.tech %}
+			{% if page.tech %}
 			<p class="item">
 				<span class="project-meta">
-					<strong>Tech</strong>: {{ page.meta.tech }}
+					<strong>Tech</strong>: {{ page.tech }}
 				</span>
 			</p>
 			{% endif %}
-			{% if page.meta.client %}
+			{% if page.client %}
 			<p class="item">
 				<span class="project-meta">
-					<strong>Client</strong>: {{ page.meta.client }}
+					<strong>Client</strong>: {{ page.client }}
 				</span>
 			</p>
 			{% endif %}
-			{% if page.meta.agency %}
+			{% if page.agency %}
 			<p class="item">
 				<span class="project-meta">
-					<strong>Agency</strong>: {{ page.meta.agency }}
+					<strong>Agency</strong>: {{ page.agency }}
 				</span>
 			</p>
 			{% endif %}
-			{% if page.meta.year %}
+			{% if page.year %}
 			<p class="item">
 				<span class="project-meta">
-					<strong>Year</strong>: {{ page.meta.year }}
+					<strong>Year</strong>: {{ page.year }}
+				</span>
+			</p>
+			{% endif %}
+			{% if page.link %}
+			<p class="item">
+				<span class="project-meta">
+					<strong>Link</strong>: <a href="{{ page.link }}" target="_blank">{{ page.link }}</a>
 				</span>
 			</p>
 			{% endif %}

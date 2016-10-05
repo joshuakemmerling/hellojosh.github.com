@@ -1,19 +1,16 @@
 ---
 layout: project
 title: Fox Trial Finder
-color: f68c01
 images:
-  - http://hellojosh.com/img/projects/Sweet%20Leaf%20Sweet%20Spot%20-%20Sweat%20Leaf%20Tea/1.jpg?raw=true
-  - http://hellojosh.com/img/projects/ftf1.jpg
-  - http://hellojosh.com/img/projects/ftf2.jpg
-  - http://hellojosh.com/img/projects/ftf7.jpg
-meta:
-  tech: XHTML, CSS, C#, jQuery, MSSQL
-  client: Michael J. Fox Foundation
-  agency: Springbox
-  year: 2010
-  link: http://google.com
-type: desktop
-hide: true
+  - /img/projects/Fox Trial Finder - Michael J Fox Foundation/1.jpg
+  - /img/projects/Fox Trial Finder - Michael J Fox Foundation/4.jpg
+  - /img/projects/Fox Trial Finder - Michael J Fox Foundation/5.jpg
+  - /img/projects/Fox Trial Finder - Michael J Fox Foundation/6.jpg
+  - /img/projects/Fox Trial Finder - Michael J Fox Foundation/7.jpg
+tech: XHTML, CSS, C#, jQuery, MSSQL
+client: Michael J. Fox Foundation
+agency: Springbox
 year: 2010
+link: https://foxtrialfinder.michaeljfox.org/
+type: desktop
 ---
