@@ -42,9 +42,15 @@ layout: new
 			{% endif %}
 		</div>
 		{% for image in page.images %}
-			<div class="col-12">
-				<img src="{{ image }}">
-			</div>
+			{% if image.type == 'mobile' %}
+				<div class="col-6">
+					<img src="{{ image.url }}">
+				</div>
+			{% else %}
+				<div class="col-12">
+					<img src="{{ image }}">
+				</div>
+			{% endif %}
 		{% endfor %}
 	</section>
 </div>

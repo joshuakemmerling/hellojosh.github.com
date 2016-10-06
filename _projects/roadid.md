@@ -2,8 +2,10 @@
 layout: project
 title: Road ID App
 images:
-  - /img/projects/RoadID iPhone App - RoadID/1.jpg
-  - /img/projects/RoadID iPhone App - RoadID/2.jpg
+  - url: /img/projects/RoadID iPhone App - RoadID/1.jpg
+    type: mobile
+  - url: /img/projects/RoadID iPhone App - RoadID/2.jpg
+    type: mobile
   - /img/projects/RoadID iPhone App - RoadID/10.jpg
 tech: XHTML, CSS, C#, jQuery, MSSQL, iOS
 client: Michael J. Fox Foundation
