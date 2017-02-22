@@ -3,10 +3,11 @@
 ---
 body { font: 16px/1.5 helvetica neue, helvetica, arial, sans-seriff; background: #000; color: #fff; }
 a { text-decoration: none; color: #ddffdd; }
-p { margin-bottom: 20px; }
+p { margin-bottom: 1.5em; }
 strong { font-weight: bold; }
 em { font-style: italic; }
 img { display: block; width: 100%; margin-bottom: 20px; }
+h4 { font-weight: 800; }
 
 section { margin-bottom: 160px; }
 section .section-title { margin-bottom: 40px; display: block; font-size: 40px; font-weight: 900; }
@@ -18,8 +19,9 @@ section .item.visited { text-decoration: line-through; }
 
 .container { padding: 0 20px; max-width: 960px; margin: 100px auto; }
 
+.big-text { font-size: 40px; font-weight: 900; }
+
 #logo { position: relative; margin-bottom: 160px; font-weight: 800; }
-#logo .icon { font-size: 20px; line-height: 24px; margin: 0 5px 0 -25px; float: left; display: none }
 
 article {
 	h2, h3, h4, h5, h6, img, ul, ol { margin-bottom: 20px; }
