@@ -33,6 +33,7 @@ img { display: block; max-width: 100%; }
 .text-center { text-align: center; }
 .project-image {
 	color: #6dc5dc;
+	color: #000;
 	border: solid 2px;
 	padding-top: 36px;
 	margin-bottom: 40px;
@@ -50,7 +51,8 @@ img { display: block; max-width: 100%; }
 		display: block;
 		font-size: 26px;
 		line-height: 0;
-		color: #b1e0ec;
+		// color: #b1e0ec;
+		opacity: 0.4;
 	}
 }
 
