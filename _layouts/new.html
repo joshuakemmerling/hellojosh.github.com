@@ -4,14 +4,32 @@
 	<title>Portfolio of Web Developer Joshua Kemmerling</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<link rel="stylesheet" href="/css/reset.css">
-	<link rel="stylesheet" href="/css/felix.css">
-	<link rel="stylesheet" href="/css/global2.css">
-	<link rel="stylesheet" href="/css/code-highlighting.css">
+	<link rel="stylesheet" href="/css/global.css">
 </head>
 <body class="clearfix">
-	<div class="container clearfix">
-		<div id="logo"><a href="/">I'm Joshua.</a> Web Developer. ATX.</div>
-		{{ content }}
+	<div id="top-wrap">
+		<div class="container">
+			<header id="header" class="col col-100">
+				<nav>
+					<a href=".welcome-section" id="logo"><i class="fa fa-bolt"></i></a>
+					<a href=".projects-section">Projects</a>
+					<a href=".about-section">About</a>
+					<a href=".writings-section">Writings &plus; Talks</a>
+				</nav>
+				<nav>
+					<a href="">
+						<i class="fa fa-github"></i>
+					</a>
+					<a href="">
+						<i class="fa fa-linkedin"></i>
+					</a>
+					<a href="">
+						<i class="fa fa-codepen"></i>
+					</a>
+				</nav>
+			</header>
+		</div>
 	</div>
+	{{ content }}
 </body>
 </html>
