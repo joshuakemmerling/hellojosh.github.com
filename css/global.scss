@@ -31,6 +31,28 @@ img { display: block; max-width: 100%; }
 .col-100 { width: 100%; }
 .content { padding-top: 40px; padding-bottom: 40px; }
 .text-center { text-align: center; }
+.project-image {
+	color: #6dc5dc;
+	border: solid 2px;
+	padding-top: 36px;
+	margin-bottom: 40px;
+	position: relative;
+	border-radius: 8px;
+	overflow: hidden;
+
+	img { border-top: solid 2px; }
+
+	&:before {
+		content: '\25CB  \25CB  \25CB';
+		position: absolute;
+		top: 16px;
+		left: 10px;
+		display: block;
+		font-size: 26px;
+		line-height: 0;
+		color: #b1e0ec;
+	}
+}
 
 #top-wrap { background: #ffc0cb; @extend .clearfix; }
 #header {
