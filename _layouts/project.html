@@ -31,7 +31,9 @@ layout: new
 		<div class="row">
 			<div class="col col-100 center">
 				{% for image in page.images %}
-					<img src="{{ image }}">
+					<div class="project-image">
+						<img src="{{ image }}">
+					</div>
 				{% endfor %}
 			</div>
 		</div>
