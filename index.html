@@ -1,73 +1,9 @@
 ---
 layout: new
 ---
-<!--<div class="col-8">-->
-	<section>
-		<span class="section-title">Me</span>
-		<p>Father. Husband. Brother. Son. Grandson. Web developer. Guitarists. Photographer. Runner. Basketball player. Sunkist orange soda addict. Pizza junkie.</p>
-		<p>I am trying to take over the world&hellip;one cheeseburger at a time.</p>
-		<p><a href="/who-am-i">More about me</a>.</p>
-	</section>
-
-	{% assign sorted_projects = site.projects | sort:"year" | reverse %}
-
-	<section>
-		<span class="section-title">Select Projects</span>
-		{% for project in sorted_projects %}
-			{% if project.hide != true %}
-			<p class="item">
-				<a href="{{ project.url }}">{{ project.title }}</a>
-				<br>
-				<em>{{ project.client }}</em>
-				<br>
-				{{ project.tech }}
-			</p>
-			{% endif %}
-		{% endfor %}
-	</section>
-
-	<section>
-		<span class="section-title">Articles</span>
-		{% for post in site.posts limit:5 %}
-			<p class="item">
-				<a href="{{ post.url }}">{{ post.title }}</a>, {{ post.date | date: "%D" }}
-				<!-- <br> {{ post.excerpt | strip_html }} -->
-			</p>
-		{% endfor %}
-		<p><a href="/archive">Archive</a></p>
-	</section>
-
-	<section>
-		<span class="section-title">Talks</span>
-		<p class="item">
-			<a href="http://frontporch.io/" target="_blank">Front Porch Conference</a>, 2016
-			<br>
-			<em>"Welcome to Web Components with Polymer"</em>
-			<br>
-			Austin, TX
-		</p>
-	</section>
-
-	<section>
-		<span class="section-title">Lists</span>
-		<p class="item">
-			<a href="/national-parks">U.S. National Parks</a>
-		</p>
-		<p class="item">
-			<a href="/50-states">50 States</a>
-		</p>
-	</section>
-
-	<section>
-		<span class="section-title">Social</span>
-		<p class="item">
-			<a href="https://github.com/hellojosh" target="_blank">Github</a>
-		</p>
-		<p class="item">
-			<a href="https://codepen.io/hellojosh/" target="_blank">Codepen</a>
-		</p>
-		<p class="item">
-			<a href="https://www.linkedin.com/in/joshuakemmerling" target="_blank">LinkedIn</a>
-		</p>
-	</section>
-<!--</div>-->
+<div class="container">
+	<div id="welcome" class="col col-100 welcome-section content">
+		<div id="major">Josh is a Front-end Architect at <a href="">projekt202</a> building full-stack solutions.</div>
+		<div id="minor">I previously built solutions at <a href="">Element Creative</a> and <a href="">Springbox</a>.</div>
+	</div>
+</div>
