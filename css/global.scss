@@ -3,6 +3,11 @@
 ---
 body { font: 300 16px/1.8 'open sans'; }
 a { text-decoration: none; color: #000; border-bottom: 1px solid #e7e7e7; padding-bottom: 2px; }
+p { margin-bottom: 1.5em; }
+strong { font-weight: 600; }
+h2 { font: bold 40px/1.5 'Playfair Display'; margin-bottom: 20px; text-align: center; }
+h4 { text-transform: uppercase; font-weight: 600; font-size: 12px; }
+img { display: block; max-width: 100%; }
 
 .clearfix {
 	&:before, &:after { display: table; content: ''; }
@@ -25,6 +30,7 @@ a { text-decoration: none; color: #000; border-bottom: 1px solid #e7e7e7; paddin
 .col-75 { width: 75%; }
 .col-100 { width: 100%; }
 .content { padding-top: 40px; padding-bottom: 40px; }
+.text-center { text-align: center; }
 
 #top-wrap { background: #ffc0cb; @extend .clearfix; }
 #header {
