@@ -1,0 +1,23 @@
+---
+layout: new
+title: Projects
+permalink: /projects
+---
+{% assign sorted_projects = site.projects | sort:"year" | reverse %}
+<div id="projects" class="col col-100 content">
+		<h2>Select Projects</h2>
+		<div class="row">
+			{% for project in sorted_projects %}
+				{% if project.hide != true %}
+				<div class="col col-33">
+					<a href="{{ project.url }}">
+						<span class="img"></span>
+						<span class="title">{{ project.title }}</span>
+						<span class="tech">{{ project.client }}</span>
+					</a>
+				</div>
+				{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+</div>
