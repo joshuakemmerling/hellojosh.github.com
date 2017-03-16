@@ -31,9 +31,16 @@ layout: new
 		<div class="row">
 			<div class="col col-100 center">
 				{% for image in page.images %}
-					<div class="project-image">
-						<img src="{{ image }}">
-					</div>
+					{% if image.type == 'mobile' %}
+						<div class="project-image">
+							<img src="{{ image.url }}">
+						</div>
+					{% else %}
+						<div class="project-image">
+							<img src="{{ image }}">
+						</div>
+					{% endif %}
+				
 				{% endfor %}
 			</div>
 		</div>
