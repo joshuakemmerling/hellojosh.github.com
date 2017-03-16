@@ -1,56 +1,39 @@
 ---
 layout: new
 ---
-<div class="col-12">
-	<section class="row">
-		<div class="col-8">
-			<span class="section-title">{{ page.title }}</span>
-			{% if page.tech %}
-			<p class="item">
-				<span class="project-meta">
-					<strong>Tech</strong>: {{ page.tech }}
-				</span>
-			</p>
-			{% endif %}
-			{% if page.client %}
-			<p class="item">
-				<span class="project-meta">
-					<strong>Client</strong>: {{ page.client }}
-				</span>
-			</p>
-			{% endif %}
-			{% if page.agency %}
-			<p class="item">
-				<span class="project-meta">
-					<strong>Agency</strong>: {{ page.agency }}
-				</span>
-			</p>
-			{% endif %}
-			{% if page.year %}
-			<p class="item">
-				<span class="project-meta">
-					<strong>Year</strong>: {{ page.year }}
-				</span>
-			</p>
-			{% endif %}
-			{% if page.link %}
-			<p class="item">
-				<span class="project-meta">
-					<strong>Link</strong>: <a href="{{ page.link }}" target="_blank">{{ page.link }}</a>
-				</span>
-			</p>
-			{% endif %}
+<div class="container">
+	<div id="project" class="col col-100 text-center content">
+		<div class="row">
+			<div class="col col-50 center">
+				<h2>{{ page.title }}</h2>
+				{% if page.tech %}
+				<h4>Tech</h4>
+				<p>{{ page.tech }}</p>
+				{% endif %}
+				{% if page.client %}
+				<h4>Client</h4>
+				<p>{{ page.client }}</p>
+				{% endif %}
+				{% if page.agency %}
+				<h4>Agency</h4>
+				<p>{{ page.agency }}</p>
+				{% endif %}
+				{% if page.year %}
+				<h4>Year</h4>
+				<p>{{ page.year }}</p>
+				{% endif %}
+				{% if page.link %}
+				<h4>Link</h4>
+				<p><a href="{{ page.link }}" target="_blank">{{ page.link }}</a></p>
+				{% endif %}
+			</div>
 		</div>
-		{% for image in page.images %}
-			{% if image.type == 'mobile' %}
-				<div class="col-6">
-					<img src="{{ image.url }}">
-				</div>
-			{% else %}
-				<div class="col-12">
+		<div class="row">
+			<div class="col col-100 center">
+				{% for image in page.images %}
 					<img src="{{ image }}">
-				</div>
-			{% endif %}
-		{% endfor %}
-	</section>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
 </div>
