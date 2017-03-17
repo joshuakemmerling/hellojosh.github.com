@@ -32,15 +32,15 @@ layout: new
 			{% for image in page.images %}
 				{% if image.type == 'mobile' %}
 					<div class="col col-33 center">
-					<div class="project-image">
-						<img src="{{ image.url }}">
-					</div>
+						<div class="browser-project-image">
+							<img src="{{ image.url }}">
+						</div>
 					</div>
 				{% else %}
 					<div class="col col-100 center">
-					<div class="project-image">
-						<img src="{{ image }}">
-					</div>
+						<div class="mobile-project-image">
+							<img src="{{ image }}">
+						</div>
 					</div>
 				{% endif %}
 			{% endfor %}
