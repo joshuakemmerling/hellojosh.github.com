@@ -64,7 +64,7 @@ img { display: block; max-width: 100%; }
 		position: absolute;
 		height: 0;
 		left: 50%;
-		box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.7) inset;
+		box-shadow: 0 0 0 2px #000 inset;
 		top: 4.8%;
 		width: 18%;
 		padding-top: 3.5%;
@@ -80,7 +80,7 @@ img { display: block; max-width: 100%; }
 			top: -10%;
 			left: -40%;
 			border-radius: 50%;
-			box-shadow: 0 0 0 2px #b1e0ec inset;
+			box-shadow: 0 0 0 2px #000 inset;
 		}
 	}
 	.screen {
@@ -99,7 +99,7 @@ img { display: block; max-width: 100%; }
 		left: 50%;
 		bottom: 0;
 		border-radius: 50%;
-		box-shadow: 0 0 0 2px #b1e0ec inset;
+		box-shadow: 0 0 0 2px #000 inset;
 		bottom: 2%;
 		width: 14%;
 		padding-top: 14%;
