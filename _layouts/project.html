@@ -35,7 +35,7 @@ layout: new
 						<div class="mobile-project-image">
 							<div class="top"></div>
 							<div class="screen">
-								<img src="{{ image }}">
+								<img src="{{ image.url }}">
 							</div>
 							<div class="home_button"></div>
 						</div>
@@ -43,7 +43,7 @@ layout: new
 				{% else %}
 					<div class="col col-100 center">
 						<div class="browser-project-image">
-							<img src="{{ image.url }}">
+							<img src="{{ image }}">
 						</div>
 					</div>
 				{% endif %}
