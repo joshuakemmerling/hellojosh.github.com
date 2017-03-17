@@ -29,19 +29,21 @@ layout: new
 			</div>
 		</div>
 		<div class="row">
-			<div class="col col-100 center">
-				{% for image in page.images %}
-					{% if image.type == 'mobile' %}
-						<div class="project-image">
-							<img src="{{ image.url }}">
-						</div>
-					{% else %}
-						<div class="project-image">
-							<img src="{{ image }}">
-						</div>
-					{% endif %}
-				{% endfor %}
-			</div>
+			{% for image in page.images %}
+				{% if image.type == 'mobile' %}
+					<div class="col col-33 center">
+					<div class="project-image">
+						<img src="{{ image.url }}">
+					</div>
+					</div>
+				{% else %}
+					<div class="col col-100 center">
+					<div class="project-image">
+						<img src="{{ image }}">
+					</div>
+					</div>
+				{% endif %}
+			{% endfor %}
 		</div>
 	</div>
 </div>
