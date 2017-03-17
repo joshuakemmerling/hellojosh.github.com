@@ -12,7 +12,11 @@ permalink: /projects
 				{% if project.hide != true %}
 				<div class="col col-33">
 					<a href="{{ project.url }}">
-						<span class="img" style="background-image: url({{ project.images[0] }});"></span>
+						{% if project.images[0].type == 'mobile' %}
+							<span class="img" style="background-image: url('{{ project.images[0].url }}');"></span>
+						{% else %}
+							<span class="img" style="background-image: url('{{ project.images[0] }}');"></span>
+						{% endif %}
 						<span class="title">{{ project.title }}</span>
 						<span class="tech">{{ project.client }}</span>
 					</a>
