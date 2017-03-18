@@ -135,3 +135,7 @@ img { display: block; max-width: 100%; }
 		&:first-child { border-top-width: 1px; }
 	}
 }
+
+@media (max-width: 768px) {
+	.col { width: 100%; }
+}
