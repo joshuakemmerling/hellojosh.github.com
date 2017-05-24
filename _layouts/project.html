@@ -1,37 +1,36 @@
 ---
-layout: new
+layout: base
 ---
-<div class="container">
-	<div id="project" class="col col-100 text-center content">
-		<div class="row">
-			<div class="col col-50 center">
-				<h2>{{ page.title }}</h2>
-				{% if page.tech %}
-				<h4>Tech</h4>
-				<p>{{ page.tech }}</p>
-				{% endif %}
-				{% if page.client %}
-				<h4>Client</h4>
-				<p>{{ page.client }}</p>
-				{% endif %}
-				{% if page.agency %}
-				<h4>Agency</h4>
-				<p>{{ page.agency }}</p>
-				{% endif %}
-				{% if page.year %}
-				<h4>Year</h4>
-				<p>{{ page.year }}</p>
-				{% endif %}
-				{% if page.link %}
-				<h4>Link</h4>
-				<p><a href="{{ page.link }}" target="_blank">{{ page.link }}</a></p>
-				{% endif %}
-			</div>
-		</div>
+<article class="container-wide clearfix">
+	<header class="col-12">
+		<p><a href="/" class="main-link">&larr; Home</a></p>
+		<h1>{{ page.title }}</h1>
+		{% if page.tech %}
+		<h3>Technology</h3>
+		<p>{{ page.tech }}</p>
+		{% endif %}
+		{% if page.client %}
+		<h3>Client</h3>
+		<p>{{ page.client }}</p>
+		{% endif %}
+		{% if page.agency %}
+		<h3>Agency</h3>
+		<p>{{ page.agency }}</p>
+		{% endif %}
+		{% if page.year %}
+		<h3>Year</h3>
+		<p>{{ page.year }}</p>
+		{% endif %}
+		{% if page.link %}
+		<h3>Link</h3>
+		<p><a href="{{ page.link }}" target="_blank">{{ page.link }}</a></p>
+		{% endif %}
+	</header>
+	<div class="col-8 push-2">
 		<div class="row">
 			{% for image in page.images %}
 				{% if image.type == 'mobile' %}
-					<div class="col col-33 center">
+					<div class="col-12">
 						<div class="mobile-project-image">
 							<div class="top"></div>
 							<div class="screen">
@@ -41,7 +40,7 @@ layout: new
 						</div>
 					</div>
 				{% else %}
-					<div class="col col-100 center">
+					<div class="col-12">
 						<div class="browser-project-image">
 							<img src="{{ image }}">
 						</div>
@@ -50,4 +49,4 @@ layout: new
 			{% endfor %}
 		</div>
 	</div>
-</div>
+</article>

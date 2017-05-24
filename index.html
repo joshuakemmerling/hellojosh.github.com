@@ -1,9 +1,49 @@
 ---
-layout: new
+layout: base
 ---
-<div class="container">
-	<div id="welcome" class="col col-100 content">
-		<div id="major">Josh is a Front-end Architect at <a href="http://projekt202.com" target="_blank">projekt202</a> building full-stack solutions.</div>
-		<div id="minor">I previously built solutions at <a href="http://elementcreative.com" target="_blank">Element Creative</a> and <a href="http://springbox.com" target="_blank">Springbox</a>.</div>
+<section class="container clearfix">
+	<div class="col-12">
+		<h1>Hello,<br />I'm Joshua Kemmerling.</h1>
+		<p>Father. Husband. Friend. Brother. Son. Web developer. Austinite. Pizza addict. Sunkist orange soda lover. Athlete. Photographer.</p>
+		<p><a href="/about" class="main-link">About Me &rarr;</a></p>
+		<h2>Select Projects</h2>
+		<p>Some of my favorite projects I have worked on.</p>
+		{% assign sorted_projects = site.projects | sort:"year" | reverse %}
+		{% for project in sorted_projects %}
+			{% if project.hide != true %}
+			<p>
+				<a href="{{ project.url }}">{{ project.title }}</a>
+				<br />
+				{{ project.client }} &bull; {{ project.tech }}
+			</p>
+			{% endif %}
+		{% endfor %}
+		<h2>Articles</h2>
+		<p>Sometimes I write development related articles. It's not often but it does happen.</p>
+		{% for post in site.posts limit:5 %}
+			<p>
+				<a href="{{ post.url }}">{{ post.title }}</a>
+				<br />
+				{{ post.date | date: "%B %d, %Y" }}
+			</p>
+		{% endfor %}
+		<p><a href="/archives" class="main-link">Archives &rarr;</a></p>
+		<h2>Talk</h2>
+		<p>Remember when I did that talk that one time? No? You're welcome.</p>
+		<p>
+			<a href="https://speakerdeck.com/hellojosh/welcome-to-web-components-with-polymer" target="_blank">Welcome to Web Components with Polymer</a>
+			<br />
+			<em>Front Porch: The Conference for Web Developers, Austin, TX</em>
+			<br />
+			August 17, 2016
+		</p>
+		<h2>Social</h2>
+		<p>No Twitter. No Facebook. No Instagram.</p>
+		<ul>
+			<li><a href="https://github.com/hellojosh" target="_blank">Github</a></li>
+			<li><a href="http://codepen.io/hellojosh" target="_blank">Codepen</a></li>
+			<li><a href="https://www.linkedin.com/in/joshuakemmerling/" target="_blank">LinkedIn</a></li>
+			<li><a href="https://www.codewars.com/users/hellojosh" target="_blank">Codewars</a></li>
+		</ul>
 	</div>
-</div>
+</section>

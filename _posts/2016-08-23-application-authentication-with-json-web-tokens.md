@@ -36,7 +36,7 @@ var certificate = fs.readFileSync(appId + '_private.pem');
 var token = jwt.sign({ appId: appId }, certificate, { algorithm: 'RS512', expiresIn: 300 });
 
 request.get({ url: 'https://api.example.com/users', headers: { 'x-token': token } }, function (users) {
-	console.log(users);
+  console.log(users);
 });
 ```
 
@@ -57,23 +57,23 @@ var express = require('express');
 var app = express();
 
 app.use(function (req, res, next) {
-	try {
-		var token = req.get('x-token');
-		var appId = jwt.decode(token).appId;
-		var certificate = fs.readFileSync(appId + '_public.pem');
+  try {
+    var token = req.get('x-token');
+    var appId = jwt.decode(token).appId;
+    var certificate = fs.readFileSync(appId + '_public.pem');
 
-		jwt.verify(req.get('x-token'), certificate, { algorithms: [ 'RS512' ] });
-	} catch (e) {
-		res.send(401);
+    jwt.verify(req.get('x-token'), certificate, { algorithms: [ 'RS512' ] });
+  } catch (e) {
+    res.send(401);
 
-		return false;
-	}
+    return false;
+  }
 
-	next();
+  next();
 });
 
 app.get('/users', function (req, res) {
-	res.send([]);
+  res.send([]);
 });
 
 app.listen(3000, function () { console.log('Example app listening on port 3000!'); });

@@ -4,7 +4,7 @@ defaults:
       path: ""
       type: "posts"
     values:
-      layout: "post2"
+      layout: "article"
       permalink: /article/:slug
 collections:
   projects:
