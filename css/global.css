@@ -214,7 +214,8 @@ h1 {
 
 h1 + p {
   border-bottom: solid 1px rgba(0, 0, 0, 0.1);
-  padding-bottom: 16px;
+  padding-bottom: 32px;
+  margin-bottom: 32px;
 }
 
 h2 {
