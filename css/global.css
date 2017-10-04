@@ -244,8 +244,9 @@ h2.no-top-border {
 h3 {
 /*   font-size: 14px; */
 /*   text-transform: uppercase; */
-  font-weight: 700;
+/*   font-weight: 700; */
   /*margin-top: 48px;*/
+  font-weight: 600;
 }
 
 pre {
