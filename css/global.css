@@ -228,6 +228,11 @@ h2 {
   border-top: solid 1px rgba(0, 0, 0, 0.1);
   padding-top: 32px;
   margin-top: 32px;
+  margin-bottom: 32px;
+}
+
+h2 + p {
+  margin-top: -32px;
 }
 
 h2.no-top-border {
