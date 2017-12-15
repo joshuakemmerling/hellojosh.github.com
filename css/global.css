@@ -345,6 +345,7 @@ article header p:first-child {
 
 .browser-project-image img {
   border-top: solid 2px;
+  border-bottom: solid 2px;
 }
 
 .browser-project-image:before {
