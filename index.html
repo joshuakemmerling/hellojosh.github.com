@@ -3,10 +3,11 @@ layout: base
 ---
 <section class="container clearfix">
 	<div class="col-12">
-		<h2 class="no-top-border">Hello, I'm Joshua Kemmerling.</h2>
+		<h2 class="no-top-border"><strong>Hello, I'm Joshua Kemmerling.</strong></h2>
 		<p>Father. Husband. Friend. Brother. Son. Web developer. Austinite. Pizza addict. Sunkist orange soda lover. Athlete. Photographer.</p>
 		<p><a href="/about" class="main-link">About Me &rarr;</a></p>
-		<h2>Select Projects</h2>
+		<hr>
+		<h2><strong>Select Projects</strong></h2>
 		<p>Some of my favorite projects I have worked on.</p>
 		{% assign sorted_projects = site.projects | sort:"year" | reverse %}
 		{% for project in sorted_projects %}
@@ -18,7 +19,8 @@ layout: base
 			</p>
 			{% endif %}
 		{% endfor %}
-		<h2>Articles</h2>
+		<hr>
+		<h2><strong>Articles</strong></h2>
 		<p>Sometimes I write development related articles. It's not often but it does happen.</p>
 		{% for post in site.posts limit:5 %}
 			<p>
@@ -28,7 +30,8 @@ layout: base
 			</p>
 		{% endfor %}
 		<p><a href="/archives" class="main-link">Archives &rarr;</a></p>
-		<h2>Talk</h2>
+		<hr>
+		<h2><strong>Talk</strong></h2>
 		<p>Remember when I did that talk that one time? No? You're welcome.</p>
 		<p>
 			<a href="https://speakerdeck.com/hellojosh/welcome-to-web-components-with-polymer" target="_blank">Welcome to Web Components with Polymer</a>
@@ -37,7 +40,8 @@ layout: base
 			<br />
 			August 17, 2016
 		</p>
-		<h2>Social</h2>
+		<hr>
+		<h2><strong>Social</strong></h2>
 		<p>No Twitter. No Facebook. No Instagram.</p>
 		<ul>
 			<li><a href="https://github.com/hellojosh" target="_blank">Github</a></li>

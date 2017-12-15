@@ -1,28 +1,28 @@
 ---
 layout: base
 ---
-<article class="container-wide clearfix">
-	<header class="col-12">
-		<p><a href="/" class="main-link">&larr; Home</a></p>
-		<h1>{{ page.title }}</h1>
+<section class="container-wide clearfix">
+	<header class="col-12 text-center">
+		<p class="text-left"><a href="/" class="main-link">&larr; Home</a></p>
+		<h1 class="mb-16"><strong>{{ page.title }}</strong></h1>
 		{% if page.tech %}
-		<h3>Technology</h3>
+		<h3><strong>Technology</strong></h3>
 		<p>{{ page.tech }}</p>
 		{% endif %}
 		{% if page.client %}
-		<h3>Client</h3>
+		<h3><strong>Client</strong></h3>
 		<p>{{ page.client }}</p>
 		{% endif %}
 		{% if page.agency %}
-		<h3>Agency</h3>
+		<h3><strong>Agency</strong></h3>
 		<p>{{ page.agency }}</p>
 		{% endif %}
 		{% if page.year %}
-		<h3>Year</h3>
+		<h3><strong>Year</strong></h3>
 		<p>{{ page.year }}</p>
 		{% endif %}
 		{% if page.link %}
-		<h3>Link</h3>
+		<h3><strong>Link</strong></h3>
 		<p><a href="{{ page.link }}" target="_blank">{{ page.link }}</a></p>
 		{% endif %}
 	</header>
@@ -49,4 +49,4 @@ layout: base
 			{% endfor %}
 		</div>
 	</div>
-</article>
+</section>
