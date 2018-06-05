@@ -1,1 +1,1 @@
-[hellojosh.com](http://hellojosh.com "Joshua Kemmerling's Portfolio")
+[hellojosh.com](https://hellojosh.com "Joshua Kemmerling's Portfolio")
