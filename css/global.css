@@ -3,22 +3,23 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 
 /* global */
 html { -webkit-font-smoothing: antialiased; text-size-adjust: none; height: 100%; }
-body { font-family: source sans pro, helvetica neue, helvetica, arial, sans-serif; line-height: 1.5; }
+body { font-family: source sans pro, helvetica neue, helvetica, arial, sans-serif; line-height: 1.5; font-size: 1.1rem; }
 a { text-decoration: none; color: #09c; }
 strong { font-weight: bold; }
-h1 { font-weight: normal; font-size: 2rem; margin-bottom: 1.5rem;  }
+h1 { font: 2rem 'Permanent Marker', cursive; margin-bottom: 1.5rem; }
 figure { height: 300px; background: url(https://secure.gravatar.com/avatar/4ff773eb93037d8f1d97875121e225ac?size=2000) no-repeat center; background-size: cover; }
 section { padding: 3rem; max-width: 576px; margin-left: auto; margin-right: auto; }
-footer { color: #999; }
+footer { color: #999; margin-top: 1.5rem; }
 nav { display: flex; align-items: center; }
 nav a { margin-right: 1rem; font-size: 1.2rem; color: #000; }
+p { margin-bottom: 1rem; }
 
 @media (min-width: 900px) {
 	body { height: 100%; display: flex; align-items: center; }
-	figure { flex: 0 0 33.3333333333%; height: 100%; }
-	section { flex: 0 0 66.6666666666%; padding: 5rem; box-sizing: border-box; margin: 0; max-width: none; }
+	figure { flex: 0 0 50%; height: 100%; }
+	section { flex: 0 0 50%; box-sizing: border-box; margin: 0; max-width: none; }
 }
 
 @media (min-width: 1200px) {
-	section { padding: 10rem; }
+	section { padding: 5rem; }
 }
