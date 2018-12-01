@@ -1,22 +1,26 @@
 * { box-sizing: border-box; }
 
-/* reset */
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}table{border-collapse:collapse;border-spacing:0}
-
-/* global */
-html { -webkit-font-smoothing: antialiased; text-size-adjust: none; height: 100%; }
-body { font-family: helvetica neue, helvetica, arial, sans-serif; line-height: 1.5; color: #fff; background: #03d2ac; display: flex; flex-wrap: wrap; height: 100%; }
-a { text-decoration: none; color: #fff; font-weight: bold; transition: opacity 0.5s ease; }
+html { -webkit-font-smoothing: antialiased; text-size-adjust: none; height: 100%; font-size: 14px; }
+body { font-family: open sans, helvetica neue, helvetica, arial, sans-serif; line-height: 1.5; min-height: 100%; }
+a { text-decoration: none; font-weight: bold; transition: opacity 0.5s ease; color: #03d2ac; }
 a:hover { opacity: 0.75; }
-h1 { margin-bottom: 1rem; font: 32px/1.5 'Black Han Sans', helvetica neue, helvetica, arial, sans-serif; }
-p { margin-bottom: 1rem; }
-figure { flex: 0 0 100%; height: 320px; background: url(https://secure.gravatar.com/avatar/4ff773eb93037d8f1d97875121e225ac?size=2000) no-repeat center/cover; }
-section { padding: 3rem; flex: 1 0; max-width: 560px; margin-left: auto; margin-right: auto; }
-nav { display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
-nav a { margin-right: 1rem; font-size: 1.2rem; font-weight: normal; }
-footer { color: rgba(255, 255, 255, 0.7); text-transform: uppercase; font-weight: bold; font-size: 0.7rem; text-align: center; margin-top: 3rem; }
+h1 { margin-top: 0; font-family: barlow condensed; text-transform: uppercase; line-height: 1; }
 
-@media (min-width: 900px) {
-	body { align-items: center; }
-	figure { flex: 0 0 50%; height: 100%; }
+.container { display: flex; min-height: 100vh; align-items: center; flex-wrap: wrap; }
+.column { flex: 0 0 50%; }
+.fa-lg a { font-weight: normal; margin-right: 10px; }
+
+#profile-image { background: url(https://secure.gravatar.com/avatar/4ff773eb93037d8f1d97875121e225ac?size=2000) no-repeat center/cover; height: 100vh; }
+#bio { padding: 100px; }
+
+@media (max-width: 992px) {
+	#bio { padding: 40px; }
+}
+
+@media (max-width: 768px) {
+	.container { min-height: auto; }
+	.column { flex: 0 0 100%; }
+
+	#profile-image { height: 320px; }
+	#bio { margin: 0 auto; max-width: 560px; }
 }
