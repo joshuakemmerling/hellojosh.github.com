@@ -4,23 +4,19 @@ html { -webkit-font-smoothing: antialiased; text-size-adjust: none; height: 100%
 body { font-family: open sans, helvetica neue, helvetica, arial, sans-serif; line-height: 1.5; min-height: 100%; }
 a { text-decoration: none; font-weight: bold; transition: opacity 0.5s ease; color: #03d2ac; }
 a:hover { opacity: 0.75; }
-h1 { margin-top: 0; font-family: barlow condensed; text-transform: uppercase; line-height: 1; }
+h1 { font-family: barlow condensed; text-transform: uppercase; line-height: 1; }
+h1, p { margin-top: 0; }
 
 .container { display: flex; min-height: 100vh; align-items: center; flex-wrap: wrap; }
 .column { flex: 0 0 50%; }
 .fa-lg a { font-weight: normal; margin-right: 10px; }
 
 #profile-image { background: url(https://secure.gravatar.com/avatar/4ff773eb93037d8f1d97875121e225ac?size=2000) no-repeat center/cover; height: 100vh; }
-#bio { padding: 100px; }
-
-@media (max-width: 992px) {
-	#bio { padding: 40px; }
-}
+#bio { max-width: 560px; padding: 40px; margin: 0 auto; }
 
 @media (max-width: 768px) {
 	.container { min-height: auto; }
 	.column { flex: 0 0 100%; }
 
 	#profile-image { height: 320px; }
-	#bio { margin: 0 auto; max-width: 560px; }
 }
