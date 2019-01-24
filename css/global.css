@@ -5,14 +5,13 @@ body {
 	max-width: 1200px;
 	margin: 0 auto;
 	padding: 2em;
+	font-size: 1.25em;
 }
 body, a { color: #d60000; }
 h1 { line-height: 1.2; }
 svg { fill: #d60000; }
 
-@media (min-width: 576px) {
-	body { font-size: 1.25em; }
-}
+@media (min-width: 576px) {}
 
 @media (min-width: 768px) {
 	body { font-size: 1.5em; }
