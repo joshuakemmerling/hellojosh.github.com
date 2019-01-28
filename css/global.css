@@ -1,17 +1,37 @@
-html { -webkit-font-smoothing: antialiased; text-size-adjust: none; }
-body {
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-	line-height: 1.5;
-	max-width: 1200px;
-	margin: 0 auto;
-	padding: 2em;
-	font-size: 1.25em;
+html {
+	-webkit-font-smoothing: antialiased;
+	text-size-adjust: none;
 }
-body, a { color: #d60000; }
-h1 { line-height: 1.2; }
-svg { fill: #d60000; }
+body {
+	padding: 2em;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	line-height: 1.2;
+	color: #333;
+}
+a {
+	color: inherit;
+	text-decoration: none;
+	position: relative;
+}
+a:after {
+	content: '';
+	display: inline-block;
+	height: 0.5em;
+	background: #fcd000;
+	width: 100%;
+	position: absolute;
+	z-index: -1;
+	left: 0;
+	bottom: 0;
+}
+svg {
+	width: 1.5em;
+	fill: #333;
+}
 
-@media (min-width: 576px) {}
+@media (min-width: 576px) {
+	body { font-size: 1.25em; }
+}
 
 @media (min-width: 768px) {
 	body { font-size: 1.5em; }
@@ -19,8 +39,10 @@ svg { fill: #d60000; }
 
 @media (min-width: 992px) {
 	body { font-size: 1.75em; }
+	svg { width: 1.75em; }
 }
 
 @media (min-width: 1200px) {
 	body { font-size: 2em; }
+	svg { width: 2em; }
 }
