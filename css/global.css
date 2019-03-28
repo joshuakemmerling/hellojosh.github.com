@@ -28,6 +28,9 @@ svg {
 	width: 1.5em;
 	fill: #333;
 }
+h1 {
+	margin-top: 0;
+}
 
 @media (min-width: 576px) {
 	body { font-size: 1.25em; }
