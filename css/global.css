@@ -19,6 +19,7 @@
 html, body {
 	height: 100%;
 }
+
 body {
 	font: 300 1.25rem/1.5 var(--font-stack);
 	background: var(--background);
@@ -30,22 +31,27 @@ body {
 	-webkit-font-smoothing: antialiased;
 	text-size-adjust: none;
 }
+
 #wrap {
 	box-sizing: border-box;
 	padding: 2rem;
 	max-width: 600px;
 }
+
 a {
 	text-decoration: none;
 	color: var(--link-color);
 }
+
 strong {
 	font-weight: 500;
 }
+
 ::selection {
 	color: var(--highlight-color);
 	background: var(--highlight-background);
 }
+
 #image {
 	width: 100px;
 	height: 100px;
