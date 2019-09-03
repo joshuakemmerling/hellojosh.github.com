@@ -1,51 +1,55 @@
-html {
+:root {
+	--background: #fff;
+	--main-color: #333;
+	--link-color: #aaa;
+	--highlight-color: #9168e7;
+	--highlight-background: #f1ecfc;
+	--font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--background: #222;
+		--main-color: #ddd;
+		--link-color: #888;
+		--highlight-background: #947fc7;
+	}
+}
+
+html, body {
+	height: 100%;
+}
+body {
+	font: 300 1.25rem/1.5 var(--font-stack);
+	background: var(--background);
+	color: var(--main-color);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0;
 	-webkit-font-smoothing: antialiased;
 	text-size-adjust: none;
 }
-body {
-	padding: 2em;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-	line-height: 1.2;
-	color: #333;
+#wrap {
+	box-sizing: border-box;
+	padding: 2rem;
+	max-width: 600px;
 }
 a {
-	color: inherit;
 	text-decoration: none;
-	position: relative;
+	color: var(--link-color);
 }
-a:after {
-	content: '';
-	display: inline-block;
-	height: 0.5em;
-	background: #fcd000;
-	width: 100%;
-	position: absolute;
-	z-index: -1;
-	left: 0;
-	bottom: 0;
+strong {
+	font-weight: 500;
 }
-svg {
-	width: 1.5em;
-	fill: #333;
+::selection {
+	color: var(--highlight-color);
+	background: var(--highlight-background);
 }
-h1 {
-	margin-top: 0;
-}
-
-@media (min-width: 576px) {
-	body { font-size: 1.25em; }
-}
-
-@media (min-width: 768px) {
-	body { font-size: 1.5em; }
-}
-
-@media (min-width: 992px) {
-	body { font-size: 1.75em; }
-	svg { width: 1.75em; }
-}
-
-@media (min-width: 1200px) {
-	body { font-size: 2em; }
-	svg { width: 2em; }
+#image {
+	width: 100px;
+	height: 100px;
+	background: url(https://secure.gravatar.com/avatar/4ff773eb93037d8f1d97875121e225ac?size=200) no-repeat center/cover;
+	border-radius: 50%;
+	margin-bottom: 1rem;
 }
