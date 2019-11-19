@@ -1,29 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<title>Web and Mobile Developer in Austin, TX | Joshua Kemmerling</title>
-	<meta charset="utf-8">
-	<meta name="description" content="Joshua Kemmerling is a web and mobile developer in Austin, TX.">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta property="og:title" content="Web and Mobile Developer in Austin, TX | Joshua Kemmerling">
-	<meta property="og:type" content="website">
-	<meta property="og:url" content="http://hellojosh.com/">
-	<meta property="og:image" content="https://secure.gravatar.com/avatar/4ff773eb93037d8f1d97875121e225ac?size=96">
-	<meta property="og:description" content="Joshua Kemmerling is a web and mobile developer in Austin, TX.">
-	<meta property="og:site_name" content="hellojosh">
-	<meta itemprop="name" content="Web and Mobile Developer in Austin, TX | Joshua Kemmerling">
-	<meta itemprop="description" content="Joshua Kemmerling is a web and mobile developer in Austin, TX.">
-	<meta itemprop="image" content="https://secure.gravatar.com/avatar/4ff773eb93037d8f1d97875121e225ac?size=96">
-	<link rel="icon" type="image/png" sizes="96x96" href="https://secure.gravatar.com/avatar/4ff773eb93037d8f1d97875121e225ac?size=96">
-	<link rel="icon" type="image/png" sizes="32x32" href="https://secure.gravatar.com/avatar/4ff773eb93037d8f1d97875121e225ac?size=32">
-	<link rel="icon" type="image/png" sizes="16x16" href="https://secure.gravatar.com/avatar/4ff773eb93037d8f1d97875121e225ac?size=16">
-	<link href="/css/global.css" rel="stylesheet">
-</head>
-<body>
-	<div id="wrap">
-<!-- 		<div id="image"></div> -->
-		<strong>Joshua Kemmerling.</strong> Father. Husband. Web developer. Austinite. Pizza addict. Dr. Pepper lover. Athlete. Photographer. Explorer. <a href="https://github.com/hellojosh">Github</a>. <a href="https://linkedin.com/in/joshuakemmerling">LinkedIn</a>. <a href="https://codepen.io/hellojosh">CodePen</a>.
+---
+title: Bits and Bobs of Code
+layout: default
+---
+
+<!-- <div id="hero">
+	Bits <span class="amp">&</span> Bobs of Code
+</div> -->
+<section id="home-section">
+  {% for post in site.posts %}
+  <div class="article-preview">
+		<h4 class="article-preview-header"><a href="{{ post.url }}">{{ post.title }}</a></h4>
+		<p>{{ post.subtitle }}</p>
+		<p><small>{{ post.date | date: "%B %e, %Y" }}&nbsp;&nbsp;&bull;&nbsp;&nbsp;{{ post.category }}</small></p>
 	</div>
-</body>
-</html>
+  {% endfor %}
+
+
+	<h3 class="article-previews-section-title">2019</h3>
+  <div class="article-preview">
+		<h4 class="article-preview-header"><a href="#article-section">Shipping system fonts to GitHub.com Shipping system fonts to GitHub.com Shipping system fonts to GitHub.com</a></h4>
+		<p>How Americans turned against bankers after the Depression.</p>
+		<p><small>February 7&nbsp;&nbsp;&bull;&nbsp;&nbsp;Swift</small></p>
+	</div>
+	<div class="article-preview">
+		<h4 class="article-preview-header"><a href="#article-section">Shipping system fonts to GitHub.com</a></h4>
+		<p>How Americans turned against bankers after the Depression.</h5>
+		<p><small>February 7&nbsp;&nbsp;&bull;&nbsp;&nbsp;Swift</small></p>
+	</div>
+	<div class="article-preview">
+		<h4 class="article-preview-header"><a href="#article-section">Shipping system fonts to GitHub.com</a></h4>
+		<p>How Americans turned against bankers after the Depression.</h5>
+		<p><small>February 7&nbsp;&nbsp;&bull;&nbsp;&nbsp;Swift</small></p>
+	</div>
+	<div class="article-preview">
+		<h4 class="article-preview-header"><a href="#article-section">Shipping system fonts to GitHub.com</a></h4>
+		<p>How Americans turned against bankers after the Depression.</h5>
+		<p><small>February 7&nbsp;&nbsp;&bull;&nbsp;&nbsp;Swift</small></p>
+	</div>
+	<div class="article-preview">
+		<h4 class="article-preview-header"><a href="#article-section">Shipping system fonts to GitHub.com</a></h4>
+		<p>How Americans turned against bankers after the Depression.</h5>
+		<p><small>February 7&nbsp;&nbsp;&bull;&nbsp;&nbsp;Swift</small></p>
+	</div>
+	<h3 class="article-previews-section-title">2018</h3>
+	<div class="article-preview">
+		<h4 class="article-preview-header"><a href="#article-section">Shipping system fonts to GitHub.com</a></h4>
+		<p>How Americans turned against bankers after the Depression.</h5>
+		<p><small>February 7&nbsp;&nbsp;&bull;&nbsp;&nbsp;Swift</small></p>
+	</div>
+	<div class="article-preview">
+		<h4 class="article-preview-header"><a href="#article-section">Shipping system fonts to GitHub.com</a></h4>
+		<p>How Americans turned against bankers after the Depression.</p>
+				<p><small>February 7&nbsp;&nbsp;&bull;&nbsp;&nbsp;Swift</small></p>
+	</div>
+	<div class="article-preview">
+		<h4 class="article-preview-header"><a href="#article-section">Shipping system fonts to GitHub.com</a></h4>
+		<p>How Americans turned against bankers after the Depression.</h5>
+		<p><small>February 7&nbsp;&nbsp;&bull;&nbsp;&nbsp;Swift</small></p>
+	</div>
+</section>

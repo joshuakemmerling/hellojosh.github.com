@@ -1,0 +1,254 @@
+---
+---
+@media (min-width: 576px) {}
+@media (min-width: 768px) {}
+@media (min-width: 992px) {}
+@media (min-width: 1200px) {}
+
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+	text-size-adjust: none;
+}
+
+a {
+	text-decoration: none;
+	color: #08aeea;
+
+	&:hover {
+		opacity: 0.5;
+	}
+}
+
+strong {
+	font-weight: 600;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	line-height: 1.2;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+	margin-top: 0;
+	margin-bottom: 1rem;
+}
+
+h1, h3 {
+	font-weight: 900;
+}
+
+h2 {
+	font-size: 1.2em;
+	font-weight: 400;
+	color: #777;
+}
+
+img {
+	display: block;
+	max-width: 100%;
+	margin-bottom: 1rem;
+}
+
+figure {
+	margin: 0 0 1rem;
+
+	img {
+		margin: 0;
+	}
+}
+
+figcaption {
+	border-bottom: solid 1px #eee;
+	padding: 0.75rem 0;
+	line-height: 1.2;
+
+	p {
+		margin: 0;
+	}
+}
+
+nav {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	padding: 1rem 1rem calc(1rem + 5px);
+	font-size: 80%;
+	position: relative;
+
+	a {
+		text-decoration: none;
+		color: inherit;
+	}
+
+	@media (max-width: 576px) {
+		a:first-child {
+			margin-right: auto;
+		}
+	}
+
+	a + a {
+		margin-left: 1rem;
+	}
+
+	> span {
+		color: #777;
+		margin-right: auto;
+		margin-left: 1rem;
+		display: flex;
+		align-items: center;
+
+		span {
+			margin: 0 0.15em;
+			font-family: Baskerville, 'Goudy Old Style', 'Palatino', 'Book Antiqua', serif;
+			font-size: 150%;
+			font-style: italic;
+			font-weight: normal;
+			line-height: 1;
+		}
+
+		@media (max-width: 576px) {
+			display: none;
+		}
+	}
+
+	.gradient-border {
+		height: 5px;
+		background: linear-gradient(to right, #08aeea 0%, #2ae88a 100%);
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+
+	@media (min-width: 576px) {
+		background: #fff;
+		position: sticky;
+		top: 0;
+		padding-left: 2rem;
+		padding-right: 2rem;
+		margin-bottom: 2rem;
+
+		a + a {
+			margin-left: 2rem;
+		}
+	}
+}
+
+footer {
+	padding: 3rem 2rem;
+	text-align: center;
+}
+
+section, article {
+	max-width: 42.5em;
+	margin: 0 auto;
+	padding: 1rem;
+	box-sizing: border-box;
+
+	@media (min-width: 576px) {
+		padding-left: 2rem;
+		padding-right: 2rem;
+	}
+}
+
+header {
+  margin-bottom: 2rem;
+
+	h1, h2 {
+		margin-bottom: 0.5rem;
+	}
+
+	p {
+		color: #777;
+	}
+}
+
+.logo {
+	display: flex;
+	align-items: center;
+
+	svg {
+		width: 1.625em;
+		height: 1.625em;
+		display: block;
+
+		.fa-secondary {
+			opacity: 0.4;
+		}
+
+		+ svg {
+			margin-left: 10px;
+		}
+
+		&.small-svg {
+			width: 1em;
+			height: 1em;
+		}
+	}
+}
+
+.article-preview {
+	margin-bottom: 1.5rem;
+
+	&-header {
+		margin: 0 0 5px;
+	}
+
+	a {
+		color: inherit;
+	}
+
+	p {
+		margin: 0;
+		color: #777;
+	}
+
+	+  .article-previews-section-title {
+		margin-top: 2em;
+	}
+}
+
+.article-previews-section-title {
+	margin: 0 0 1em;
+}
+
+#about-section {
+	max-width: 420px;
+	max-width: 26.25em;
+
+	img {
+		border-radius: 15px;
+	}
+}
+
+#hero {
+	background: url(https://source.unsplash.com/ZdWhZTpd_Uw) no-repeat center/cover;
+	height: 300px;
+	color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	font-family: 'Big Shoulders Text', cursive;
+	font-weight: 900;
+	font-size: 4rem;
+	font-size: 2.5rem;
+
+	@media (min-width: 576px) {
+		margin-top: -2rem;
+		margin-bottom: 2rem;
+		font-size: 3rem;
+	}
+	@media (min-width: 768px) {
+		font-size: 4rem;
+	}
+
+	span {
+		font-family: Baskerville, 'Goudy Old Style', 'Palatino', 'Book Antiqua', serif;
+		font-size: 150%;
+		font-style: italic;
+		font-weight: normal;
+		margin: 0 0.15em;
+	}
+}

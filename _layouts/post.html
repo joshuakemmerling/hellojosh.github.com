@@ -1,0 +1,12 @@
+---
+layout: default
+---
+
+<article id="article-section">
+	<header>
+		<h1>{{ page.title }}</h1>
+		<h2>{{ page.subtitle }}</h2>
+		<p><small>{{ page.date | date: "%A, %B %e, %Y" }}&nbsp;&nbsp;&bull;&nbsp;&nbsp;{{ page.category }}</small></p>
+	</header>
+	{{ content }}
+</article>
