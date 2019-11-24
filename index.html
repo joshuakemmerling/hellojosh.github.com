@@ -3,59 +3,19 @@ title: Bits and Bobs of Code
 layout: default
 ---
 
-<!-- <div id="hero">
-	Bits <span class="amp">&</span> Bobs of Code
-</div> -->
-<section id="home-section">
-  {% for post in site.posts %}
-  <div class="article-preview">
-		<h4 class="article-preview-header"><a href="{{ post.url }}">{{ post.title }}</a></h4>
-		<p>{{ post.subtitle }}</p>
-		<p><small>{{ post.date | date: "%B %e, %Y" }}&nbsp;&nbsp;&bull;&nbsp;&nbsp;{{ post.category }}</small></p>
-	</div>
+<section id="home-section" class="container">
+  {% for post in site.posts  %}
+    {% capture this_year %}{{ post.date | date: "%Y" }}{% endcapture %}
+    {% capture next_year %}{{ post.previous.date | date: "%Y" }}{% endcapture %}
+
+    {% if this_year != next_year %}
+      <h3 class="article-previews-section-title">{{ this_year }}</h3>
+    {% endif %}
+
+    <div class="article-preview">
+      <h4 class="article-preview-header"><a href="{{ post.url }}">{{ post.title }}</a></h4>
+      <p>{{ post.subtitle }}</p>
+      <p><small>{{ post.date | date: "%B %e" }} &bull; {{ post.category }}</small></p>
+    </div>
   {% endfor %}
-
-
-	<h3 class="article-previews-section-title">2019</h3>
-  <div class="article-preview">
-		<h4 class="article-preview-header"><a href="#article-section">Shipping system fonts to GitHub.com Shipping system fonts to GitHub.com Shipping system fonts to GitHub.com</a></h4>
-		<p>How Americans turned against bankers after the Depression.</p>
-		<p><small>February 7&nbsp;&nbsp;&bull;&nbsp;&nbsp;Swift</small></p>
-	</div>
-	<div class="article-preview">
-		<h4 class="article-preview-header"><a href="#article-section">Shipping system fonts to GitHub.com</a></h4>
-		<p>How Americans turned against bankers after the Depression.</h5>
-		<p><small>February 7&nbsp;&nbsp;&bull;&nbsp;&nbsp;Swift</small></p>
-	</div>
-	<div class="article-preview">
-		<h4 class="article-preview-header"><a href="#article-section">Shipping system fonts to GitHub.com</a></h4>
-		<p>How Americans turned against bankers after the Depression.</h5>
-		<p><small>February 7&nbsp;&nbsp;&bull;&nbsp;&nbsp;Swift</small></p>
-	</div>
-	<div class="article-preview">
-		<h4 class="article-preview-header"><a href="#article-section">Shipping system fonts to GitHub.com</a></h4>
-		<p>How Americans turned against bankers after the Depression.</h5>
-		<p><small>February 7&nbsp;&nbsp;&bull;&nbsp;&nbsp;Swift</small></p>
-	</div>
-	<div class="article-preview">
-		<h4 class="article-preview-header"><a href="#article-section">Shipping system fonts to GitHub.com</a></h4>
-		<p>How Americans turned against bankers after the Depression.</h5>
-		<p><small>February 7&nbsp;&nbsp;&bull;&nbsp;&nbsp;Swift</small></p>
-	</div>
-	<h3 class="article-previews-section-title">2018</h3>
-	<div class="article-preview">
-		<h4 class="article-preview-header"><a href="#article-section">Shipping system fonts to GitHub.com</a></h4>
-		<p>How Americans turned against bankers after the Depression.</h5>
-		<p><small>February 7&nbsp;&nbsp;&bull;&nbsp;&nbsp;Swift</small></p>
-	</div>
-	<div class="article-preview">
-		<h4 class="article-preview-header"><a href="#article-section">Shipping system fonts to GitHub.com</a></h4>
-		<p>How Americans turned against bankers after the Depression.</p>
-				<p><small>February 7&nbsp;&nbsp;&bull;&nbsp;&nbsp;Swift</small></p>
-	</div>
-	<div class="article-preview">
-		<h4 class="article-preview-header"><a href="#article-section">Shipping system fonts to GitHub.com</a></h4>
-		<p>How Americans turned against bankers after the Depression.</h5>
-		<p><small>February 7&nbsp;&nbsp;&bull;&nbsp;&nbsp;Swift</small></p>
-	</div>
 </section>
