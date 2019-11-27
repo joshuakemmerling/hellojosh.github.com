@@ -1,5 +1,9 @@
 ---
 ---
+$gray-text: #6a737d; // text-color
+$gray-border: #dfe2e5; // border
+$gray-background: #f6f8fa; // background
+
 @media (min-width: 576px) {}
 @media (min-width: 768px) {}
 @media (min-width: 992px) {}
@@ -25,7 +29,7 @@ h1, h2, h3, h4, h5, h6 {
 	line-height: 1.2;
 }
 
-h1, h2, h3, h4, h5, h6, p, blockquote, pre, ul, ol, figure, hr {
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, ul, ol, figure, hr, img, table {
   margin: 0;
   margin-bottom: 1rem;
 }
@@ -47,19 +51,17 @@ h3 {
 img {
 	display: block;
 	width: 100%;
-	margin-bottom: 1rem;
 }
 
 blockquote {
   padding: 0 0 0 1rem;
-  color: #6a737d;
-  border-left: .25rem solid #dfe2e5;
+  color: $gray-text;
+  border-left: .25rem solid $gray-border;
 }
 
 hr {
   height: 0.25rem;
-  // background: #e1e4e8;
-  background: #dfe2e5;
+  background: $gray-border;
   border: 0;
 }
 
@@ -69,7 +71,7 @@ figure {
 	}
 
   figcaption {
-  	border-bottom: solid 1px #eee;
+    border-bottom: solid 1px $gray-border;
   	padding: 0.75rem 0;
   	line-height: 1.2;
     font-size: 80%;
@@ -85,19 +87,18 @@ table {
   overflow: auto;
   border-spacing: 0;
   border-collapse: collapse;
-  margin-bottom: 1rem;
 
   tr {
     background: #fff;
 
     &:nth-child(2n) {
-      background-color: #f6f8fa;
+      background-color: $gray-background;
     }
   }
 
   td, th {
     padding: 0.375rem 0.75rem;
-    border: 1px solid #dfe2e5;
+    border: 1px solid $gray-border;
     text-align: left;
   }
 }
@@ -112,12 +113,12 @@ article header {
   h2 {
     font-size: 1.2em;
     font-weight: 400;
-    color: #6a737d;
+    color: $gray-text;
     margin-top: 0;
   }
 
 	p {
-		color: #6a737d;
+		color: $gray-text;
     margin: 0;
 	}
 }
@@ -127,7 +128,7 @@ pre, code {
 }
 
 code {
-  background: #f8f8f8;
+  background: $gray-background;
   padding: 0.15rem 0.35rem;
   border-radius: 3px;
 }
@@ -141,6 +142,8 @@ pre code {
 pre.highlight {
   padding: 0.5rem 1rem;
   border-radius: 4px;
+  background: $gray-background;
+  overflow: auto;
 }
 
 .logo {
@@ -182,7 +185,7 @@ pre.highlight {
 
 	p {
 		margin: 0;
-		color: #6a737d;
+		color: $gray-text;
 	}
 
 	+ .article-previews-section-title {
@@ -191,7 +194,8 @@ pre.highlight {
 }
 
 .container {
-	max-width: 42.5em;
+	max-width: 42.5rem;
+  max-width: 50rem;
 	margin: 0 auto;
 	padding: 1rem;
 	box-sizing: border-box;
@@ -247,7 +251,7 @@ pre.highlight {
 }
 
 #tagline {
-  color: #6a737d;
+  color: $gray-text;
   margin-left: 1rem;
   display: flex;
   align-items: center;
