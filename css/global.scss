@@ -51,6 +51,10 @@ h3 {
 img {
 	display: block;
 	width: 100%;
+
+  &.rounded {
+    border-radius: 15px;
+  }
 }
 
 blockquote {
@@ -204,6 +208,14 @@ pre.highlight {
 		padding-left: 2rem;
 		padding-right: 2rem;
 	}
+
+  &.narrow {
+    max-width: 26.25rem;
+  }
+
+  &.medium {
+    max-width: 40rem;
+  }
 }
 
 #header {
@@ -275,14 +287,14 @@ pre.highlight {
 	text-align: center;
 }
 
-#about-section {
-	max-width: 420px;
-	max-width: 26.25em;
-
-	img {
-		border-radius: 15px;
-	}
-}
+// #about-section {
+// 	max-width: 420px;
+// 	max-width: 26.25em;
+//
+// 	img {
+// 		border-radius: 15px;
+// 	}
+// }
 
 #hero {
 	background: url(https://source.unsplash.com/ZdWhZTpd_Uw) no-repeat center/cover;

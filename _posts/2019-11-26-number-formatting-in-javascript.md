@@ -69,6 +69,8 @@ console.log(value.toLocaleString(navigator.language, options));
 // Outputs: 7,256,384,123.76
 ```
 
+I hope this was helpful. Experiment with the code and see how you can make it work for your solution.
+
 ### More
 
 - [Browser support and documentation.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toLocaleString)
