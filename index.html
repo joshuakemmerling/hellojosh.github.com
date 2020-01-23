@@ -40,7 +40,14 @@
 
     window.onload = () => {
       const moon = document.querySelector('.moon');
-      const hour = parseInt(dayjs().format('H'));
+      let hour = parseInt(dayjs().format('H'));
+      const minute = parseInt(dayjs().format('m'));
+
+      if (minute > 0) {
+        hour += 1;
+      }
+
+      hour = Math.min(hour, 23);
 
       if (hour.between(0, 6) || hour.between(21, 23)) {
         moon.classList.add('night');
