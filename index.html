@@ -24,39 +24,16 @@
 </head>
 <body>
   <main>
-    <div class="moon"></div>
+    <p>👋</p>
     <p><strong>Hi, I'm Joshua Kemmerling.</strong> Father. Husband. Web developer. Austinite. Pizza addict. Dr. Pepper lover. Athlete. Photographer. Explorer.</p>
     <p>I currently build front-end and mobile solutions as a Solutions Architect at <a href="https://projekt202.com" target="_blank" rel="noopener noreferrer">projekt202</a> in Austin, TX.</p>
-    <p class="social">
+    <p>
       <a href="https://github.com/hellojosh" target="_blank" rel="noopener noreferrer">Github</a>
+      &nbsp;&nbsp;&nbsp;&nbsp;
       <a href="https://linkedin.com/in/joshuakemmerling" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      &nbsp;&nbsp;&nbsp;&nbsp;
       <a href="https://codepen.io/hellojosh" target="_blank" rel="noopener noreferrer">Codepen</a>
     </p>
   </main>
-  <script type="text/javascript">
-    Number.prototype.between = function (a, b) {
-      return Math.min(Math.max(a, this), b) === parseInt(this);
-    };
-
-    window.onload = () => {
-      const moon = document.querySelector('.moon');
-      let hour = parseInt(dayjs().format('H'));
-      const minute = parseInt(dayjs().format('m'));
-
-      if (minute > 0) {
-        hour += 1;
-      }
-
-      hour = Math.min(hour, 23);
-
-      if (hour.between(0, 6) || hour.between(21, 23)) {
-        moon.classList.add('night');
-      } else if (hour.between(7, 8) || hour.between(19, 20)) {
-        moon.classList.add('dawn');
-      } else if (hour.between(9, 18)) {
-        moon.classList.add('sun');
-      }
-    };
-  </script>
 </body>
 </html>
