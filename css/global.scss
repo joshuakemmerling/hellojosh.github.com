@@ -51,6 +51,17 @@ p {
 
 main {
 	max-width: 700px;
-	padding: 0 1rem;
+	padding: 2rem;
 	box-sizing: border-box;
+}
+
+img {
+	display: block;
+	border-radius: 9999px;
+	width: 6rem;
+	margin-bottom: 1.5rem;
+	
+	&:hover {
+	  filter: grayscale(100%);
+  }
 }
