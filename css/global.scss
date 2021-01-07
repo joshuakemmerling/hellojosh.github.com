@@ -17,7 +17,7 @@
 }
 
 $base-color: #3a3a3a;
-$accent-color: #ffc534;
+$accent-color: #11BB9A;
 
 * {
   box-sizing: border-box;
@@ -32,6 +32,7 @@ body {
 	-webkit-font-smoothing: antialiased;
   text-size-adjust: none;
   color: $base-color;
+  background-color: rgba(213, 238, 237, 0.5);
 }
 
 @media (min-width: 768px) {
@@ -47,8 +48,14 @@ body {
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+  color: $accent-color;
+  text-decoration: underline;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      color: lighten($accent-color, 5%);
+    }
+  }
 }
 
 strong {
@@ -62,15 +69,6 @@ h1 {
 
 p {
   margin-bottom: 1rem;
-
-  a {
-    padding: 0.05em 0.3em 0.18em;
-    background: rgba($accent-color, 0.45);
-
-    &:hover {
-      background: rgba($accent-color, 0.7);
-    }
-  }
 }
 
 svg {
@@ -103,10 +101,7 @@ header {
   
   a {
     margin-left: 1.5em;
-
-    &:hover {
-      color: rgba(255, 197, 52, 1);
-    }
+    color: inherit;
   }
 }
 
