@@ -67,14 +67,6 @@ h1 {
   margin-bottom: 1rem;
 }
 
-p {
-  margin-bottom: 1rem;
-}
-
-svg {
-  display: block;
-}
-
 img {
   display: block;
   width: 100%;
@@ -85,10 +77,22 @@ img {
   }
 }
 
+p {
+  margin-bottom: 1em;
+}
+
+p + img {
+  margin-top: 1.5em;
+}
+
+svg {
+  display: block;
+}
+
 header, footer {
   display: flex;
   align-items: center;
-  font-size: 1rem;
+  font-size: 1em;
 }
 
 header {
@@ -159,7 +163,7 @@ header {
 
 @media (min-width: 992px) {
   body {
-    font-size: 1.5rem;
+    font-size: 1.5em;
   }
 }
 
