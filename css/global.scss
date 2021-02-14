@@ -28,18 +28,18 @@ $accent-color: #11BB9A;
 }
 
 body {
-	font: 1rem/1.5 system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font: 1rem/1.5 system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 	-webkit-font-smoothing: antialiased;
   text-size-adjust: none;
   color: $base-color;
   background-color: rgba(213, 238, 237, 0.5);
 }
 
-@media (min-width: 768px) {
-  body {
-    font-size: 1.25rem;
-  }
-}
+// @media (min-width: 768px) {
+//   body {
+//     font-size: 1.25rem;
+//   }
+// }
 
 // @media (min-width: 992px) {
 //   body {
@@ -64,21 +64,25 @@ strong {
 
 h1 {
   font: 900 2em/1.2 Fraunces, sans-serif;
-  margin-bottom: 1em;
+  margin-bottom: 1rem;
 }
 
 img {
   display: block;
   width: 100%;
-  margin-bottom: 1em;
+  margin-bottom: 1rem;
 
   &.project-image {
-    margin-bottom: 0.5em;
+    margin-bottom: 0.5rem;
   }
 }
 
 p {
-  margin-bottom: 1em;
+  margin-bottom: 1rem;
+}
+
+p + img {
+  margin-top: 1.5rem;
 }
 
 svg {
@@ -88,7 +92,7 @@ svg {
 header, footer {
   display: flex;
   align-items: center;
-  font-size: 1em;
+  font-size: 1rem;
 }
 
 header {
@@ -96,11 +100,11 @@ header {
     margin-right: auto;
     font-family: Professor, cursive;
     line-height: 1;
-    font-size: 1.25em;
+    font-size: 1.25rem;
   }
   
   a {
-    margin-left: 1.5em;
+    margin-left: 1.5rem;
     color: inherit;
   }
 }
@@ -113,20 +117,30 @@ header {
   font-size: 80%;
 }
 
+.project-link {
+  display: block;
+  font-size: 80%;
+  margin-bottom: 1rem;
+
+  img {
+    margin-bottom: 0.5rem;
+  }
+}
+
 .container {
-  padding: 2em 1em;
+  padding: 2rem 1rem;
   max-width: 800px;
-  margin: 0 auto 2em;
+  margin: 0 auto 2rem;
 }
 
 .row {
   display: flex;
-  margin: 0 -0.5em;
+  margin: 0 -0.5rem;
   flex-wrap: wrap;
 }
 
 [class*="col-"] {
-  padding: 0 0.5em;
+  padding: 0 0.5rem;
 }
 
 .col-12 {
@@ -145,11 +159,11 @@ header {
   }
 
   .row {
-    margin: 0 -1em;
+    margin: 0 -1rem;
   }
 
   [class*="col-"] {
-    padding: 0 1em;
+    padding: 0 1rem;
   }
 
   .col-md-4 {
@@ -157,19 +171,8 @@ header {
   }
 }
 
-@media (min-width: 992px) {
-  body {
-    font-size: 1.5em;
-  }
-}
-
-.project-link {
-  display: block;
-  font-size: 80%;
-  margin-bottom: 1em;
-
-  img {
-    margin-bottom: 0.5em;
-  }
-}
-
+// @media (min-width: 992px) {
+//   body {
+//     font-size: 1.5em;
+//   }
+// }
