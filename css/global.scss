@@ -35,18 +35,6 @@ body {
   background-color: rgba(213, 238, 237, 0.5);
 }
 
-// @media (min-width: 768px) {
-//   body {
-//     font-size: 1.25rem;
-//   }
-// }
-
-// @media (min-width: 992px) {
-//   body {
-//     font-size: 1.5rem;
-//   }
-// }
-
 a {
   color: $accent-color;
   text-decoration: underline;
@@ -71,6 +59,7 @@ img {
   display: block;
   width: 100%;
   margin-bottom: 1rem;
+  border-radius: 1rem;
 
   &.project-image {
     margin-bottom: 0.5rem;
@@ -170,9 +159,3 @@ header {
     flex: 0 0 33.3333333333%;
   }
 }
-
-// @media (min-width: 992px) {
-//   body {
-//     font-size: 1.5em;
-//   }
-// }
