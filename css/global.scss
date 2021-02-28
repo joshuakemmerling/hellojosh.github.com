@@ -33,6 +33,11 @@ body {
   text-size-adjust: none;
   color: $base-color;
   background-color: rgba(213, 238, 237, 0.5);
+  
+  @media (prefers-color-scheme: dark) {
+    color: rgb(213, 238, 237);
+    background-color: $base-color;
+  }
 }
 
 a {
@@ -118,7 +123,7 @@ header {
 
 .container {
   padding: 2rem 1rem;
-  max-width: 800px;
+  max-width: 768px;
   margin: 0 auto 2rem;
 }
 
