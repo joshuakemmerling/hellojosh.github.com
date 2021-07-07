@@ -36,7 +36,7 @@ a {
 	color: inherit;
 	text-decoration: underline;
 	transition: color 150ms cubic-bezier(.4, 0, .2, 1);
-	
+
 	@media (hover: hover) and (pointer: fine) {
 		&:hover {
 			color: var(--primary-color-dark);
@@ -68,53 +68,66 @@ footer > * {
 }
 
 .projects {
-	margin: 3rem -1.5rem;
-	
+	margin: 3rem 0;
+
 	.project {
 		--tw-scale-x: 1;
-    	--tw-scale-y: 1;
-		
+    --tw-scale-y: 1;
+
 		text-decoration: none;
 		display: block;
-		padding: 1.5rem;
+		padding: 1rem 2rem 1rem 1rem;
 		border-radius: 0.75rem;
 		transition: 150ms cubic-bezier(.4, 0, .2, 1);
 		transition-property: transform, background-color;
 		transform: scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+		background: var(--project-hover-background);
+		margin-bottom: 1.5rem;
+		font-size: 1rem;
 
-		@media (hover: hover) and (pointer: fine) {
-			&:hover {
-				--tw-scale-x: 1.05;
-				--tw-scale-y: 1.05;
+		// @media (hover: hover) and (pointer: fine) {
+		// 	&:hover {
+		// 		--tw-scale-x: 1.05;
+		// 		--tw-scale-y: 1.05;
+		//
+		// 		background: var(--project-hover-background);
+		// 		color: inherit;
+		// 	}
+		// }
 
-				background: var(--project-hover-background);
-				color: inherit;
-			}
-		}
-		
 		.project-title {
 			display: flex;
 			align-items: center;
-			margin-bottom: 0.75rem;
+			// margin-bottom: 0.75rem;
 			color: var(--primary-color-dark);
 			line-height: 1.2;
-			
+
 			img {
 				width: 2.5rem;
 				border-radius: 22%;
 				margin-right: 0.75rem;
 			}
+
+			em {
+				display: block;
+				color: var(--primary-color);
+			}
 		}
-		
+
 		.project-description {
 			font-size: 1rem;
 			display: block;
+		}
+
+		svg {
+			margin-left: auto;
+			color: var(--primary-color);
 		}
 	}
 }
 
 .container {
-	max-width: 768px;
+	max-width: 600px;
 	margin: 0 auto;
-	padding: 6rem 2rem 3rem;
+	padding: 4rem 2rem;
 }
