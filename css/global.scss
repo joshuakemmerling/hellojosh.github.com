@@ -71,16 +71,16 @@ footer > * {
 	margin: 3rem 0;
 
 	.project {
-		--tw-scale-x: 1;
-    --tw-scale-y: 1;
+		// --tw-scale-x: 1;
+    // --tw-scale-y: 1;
 
 		text-decoration: none;
 		display: block;
-		padding: 1rem 2rem 1rem 1rem;
+		padding: 1rem;
 		border-radius: 0.75rem;
 		transition: 150ms cubic-bezier(.4, 0, .2, 1);
 		transition-property: transform, background-color;
-		transform: scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+		// transform: scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 		background: var(--project-hover-background);
 		margin-bottom: 1.5rem;
 		font-size: 1rem;
